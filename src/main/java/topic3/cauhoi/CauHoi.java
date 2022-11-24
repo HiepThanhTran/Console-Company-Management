@@ -1,5 +1,7 @@
 package topic3.cauhoi;
 
+import static topic3.CauHinh.sc;
+
 public abstract class CauHoi {
 
     private int mucDo;
@@ -37,6 +39,13 @@ public abstract class CauHoi {
 
     public void setDanhMuc(DanhMuc danhMuc) {
         this.danhMuc = danhMuc;
+    }
+
+    public void nhapThongTin() {
+        System.out.print("- Muc do: ");
+        this.mucDo = Integer.parseInt(sc.nextLine());
+        System.out.print("- Noi dung: ");
+        this.noiDung = sc.nextLine();
     }
 
     @Override

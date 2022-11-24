@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class ThanhVien {
 
-    private final Date ngayGiaNhap;
+    private Date ngayGiaNhap;
     private String hoTen;
     private String queQuan;
     private String gioiTinh;
@@ -35,6 +35,10 @@ public class ThanhVien {
 
     public Date getNgayGiaNhap() {
         return ngayGiaNhap;
+    }
+
+    public void setNgayGiaNhap(Date ngayGiaNhap) {
+        this.ngayGiaNhap = ngayGiaNhap;
     }
 
     public String getHoTen() {

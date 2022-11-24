@@ -4,29 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic3.cauhoi.CauHoi;
+import topic3.cauhoi.DanhMuc;
 
 public class QuanLyCauHoi {
 
-    private List<CauHoi> dsCauHoi = new ArrayList<>();
+    private final List<CauHoi> dsCauHoi = new ArrayList<>();
 
-    public void themCauHoi(CauHoi ch) {
-        this.dsCauHoi.add(ch);
+    public static void hienThiDS(List<CauHoi> dsCauHoi) {
+        dsCauHoi.forEach(cauHoi -> System.out.printf("\n%s\n", cauHoi));
     }
 
-    public void xoaCauHoi(CauHoi ch) {
-        this.dsCauHoi.remove(ch);
+    public List<CauHoi> getDsCauHoi() {
+        return dsCauHoi;
     }
 
-    public void hienThiDS() {
-        this.dsCauHoi.forEach(cauHoi -> System.out.printf("\n%s\n", cauHoi));
+    public void themCauHoi(CauHoi cauHoi) {
+        this.dsCauHoi.add(cauHoi);
+    }
+
+    public void xoaCauHoi(CauHoi cauHoi) {
+        this.dsCauHoi.remove(cauHoi);
     }
 
     public List<CauHoi> traCuu(int mucDo) {
         return this.dsCauHoi.stream().filter(cauHoi -> cauHoi.getMucDo() == mucDo).collect(Collectors.toList());
     }
 
-    public List<CauHoi> traCuu(String tukhoa) {
-        return this.dsCauHoi.stream().filter(cauHoi -> cauHoi.getNoiDung().equals(tukhoa) || cauHoi.getDanhMuc().getTenDanhMuc().equals(tukhoa)).collect(Collectors.toList());
+    public List<CauHoi> traCuu(DanhMuc danhMuc) {
+        return this.dsCauHoi.stream().filter(cauHoi -> cauHoi.getDanhMuc().equals(danhMuc)).collect(Collectors.toList());
+    }
+
+    public List<CauHoi> traCuu(String noiDung) {
+        return this.dsCauHoi.stream().filter(cauHoi -> cauHoi.getNoiDung().equals(noiDung)).collect(Collectors.toList());
     }
 
     public List<CauHoi> randomCauHoi(int type) {

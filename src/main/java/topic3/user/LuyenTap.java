@@ -12,5 +12,4 @@ public class LuyenTap {
     public void luyenTap(int type, int number) {
 
     }
-
 }
