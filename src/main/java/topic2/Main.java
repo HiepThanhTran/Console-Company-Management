@@ -33,7 +33,7 @@ public class Main {
                 }
                 case "2" -> {
                     Factory.printLine(120, "-");
-                    if (uiManager.getDepartmentManager().getDepartmentList().size() > 0) {
+                    if (Department.getDepartmentAmount() > 0) {
                         uiManager.UIEmployeeManager();
                     } else {
                         System.out.println("== Danh sách phòng ban trống. Không thể tạo nhân viên ==");
@@ -42,7 +42,7 @@ public class Main {
                 }
                 case "3" -> {
                     Factory.printLine(120, "-");
-                    if (uiManager.getEmployeeManager().getEmployeeList().size() > 0) {
+                    if (Employee.getEmployeeAmount() > 0) {
                         uiManager.UIProjectManager();
                     } else {
                         System.out.println("== Danh sách nhân viên trống. Không thể tạo dự án ==");
@@ -51,7 +51,7 @@ public class Main {
                 }
                 case "4" -> {
                     Factory.printLine(120, "-");
-                    if (uiManager.getEmployeeManager().getEmployeeList().size() > 0) {
+                    if (Employee.getEmployeeAmount() > 0) {
                         uiManager.UIRelativeManager();
                     } else {
                         System.out.println("== Danh sách nhân viên trống. Không thể tạo nhân thân ==");
