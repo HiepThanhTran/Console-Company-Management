@@ -147,9 +147,8 @@ public class ProjectManager {
      * @return
      */
     public Project search(String key) {
-        return this.projectList.stream()
-            .filter(project -> project.getName().equals(key) || project.getId().equals(key)).findFirst()
-            .orElse(null);
+        return this.projectList.stream().filter(project -> project.getName().equals(key) || project.getId().equals(key))
+            .findFirst().orElseThrow(() -> new NullPointerException("\n== Không tìm thấy dự án ==\n"));
     }
 
     /**

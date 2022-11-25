@@ -229,10 +229,9 @@ public class UIManager {
                 }
             }
             case "2" -> {
-                System.out.print("- Nhập mã nhân viên cần xóa: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã nhân viên cần xóa: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     Employee.decreaseEmployeeAmount(1);
                     employeeManager.remove(employee);
                     projectManager.getList(employee).forEach(joinProject -> projectManager.remove(joinProject));
@@ -240,23 +239,21 @@ public class UIManager {
                     employeeManager.getList(employee).forEach(provideInsurance -> employeeManager.remove(provideInsurance));
                     System.out.println("\n== Xóa nhân viên thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
             case "3" -> {
-                System.out.print("- Nhập mã dự án hoặc tên dự án nhân viên muốn tham gia: ");
-                Project project = projectManager.search(SCANNER.nextLine());
-                System.out.print("- Nhập mã nhân viên: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(project);
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã dự án hoặc tên dự án nhân viên muốn tham gia: ");
+                    Project project = projectManager.search(SCANNER.nextLine());
+                    System.out.print("- Nhập mã nhân viên: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     projectManager.add(new JoinProject(project, employee));
                     System.out.printf("\n== Nhân viên %s tham gia dự án %s thành công ==\n", employee.getId(),
                         project.getName().toUpperCase());
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy dự án hoặc nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIEmployeeManager();
                 } catch (AmountException e) {
                     System.out.println(e.getMessage());
@@ -264,13 +261,11 @@ public class UIManager {
                 }
             }
             case "4" -> {
-                System.out.print("- Nhập mã nhân viên muốn thăng chức: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
-                System.out.print("- Nhập tên phòng ban: ");
-                Department department = departmentManager.search(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(department);
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã nhân viên muốn thăng chức: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
+                    System.out.print("- Nhập tên phòng ban: ");
+                    Department department = departmentManager.search(SCANNER.nextLine());
                     if (!department.hasEmployee(employee)) {
                         System.out.println("\n== Nhân viên không thuộc phòng ban này ==");
                     } else if (department.hasManager()) {
@@ -283,7 +278,7 @@ public class UIManager {
                         System.out.println("\n== Thăng chức thành công ==");
                     }
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -296,17 +291,16 @@ public class UIManager {
                 employeeManager.showList();
             }
             case "7" -> {
-                System.out.print("- Nhập mã nhân viên cần xem danh sách dự án: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã nhân viên cần xem danh sách dự án: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     System.out.printf("\n*** DANH SÁCH DỰ ÁN NHÂN VIÊN %s ĐANG THỰC HIỆN ***\n", employee.getId());
                     projectManager.getList(employee).forEach(joinProject -> {
                         Factory.printLine(120, "~");
                         joinProject.getProject().showInfo();
                     });
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -334,15 +328,14 @@ public class UIManager {
                 }
             }
             case "10" -> {
-                System.out.print("- Nhập tên phòng ban: ");
-                Department department = departmentManager.search(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(department);
+                    System.out.print("- Nhập tên phòng ban: ");
+                    Department department = departmentManager.search(SCANNER.nextLine());
                     System.out.printf("\n*** DANH SÁCH CÁC NHÂN VIÊN THUỘC PHÒNG BAN %s ***\n",
                         department.getName().toUpperCase());
                     department.showList();
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy phòng ban ==");
+                    System.out.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -375,7 +368,7 @@ public class UIManager {
                     System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIEmployeeManager();
                 } catch (InputMismatchException e) {
-                    System.out.println("\n== Khoảng tuổi không hợp lệ ==");
+                    System.out.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -415,16 +408,15 @@ public class UIManager {
         String choice = SCANNER.nextLine();
         switch (choice) {
             case "1" -> {
-                System.out.print("- Nhập mã nhân viên: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã nhân viên: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     System.out.println("\n== Nhập thông tin nhân thân ==");
                     Relative relative = newRelative();
                     employeeManager.add(new ProvideInsurance(relative, employee));
                     System.out.println("\n== Cung cấp thông tin nhân thân thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIRelativeManager();
                 } catch (ParseException | EmailException e) {
                     System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
@@ -441,17 +433,17 @@ public class UIManager {
                 }
             }
             case "2" -> {
-                System.out.print("- Nhập mã nhân viên: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã nhân viên: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     System.out.printf("\n*** DANH SÁCH NHÂN THÂN CỦA NHÂN VIÊN %s ***\n", employee.getId());
                     employeeManager.getList(employee).forEach(provideInsurance -> {
                         Factory.printLine(120, "~");
                         provideInsurance.getRelative().showInfo();
+                        System.out.printf("- Mã bảo hiểm xã hội: %s\n", provideInsurance.getInsNumber());
                     });
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIRelativeManager();
                 }
             }
@@ -492,7 +484,7 @@ public class UIManager {
                     projectManager.add(project);
                     System.out.println("\n== Thêm dự án thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIProjectManager();
                 } catch (ParseException e) {
                     System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
@@ -505,13 +497,11 @@ public class UIManager {
                 }
             }
             case "2" -> {
-                System.out.print("- Nhập mã dự án hoặc tên dự án cần sửa: ");
-                Project project = projectManager.search(SCANNER.nextLine());
-                System.out.print("- Nhập mã nhân viên sẽ làm chủ nhiệm mới của dự án: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(project);
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã dự án hoặc tên dự án cần sửa: ");
+                    Project project = projectManager.search(SCANNER.nextLine());
+                    System.out.print("- Nhập mã nhân viên sẽ làm chủ nhiệm mới của dự án: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     if (projectManager.check(project, employee)) {
                         project.setInfo();
                         project.setManager(employee);
@@ -520,7 +510,7 @@ public class UIManager {
                         System.out.println("\n== Nhân viên không thuộc dự án này ==");
                     }
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy dự án hoặc nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIProjectManager();
                 } catch (ParseException e) {
                     System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
@@ -528,32 +518,29 @@ public class UIManager {
                 }
             }
             case "3" -> {
-                System.out.print("- Nhập mã dự án hoặc tên dự án cần xóa: ");
-                Project project = projectManager.search(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(project);
+                    System.out.print("- Nhập mã dự án hoặc tên dự án cần xóa: ");
+                    Project project = projectManager.search(SCANNER.nextLine());
                     Project.decreaseProjectAmount(1);
                     projectManager.remove(project);
                     projectManager.getList(project).forEach(joinProject -> projectManager.remove(joinProject));
                     System.out.println("\n== Xóa dự án thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy dự án ==");
+                    System.out.println(e.getMessage());
                     UIProjectManager();
                 }
             }
             case "4" -> {
-                System.out.print("- Nhập mã dự án hoặc tên dự án: ");
-                Project project = projectManager.search(SCANNER.nextLine());
-                System.out.print("- Nhập mã nhân viên cần thêm vào dự án: ");
-                Employee employee = employeeManager.searchById(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(project);
-                    ValidatorService.checkNullObject(employee);
+                    System.out.print("- Nhập mã dự án hoặc tên dự án: ");
+                    Project project = projectManager.search(SCANNER.nextLine());
+                    System.out.print("- Nhập mã nhân viên cần thêm vào dự án: ");
+                    Employee employee = employeeManager.searchById(SCANNER.nextLine());
                     projectManager.add(new JoinProject(project, employee));
                     System.out.printf("\n== Thêm nhân viên %s vào dự án %s thành công ==\n", employee.getId(),
                         project.getName().toUpperCase());
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy dự án hoặc nhân viên ==");
+                    System.out.println(e.getMessage());
                     UIProjectManager();
                 } catch (AmountException e) {
                     System.out.println(e.getMessage());
@@ -561,13 +548,12 @@ public class UIManager {
                 }
             }
             case "5" -> {
-                System.out.print("- Nhập tên dự án cần tìm: ");
-                Project project = projectManager.search(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(project);
+                    System.out.print("- Nhập tên dự án cần tìm: ");
+                    Project project = projectManager.search(SCANNER.nextLine());
                     project.showInfo();
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy dự án ==");
+                    System.out.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -590,17 +576,16 @@ public class UIManager {
                 projectManager.showList();
             }
             case "8" -> {
-                System.out.print("- Nhập mã dự án hoặc tên dự án cần xem danh sách nhân viên: ");
-                Project project = projectManager.search(SCANNER.nextLine());
                 try {
-                    ValidatorService.checkNullObject(project);
+                    System.out.print("- Nhập mã dự án hoặc tên dự án cần xem danh sách nhân viên: ");
+                    Project project = projectManager.search(SCANNER.nextLine());
                     System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CỦA DỰ ÁN %s ***\n", project.getName().toUpperCase());
                     projectManager.getList(project).forEach(joinProject -> {
                         Factory.printLine(120, "~");
                         joinProject.getEmployee().showInfo();
                     });
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy dự án ==");
+                    System.out.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -616,7 +601,6 @@ public class UIManager {
     private Project newProject() throws ParseException, AmountException {
         System.out.print("- Nhập mã nhân viên (Chủ nhiệm dự án): ");
         Employee manager = employeeManager.searchById(SCANNER.nextLine());
-        ValidatorService.checkNullObject(manager);
         Project project = new Project(manager);
         project.setInfo();
         projectManager.add(new JoinProject(project, manager));
@@ -721,7 +705,7 @@ public class UIManager {
                 String gender = (tokens[1].equals("false")) ? "1" : "0";
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[2]);
                 String relationship = tokens[3];
-                int insNumber = Integer.parseInt(tokens[4]);
+                String insNumber = tokens[4];
                 String id = tokens[5];
                 Employee employee = employeeManager.searchById(id);
                 Relative relative = new Relative(name, gender, dob, relationship);
@@ -815,7 +799,7 @@ public class UIManager {
             employeeManager.getRelativeList().forEach(provideInsurance -> {
                 Relative relative = provideInsurance.getRelative();
                 boolean gender = !relative.getGender().equals("1");
-                writeRelative.printf("%s, %s, %s, %s, %d, %s\n", relative.getName(), gender,
+                writeRelative.printf("%s, %s, %s, %s, %s, %s\n", relative.getName(), gender,
                     SIMPLEDATEFORMAT.format(relative.getDob()), relative.getRelationship(), provideInsurance.getInsNumber(),
                     provideInsurance.getEmployee().getId());
             });

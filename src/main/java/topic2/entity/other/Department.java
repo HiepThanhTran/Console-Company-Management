@@ -63,12 +63,7 @@ public class Department {
      * @return True nếu phòng ban đã có quản lý. False nếu chưa có
      */
     public boolean hasManager() {
-        for (Employee e : this.employeeList) {
-            if (e instanceof Manager) {
-                return true;
-            }
-        }
-        return false;
+        return this.employeeList.stream().anyMatch(employee -> employee instanceof Manager);
     }
 
     /**
@@ -78,12 +73,7 @@ public class Department {
      * @return True nếu nhân viên có trong phòng ban. False nếu chưa
      */
     public boolean hasEmployee(Employee employee) {
-        for (Employee e : this.employeeList) {
-            if (e.equals(employee)) {
-                return true;
-            }
-        }
-        return false;
+        return this.employeeList.stream().anyMatch(e -> e.equals(employee));
     }
 
     public void showInfo() {

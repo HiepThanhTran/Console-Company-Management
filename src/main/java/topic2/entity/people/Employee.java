@@ -13,7 +13,7 @@ public abstract class Employee extends Person {
     protected static final double ERROR_SALARY = 200000;
     protected static int EMPLOYEE_AMOUNT = 0;
     protected String id;
-    private String email;
+    protected String email;
 
     {
         EMPLOYEE_AMOUNT++;

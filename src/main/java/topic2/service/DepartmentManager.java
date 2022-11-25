@@ -95,6 +95,7 @@ public final class DepartmentManager {
      * @return
      */
     public Department search(String name) {
-        return this.departmentList.stream().filter(department -> department.getName().equals(name)).findFirst().orElse(null);
+        return this.departmentList.stream().filter(department -> department.getName().equals(name)).findFirst()
+            .orElseThrow(() -> new NullPointerException("\n== Không tìm thấy phòng ban ==\n"));
     }
 }

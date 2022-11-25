@@ -111,6 +111,8 @@ public class Project implements Comparable<Project> {
     public void showInfo() {
         System.out.printf("== Thông tin dự án %s ==", name.toUpperCase());
         System.out.println(this);
+        System.out.println("\t== Thông tin người chủ nhiệm dự án ==");
+        this.manager.showInfo();
     }
 
     @Override

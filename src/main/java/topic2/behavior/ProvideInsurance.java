@@ -1,16 +1,17 @@
 package topic2.behavior;
 
+import java.util.UUID;
 import topic2.entity.people.Employee;
 import topic2.entity.people.Relative;
 
 public class ProvideInsurance {
 
-    private int insNumber;
+    private String insNumber;
     private Relative relative;
     private Employee employee;
 
     {
-        insNumber = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
+        insNumber = UUID.randomUUID().toString();
     }
 
     public ProvideInsurance(Relative relative, Employee employee) {
@@ -18,17 +19,17 @@ public class ProvideInsurance {
         this.employee = employee;
     }
 
-    public ProvideInsurance(int insNumber, Relative relative, Employee employee) {
+    public ProvideInsurance(String insNumber, Relative relative, Employee employee) {
         this.insNumber = insNumber;
         this.relative = relative;
         this.employee = employee;
     }
 
-    public int getInsNumber() {
+    public String getInsNumber() {
         return insNumber;
     }
 
-    public void setInsNumber(int insNumber) {
+    public void setInsNumber(String insNumber) {
         this.insNumber = insNumber;
     }
 

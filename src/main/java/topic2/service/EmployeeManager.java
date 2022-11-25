@@ -116,7 +116,8 @@ public class EmployeeManager {
      * @return 1 Nhân viên hợp lệ
      */
     public Employee searchById(String id) {
-        return this.employeeList.stream().filter(employee -> employee.getId().equals(id)).findFirst().orElse(null);
+        return this.employeeList.stream().filter(employee -> employee.getId().equals(id)).findFirst()
+            .orElseThrow(() -> new NullPointerException("\n== Không tìm thấy nhân viên ==\n"));
     }
 
     /**
@@ -158,7 +159,7 @@ public class EmployeeManager {
      */
     public List<Employee> search(int fromAge, int toAge) {
         if (fromAge > toAge) {
-            throw new InputMismatchException();
+            throw new InputMismatchException("\n== Khoảng tuổi không hợp lệ ==\n");
         }
         return this.employeeList.stream().filter(employee -> employee.getAge() >= fromAge && employee.getAge() <= toAge)
             .collect(Collectors.toList());
