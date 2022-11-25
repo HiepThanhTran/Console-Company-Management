@@ -89,10 +89,10 @@ public class Department {
     public void showInfo() {
         System.out.printf("== Thông tin phòng ban %s ==", name.toUpperCase());
         System.out.println(this);
-        this.showEmployeeList();
+        this.showList();
     }
 
-    public void showEmployeeList() {
+    public void showList() {
         System.out.println("-- DANH SÁCH NHÂN VIÊN --");
         this.employeeList.forEach(employee -> {
             System.out.println();

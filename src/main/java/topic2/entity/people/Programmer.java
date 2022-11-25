@@ -5,7 +5,7 @@ import static topic2.ui.Factory.SCANNER;
 
 import java.text.ParseException;
 import java.util.Date;
-import topic2.entity.other.TypeEmployees;
+import topic2.entity.other.Type;
 
 public class Programmer extends Employee {
 
@@ -38,7 +38,7 @@ public class Programmer extends Employee {
 
     @Override
     public double getCoefficient() {
-        return TypeEmployees.PROGRAMMER.getCoefficient();
+        return Type.PROGRAMMER.getCoefficient();
     }
 
     @Override

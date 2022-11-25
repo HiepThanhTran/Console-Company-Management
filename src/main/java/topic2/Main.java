@@ -33,29 +33,17 @@ public class Main {
                 }
                 case "2" -> {
                     Factory.printLine(120, "-");
-                    if (Department.getDepartmentAmount() > 0) {
-                        uiManager.UIEmployeeManager();
-                    } else {
-                        System.out.println("== Danh sách phòng ban trống. Không thể tạo nhân viên ==");
-                    }
+                    uiManager.UIEmployeeManager();
                     Factory.printLine(120, "-");
                 }
                 case "3" -> {
                     Factory.printLine(120, "-");
-                    if (Employee.getEmployeeAmount() > 0) {
-                        uiManager.UIProjectManager();
-                    } else {
-                        System.out.println("== Danh sách nhân viên trống. Không thể tạo dự án ==");
-                    }
+                    uiManager.UIProjectManager();
                     Factory.printLine(120, "-");
                 }
                 case "4" -> {
                     Factory.printLine(120, "-");
-                    if (Employee.getEmployeeAmount() > 0) {
-                        uiManager.UIRelativeManager();
-                    } else {
-                        System.out.println("== Danh sách nhân viên trống. Không thể tạo nhân thân ==");
-                    }
+                    uiManager.UIRelativeManager();
                     Factory.printLine(120, "-");
                 }
                 case "5" -> {

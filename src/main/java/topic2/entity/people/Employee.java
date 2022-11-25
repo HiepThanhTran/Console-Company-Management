@@ -1,6 +1,5 @@
 package topic2.entity.people;
 
-import static topic2.ui.Factory.BASIC_SALARY;
 import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
@@ -10,6 +9,8 @@ import java.util.Objects;
 
 public abstract class Employee extends Person {
 
+    protected static final double BASIC_SALARY = 5000000;
+    protected static final double ERROR_SALARY = 200000;
     protected static int EMPLOYEE_AMOUNT = 0;
     protected String id;
     private String email;
@@ -57,13 +58,13 @@ public abstract class Employee extends Person {
         this.email = email;
     }
 
-    public double getSalary() {
-        return BASIC_SALARY * this.getCoefficient() + this.getAllowance();
-    }
-
     public abstract double getAllowance();
 
     public abstract double getCoefficient();
+
+    public double getSalary() {
+        return BASIC_SALARY * this.getCoefficient() + this.getAllowance();
+    }
 
     @Override
     public void setInfo() throws ParseException {

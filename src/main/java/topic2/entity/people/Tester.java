@@ -1,11 +1,10 @@
 package topic2.entity.people;
 
-import static topic2.ui.Factory.ERROR_SALARY;
 import static topic2.ui.Factory.SCANNER;
 
 import java.text.ParseException;
 import java.util.Date;
-import topic2.entity.other.TypeEmployees;
+import topic2.entity.other.Type;
 
 public class Tester extends Employee {
 
@@ -38,7 +37,7 @@ public class Tester extends Employee {
 
     @Override
     public double getCoefficient() {
-        return TypeEmployees.TESTER.getCoefficient();
+        return Type.TESTER.getCoefficient();
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import topic2.entity.other.Department;
-import topic2.entity.other.TypeEmployees;
+import topic2.entity.other.Type;
 import topic2.exception.AmountException;
 
 public class Manager extends Employee {
@@ -68,7 +68,7 @@ public class Manager extends Employee {
 
     @Override
     public double getCoefficient() {
-        return TypeEmployees.MANAGER.getCoefficient();
+        return Type.MANAGER.getCoefficient();
     }
 
     public String toString() {

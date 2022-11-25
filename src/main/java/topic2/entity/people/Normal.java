@@ -1,7 +1,7 @@
 package topic2.entity.people;
 
 import java.util.Date;
-import topic2.entity.other.TypeEmployees;
+import topic2.entity.other.Type;
 
 public class Normal extends Employee {
 
@@ -23,6 +23,6 @@ public class Normal extends Employee {
 
     @Override
     public double getCoefficient() {
-        return TypeEmployees.NORMAL.getCoefficient();
+        return Type.NORMAL.getCoefficient();
     }
 }

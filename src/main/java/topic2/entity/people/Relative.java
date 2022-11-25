@@ -18,11 +18,6 @@ public class Relative extends Person {
         this.relationship = relationship;
     }
 
-    public Relative(String name, String gender, String dob, String relationship) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), relationship);
-    }
-
-
     public String getRelationship() {
         return relationship;
     }

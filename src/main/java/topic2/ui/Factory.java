@@ -16,11 +16,9 @@ public final class Factory {
     public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("###,###.##");
     public static final GregorianCalendar GREGORIANCALENDAR = new GregorianCalendar();
     public static final Scanner SCANNER = new Scanner(System.in);
-    public static final double BASIC_SALARY = 5000000;
-    public static final double ERROR_SALARY = 200000;
+    public static final int MAX_PROJECT = 3;
     public static final int MIN_EMPLOYEE = 5;
     public static final int MAX_EMPLOYEE = 10;
-    public static final int MAX_PROJECT = 3;
     public static final int MAX_MANAGER_ROOM = 2;
 
     private Factory() {

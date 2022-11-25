@@ -67,17 +67,6 @@ public final class DepartmentManager {
     }
 
     /**
-     * Lấy danh sách nhân viên của phòng ban 'department'
-     *
-     * @param department Phòng ban
-     * @return Danh sách nhân viên của phòng ban 'department'
-     */
-    public List<JoinDepartment> getList(Department department) {
-        return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getDepartment().equals(department))
-            .collect(Collectors.toList());
-    }
-
-    /**
      * Lấy danh sách phòng ban của nhân viên 'employee'
      *
      * @param employee Nhân viên
@@ -85,6 +74,17 @@ public final class DepartmentManager {
      */
     public List<JoinDepartment> getList(Employee employee) {
         return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getEmployee().equals(employee))
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * Lấy danh sách nhân viên của phòng ban 'department'
+     *
+     * @param department Phòng ban
+     * @return Danh sách nhân viên của phòng ban 'department'
+     */
+    public List<JoinDepartment> getList(Department department) {
+        return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getDepartment().equals(department))
             .collect(Collectors.toList());
     }
 

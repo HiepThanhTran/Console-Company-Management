@@ -3,7 +3,6 @@ package topic2.service;
 import static topic2.ui.Factory.MAX_EMPLOYEE;
 import static topic2.ui.Factory.MAX_PROJECT;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -67,11 +66,6 @@ public class ProjectManager {
 
     public void remove(JoinProject joinProject) {
         this.joinProjects.remove(joinProject);
-    }
-
-    public void update(Project project, Employee employee) throws ParseException {
-        project.setManager(employee);
-        project.setInfo();
     }
 
     /**

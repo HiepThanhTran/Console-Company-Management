@@ -340,7 +340,7 @@ public class UIManager {
                     ValidatorService.checkNullObject(department);
                     System.out.printf("\n*** DANH SÁCH CÁC NHÂN VIÊN THUỘC PHÒNG BAN %s ***\n",
                         department.getName().toUpperCase());
-                    department.showEmployeeList();
+                    department.showList();
                 } catch (NullPointerException e) {
                     System.out.println("\n== Không tìm thấy phòng ban ==");
                     UIEmployeeManager();
@@ -513,7 +513,8 @@ public class UIManager {
                     ValidatorService.checkNullObject(project);
                     ValidatorService.checkNullObject(employee);
                     if (projectManager.check(project, employee)) {
-                        projectManager.update(project, employee);
+                        project.setInfo();
+                        project.setManager(employee);
                         System.out.println("\n== Cập nhật dự án thành công ==");
                     } else {
                         System.out.println("\n== Nhân viên không thuộc dự án này ==");
@@ -619,7 +620,8 @@ public class UIManager {
         Project project = new Project(manager);
         project.setInfo();
         projectManager.add(new JoinProject(project, manager));
-        System.out.printf("\n== Dự án phải có tối thiểu 5 thành viên. Vui lòng thêm %d thành viên nữa ==\n", MIN_EMPLOYEE - 1);
+        System.out.printf("\n== Dự án phải có tối thiểu %d thành viên. Vui lòng thêm %d thành viên nữa ==\n", MIN_EMPLOYEE,
+            MIN_EMPLOYEE - 1);
         for (int i = 0; i < MIN_EMPLOYEE - 1; i++) {
             System.out.print("- Nhập mã nhân viên cần thêm vào dự án (Ấn 0 để thoát): ");
             Employee employee = employeeManager.searchById(SCANNER.nextLine());

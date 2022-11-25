@@ -23,10 +23,6 @@ public abstract class Person {
         this.dob = dob;
     }
 
-    public Person(String name, String gender, String dob) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob));
-    }
-
     public String getName() {
         return name;
     }

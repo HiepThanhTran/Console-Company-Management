@@ -1,6 +1,6 @@
 package topic2.entity.other;
 
-public enum TypeEmployees {
+public enum Type {
     NORMAL(1),
     MANAGER(1),
     TESTER(1.2),
@@ -9,7 +9,7 @@ public enum TypeEmployees {
 
     private final double coefficient;
 
-    TypeEmployees(double coefficient) {
+    Type(double coefficient) {
         this.coefficient = coefficient;
     }
 
