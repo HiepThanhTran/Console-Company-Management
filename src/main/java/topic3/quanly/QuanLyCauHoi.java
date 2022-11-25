@@ -1,6 +1,7 @@
 package topic3.quanly;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic3.cauhoi.CauHoi;
@@ -22,8 +23,16 @@ public class QuanLyCauHoi {
         this.dsCauHoi.add(cauHoi);
     }
 
+    public void themCauHoi(CauHoi... dsCauHoi) {
+        this.dsCauHoi.addAll(Arrays.asList(dsCauHoi));
+    }
+
     public void xoaCauHoi(CauHoi cauHoi) {
         this.dsCauHoi.remove(cauHoi);
+    }
+
+    public void xoaCauHoi(CauHoi... dsCauHoi) {
+        this.dsCauHoi.removeAll(Arrays.asList(dsCauHoi));
     }
 
     public List<CauHoi> traCuu(int mucDo) {

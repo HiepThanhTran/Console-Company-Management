@@ -1,6 +1,7 @@
 package topic3;
 
 import static topic3.CauHinh.f;
+import static topic3.CauHinh.quanLyThanhVien;
 import static topic3.CauHinh.sc;
 
 import java.text.ParseException;
@@ -12,7 +13,6 @@ import topic3.user.ThanhVien;
 public class Main {
 
     public static void main(String[] args) {
-        QuanLyThanhVien quanLyThanhVien = new QuanLyThanhVien();
         while (true) {
             System.out.println("1- Quan ly hoc vien");
             System.out.println("2- Quan ly cau hoi");
@@ -117,7 +117,7 @@ public class Main {
                     String choice2 = sc.nextLine();
                     switch (choice2) {
                         case "1" -> {
-                            
+
                         }
                         case "2" -> {
 

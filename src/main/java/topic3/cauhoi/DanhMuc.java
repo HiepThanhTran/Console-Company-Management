@@ -1,6 +1,7 @@
 package topic3.cauhoi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,12 +38,20 @@ public class DanhMuc {
         this.dsCauHoi = dsCauHoi;
     }
 
-    public void themCauHoi(CauHoi ch) {
-        this.dsCauHoi.add(ch);
+    public void themCauHoi(CauHoi cauHoi) {
+        this.dsCauHoi.add(cauHoi);
     }
 
-    public void xoaCauHoi(CauHoi ch) {
-        this.dsCauHoi.remove(ch);
+    public void themCauHoi(CauHoi... dsCauHoi) {
+        this.dsCauHoi.addAll(Arrays.asList(dsCauHoi));
+    }
+
+    public void xoaCauHoi(CauHoi cauHoi) {
+        this.dsCauHoi.remove(cauHoi);
+    }
+
+    public void xoaCauHoi(CauHoi... dsCauHoi) {
+        this.dsCauHoi.removeAll(Arrays.asList(dsCauHoi));
     }
 
     @Override
