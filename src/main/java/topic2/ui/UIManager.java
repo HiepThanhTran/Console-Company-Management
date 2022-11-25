@@ -24,6 +24,7 @@ import topic2.entity.other.Project;
 import topic2.entity.people.Designer;
 import topic2.entity.people.Employee;
 import topic2.entity.people.Manager;
+import topic2.entity.people.Normal;
 import topic2.entity.people.Person;
 import topic2.entity.people.Programmer;
 import topic2.entity.people.Relative;
@@ -390,7 +391,7 @@ public class UIManager {
         ValidatorService.checkNullObject(department);
         Employee employee = null;
         switch (type) {
-            case "1" -> employee = new Employee();
+            case "1" -> employee = new Normal();
             case "2" -> employee = new Programmer();
             case "3" -> employee = new Designer();
             case "4" -> employee = new Tester();
@@ -663,7 +664,7 @@ public class UIManager {
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[3]);
                 String email = tokens[4];
                 switch (id.substring(0, 1)) {
-                    case "N" -> employee = new Employee(name, gender, dob, id, email);
+                    case "N" -> employee = new Normal(name, gender, dob, id, email);
                     case "P" -> {
                         double salaryOT = Double.parseDouble(tokens[5]);
                         employee = new Programmer(name, gender, dob, id, email, salaryOT);
@@ -695,7 +696,7 @@ public class UIManager {
                 for (int i = 1; i < tokens.length; i++) {
                     Employee employee = employeeManager.searchById(tokens[i]);
                     if (employee instanceof Manager manager) {
-                        manager.addManagerRoom(department);
+                        manager.addDepartment(department);
                     }
                     department.addEmployee(employee);
                     departmentManager.add(new JoinDepartment(employee, department));

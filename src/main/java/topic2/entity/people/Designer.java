@@ -2,7 +2,6 @@ package topic2.entity.people;
 
 import static topic2.ui.Factory.DECIMALFORMAT;
 import static topic2.ui.Factory.SCANNER;
-import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -24,17 +23,9 @@ public class Designer extends Employee {
         this.bonus = bonus;
     }
 
-    public Designer(String name, String gender, String dob, String email, double bonus) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), email, bonus);
-    }
-
     public Designer(String name, String gender, Date dob, String id, String email, double bonus) {
         super(name, gender, dob, id, email);
         this.bonus = bonus;
-    }
-
-    public Designer(String name, String gender, String dob, String id, String email, double bonus) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), id, email, bonus);
     }
 
     public double getBonus() {

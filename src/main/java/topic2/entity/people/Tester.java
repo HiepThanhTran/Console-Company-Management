@@ -2,7 +2,6 @@ package topic2.entity.people;
 
 import static topic2.ui.Factory.ERROR_SALARY;
 import static topic2.ui.Factory.SCANNER;
-import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -24,17 +23,9 @@ public class Tester extends Employee {
         this.errors = errors;
     }
 
-    public Tester(String name, String gender, String dob, String email, int errors) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), email, errors);
-    }
-
     public Tester(String name, String gender, Date dob, String id, String email, int errors) {
         super(name, gender, dob, id, email);
         this.errors = errors;
-    }
-
-    public Tester(String name, String gender, String dob, String id, String email, int errors) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), id, email, errors);
     }
 
     public int getErrors() {

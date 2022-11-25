@@ -7,9 +7,8 @@ import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Objects;
-import topic2.entity.other.TypeEmployees;
 
-public class Employee extends Person {
+public abstract class Employee extends Person {
 
     protected static int EMPLOYEE_AMOUNT = 0;
     protected String id;
@@ -28,18 +27,10 @@ public class Employee extends Person {
         this.email = email;
     }
 
-    public Employee(String name, String gender, String dob, String email) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), email);
-    }
-
     public Employee(String name, String gender, Date dob, String id, String email) {
         super(name, gender, dob);
         this.id = id;
         this.email = email;
-    }
-
-    public Employee(String name, String gender, String dob, String id, String email) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), id, email);
     }
 
     public static int getEmployeeAmount() {
@@ -70,13 +61,9 @@ public class Employee extends Person {
         return BASIC_SALARY * this.getCoefficient() + this.getAllowance();
     }
 
-    public double getAllowance() {
-        return 0;
-    }
+    public abstract double getAllowance();
 
-    public double getCoefficient() {
-        return TypeEmployees.NORMAL.getCoefficient();
-    }
+    public abstract double getCoefficient();
 
     @Override
     public void setInfo() throws ParseException {

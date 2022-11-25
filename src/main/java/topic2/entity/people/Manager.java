@@ -4,17 +4,17 @@ import static topic2.ui.Factory.GREGORIANCALENDAR;
 import static topic2.ui.Factory.MAX_MANAGER_ROOM;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import topic2.entity.other.Department;
+import topic2.entity.other.TypeEmployees;
 import topic2.exception.AmountException;
 
 public class Manager extends Employee {
 
     private Date takeOfficeDate;
-    private List<Department> managerRooms = new ArrayList<>();
+    private List<Department> departmentList = new ArrayList<>();
 
     {
         takeOfficeDate = GREGORIANCALENDAR.getTime();
@@ -33,40 +33,42 @@ public class Manager extends Employee {
         this.takeOfficeDate = takeOfficeDate;
     }
 
-    public Manager(String name, String gender, String dob, String email, Date takeOfficeDate) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), email, takeOfficeDate);
-    }
-
     public Manager(String name, String gender, Date dob, String id, String email, Date takeOfficeDate) {
         super(name, gender, dob, id, email);
         this.takeOfficeDate = takeOfficeDate;
-    }
-
-    public Manager(String name, String gender, String dob, String id, String email, Date takeOfficeDate) throws ParseException {
-        this(name, gender, SIMPLEDATEFORMAT.parse(dob), id, email, takeOfficeDate);
     }
 
     public Date getTakeOfficeDate() {
         return takeOfficeDate;
     }
 
-    public List<Department> getManagerRooms() {
-        return managerRooms;
+    public List<Department> getDepartmentList() {
+        return departmentList;
     }
 
-    public void setManagerRooms(List<Department> managerRooms) {
-        this.managerRooms = managerRooms;
+    public void setDepartmentList(List<Department> departmentList) {
+        this.departmentList = departmentList;
     }
 
-    public void addManagerRoom(Department department) throws AmountException {
-        if (this.managerRooms.size() >= MAX_MANAGER_ROOM) {
+    public void addDepartment(Department department) throws AmountException {
+        if (this.departmentList.size() >= MAX_MANAGER_ROOM) {
             throw new AmountException("\n== Chỉ có thể quản lý tối đa 2 phòng ban ==\n");
         }
-        this.managerRooms.add(department);
+        this.departmentList.add(department);
     }
 
-    public void removeManagerRoom(Department department) {
-        this.managerRooms.remove(department);
+    public void removeDepartment(Department department) {
+        this.departmentList.remove(department);
+    }
+
+    @Override
+    public double getAllowance() {
+        return 0;
+    }
+
+    @Override
+    public double getCoefficient() {
+        return TypeEmployees.MANAGER.getCoefficient();
     }
 
     public String toString() {

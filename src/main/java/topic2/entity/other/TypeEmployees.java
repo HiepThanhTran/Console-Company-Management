@@ -2,6 +2,7 @@ package topic2.entity.other;
 
 public enum TypeEmployees {
     NORMAL(1),
+    MANAGER(1),
     TESTER(1.2),
     DESIGNER(1.5),
     PROGRAMMER(2.5);
