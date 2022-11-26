@@ -660,22 +660,10 @@ public class UIManager {
                 String email = tokens[4];
                 switch (id.substring(0, 1)) {
                     case "N" -> employee = new Normal(name, gender, dob, id, email);
-                    case "P" -> {
-                        double salaryOT = Double.parseDouble(tokens[5]);
-                        employee = new Programmer(name, gender, dob, id, email, salaryOT);
-                    }
-                    case "D" -> {
-                        double bonus = Double.parseDouble(tokens[5]);
-                        employee = new Designer(name, gender, dob, id, email, bonus);
-                    }
-                    case "T" -> {
-                        int errors = Integer.parseInt(tokens[5]);
-                        employee = new Tester(name, gender, dob, id, email, errors);
-                    }
-                    case "M" -> {
-                        Date takeOfficeDate = SIMPLEDATEFORMAT.parse(tokens[5]);
-                        employee = new Manager(name, gender, dob, id, email, takeOfficeDate);
-                    }
+                    case "P" -> employee = new Programmer(name, gender, dob, id, email, Double.parseDouble(tokens[5]));
+                    case "D" -> employee = new Designer(name, gender, dob, id, email, Double.parseDouble(tokens[5]));
+                    case "T" -> employee = new Tester(name, gender, dob, id, email, Integer.parseInt(tokens[5]));
+                    case "M" -> employee = new Manager(name, gender, dob, id, email, SIMPLEDATEFORMAT.parse(tokens[5]));
                 }
                 employeeManager.add(employee);
             }

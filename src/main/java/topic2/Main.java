@@ -21,7 +21,7 @@ public class Main {
             System.out.println("2- Quản lý nhân viên");
             System.out.println("3- Quản lý dự án");
             System.out.println("4- Quản lý nhân thân của nhân viên");
-            System.out.println("5- Kết thúc chương trình và lưu thông tin hệ thống vào file");
+            System.out.println("5- Lưu thông tin và kết thúc chương trình");
             System.out.print("- Chọn chức năng: ");
             String choice = SCANNER.nextLine();
             switch (choice) {
