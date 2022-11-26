@@ -1,0 +1,6 @@
+Lê Thánh Tông, true, 18/10/1970, Cha, 1658, P-00002
+Trần Thị Diệu, false, 15/05/1971, Mẹ, 2693, P-00002
+Nguyễn Thiên Phước, true, 10/02/1868, Cha, 9632, D-00003
+Thái Thị Huyền, false, 17/10/1870, Mẹ, 5741, N-00001
+Nguyễn Hà Phú Hương, false, 25/12/1869, Mẹ, 6520, T-00004
+Trần Quang Minh, true, 21/05/1863, Cha, 3891, M-00005

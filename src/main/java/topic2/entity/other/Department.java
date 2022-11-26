@@ -1,6 +1,8 @@
 package topic2.entity.other;
 
-import java.util.ArrayList;
+import static topic2.ui.Factory.SCANNER;
+
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import topic2.entity.people.Employee;
@@ -10,7 +12,7 @@ public class Department {
 
     private static int DEPARTMENT_AMOUNT = 0;
     private String name;
-    private List<Employee> employeeList = new ArrayList<>(); // Danh sách các nhân viên trực thuộc phòng ban này
+    private List<Employee> employeeList = new LinkedList<>(); // Danh sách các nhân viên trực thuộc phòng ban này
 
     {
         DEPARTMENT_AMOUNT++;
@@ -74,6 +76,11 @@ public class Department {
      */
     public boolean hasEmployee(Employee employee) {
         return this.employeeList.stream().anyMatch(e -> e.equals(employee));
+    }
+
+    public void setInfo() {
+        System.out.print("- Tên phòng ban: ");
+        this.name = SCANNER.nextLine();
     }
 
     public void showInfo() {

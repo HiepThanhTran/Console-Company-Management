@@ -3,9 +3,9 @@ package topic2.service;
 import static topic2.ui.Factory.MAX_EMPLOYEE;
 import static topic2.ui.Factory.MAX_PROJECT;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.JoinProject;
@@ -16,19 +16,8 @@ import topic2.ui.Factory;
 
 public class ProjectManager {
 
-    private static ProjectManager INSTANCE;
-    private List<Project> projectList = new ArrayList<>();
-    private List<JoinProject> joinProjects = new ArrayList<>();
-
-    private ProjectManager() {
-    }
-
-    public static ProjectManager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ProjectManager();
-        }
-        return INSTANCE;
-    }
+    private List<Project> projectList = new LinkedList<>();
+    private List<JoinProject> joinProjects = new LinkedList<>();
 
     public List<Project> getProjectList() {
         return projectList;
@@ -69,6 +58,26 @@ public class ProjectManager {
     }
 
     /**
+     * Xóa danh sách tham gia dự án
+     *
+     * @param project Dự án
+     */
+    public void removeAll(Project project) {
+        this.joinProjects.stream().filter(joinProject -> joinProject.getProject().equals(project))
+            .forEach(joinProject -> this.remove(joinProject));
+    }
+
+    /**
+     * Xóa danh sách tham gia dự án
+     *
+     * @param employee Nhân viên
+     */
+    public void removeAll(Employee employee) {
+        this.joinProjects.stream().filter(joinProject -> joinProject.getEmployee().equals(employee))
+            .forEach(joinProject -> this.remove(joinProject));
+    }
+
+    /**
      * Kiểm tra dự án này có phải dự án nhân viên đang thực hiện hay không<br> Kiểm tra nhân viên có thuộc dự án này hay không
      *
      * @param project  Dự án
@@ -76,12 +85,8 @@ public class ProjectManager {
      * @return
      */
     public boolean check(Project project, Employee employee) {
-        for (JoinProject joinProject : this.joinProjects) {
-            if (joinProject.getProject().equals(project) && joinProject.getEmployee().equals(employee)) {
-                return true;
-            }
-        }
-        return false;
+        return this.joinProjects.stream()
+            .anyMatch(joinProject -> joinProject.getProject().equals(project) && joinProject.getEmployee().equals(employee));
     }
 
     /**
@@ -124,9 +129,9 @@ public class ProjectManager {
      * @param project Dự án
      * @return Danh sách nhân viên của dự án 'project'
      */
-    public List<JoinProject> getList(Project project) {
+    public List<Employee> getList(Project project) {
         return this.joinProjects.stream().filter(joinProject -> joinProject.getProject().equals(project))
-            .collect(Collectors.toList());
+            .map(joinProject -> joinProject.getEmployee()).collect(Collectors.toList());
     }
 
     /**
@@ -135,9 +140,9 @@ public class ProjectManager {
      * @param employee Nhân viên
      * @return Danh sánh dự án của nhân viên 'employee' đang thực hiện
      */
-    public List<JoinProject> getList(Employee employee) {
+    public List<Project> getList(Employee employee) {
         return this.joinProjects.stream().filter(joinProject -> joinProject.getEmployee().equals(employee))
-            .collect(Collectors.toList());
+            .map(joinProject -> joinProject.getProject()).collect(Collectors.toList());
     }
 
     /**

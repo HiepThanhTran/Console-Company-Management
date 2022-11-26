@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
         UIManager uiManager = UIManager.getINSTANCE();
-        uiManager.readFile();
         while (true) {
             System.out.println("\n*** H&H COMPANY ***");
             System.out.printf("\t\tSố lượng phòng ban hiện có: %d\n", Department.getDepartmentAmount());

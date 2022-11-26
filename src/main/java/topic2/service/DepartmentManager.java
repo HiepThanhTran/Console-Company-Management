@@ -1,6 +1,6 @@
 package topic2.service;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.JoinDepartment;
@@ -10,19 +10,8 @@ import topic2.ui.Factory;
 
 public final class DepartmentManager {
 
-    private static DepartmentManager INSTANCE;
-    private List<Department> departmentList = new ArrayList<>();
-    private List<JoinDepartment> joinDepartments = new ArrayList<>();
-
-    private DepartmentManager() {
-    }
-
-    public static DepartmentManager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new DepartmentManager();
-        }
-        return INSTANCE;
-    }
+    private List<Department> departmentList = new LinkedList<>();
+    private List<JoinDepartment> joinDepartments = new LinkedList<>();
 
     public List<Department> getDepartmentList() {
         return departmentList;
@@ -57,6 +46,26 @@ public final class DepartmentManager {
     }
 
     /**
+     * Xóa danh sách tham gia phòng ban
+     *
+     * @param employee Nhân viên
+     */
+    public void removeAll(Employee employee) {
+        this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getEmployee().equals(employee))
+            .forEach(joinDepartment -> this.remove(joinDepartment));
+    }
+
+    /**
+     * Xóa danh sách tham gia phòng ban
+     *
+     * @param department Phòng ban
+     */
+    public void removeAll(Department department) {
+        this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getDepartment().equals(department))
+            .forEach(joinDepartment -> this.remove(joinDepartment));
+    }
+
+    /**
      * Hiển thị danh sách phòng ban
      */
     public void showList() {
@@ -72,20 +81,9 @@ public final class DepartmentManager {
      * @param employee Nhân viên
      * @return Danh sách phòng ban của nhân viên 'employee'
      */
-    public List<JoinDepartment> getList(Employee employee) {
+    public List<Department> getList(Employee employee) {
         return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getEmployee().equals(employee))
-            .collect(Collectors.toList());
-    }
-
-    /**
-     * Lấy danh sách nhân viên của phòng ban 'department'
-     *
-     * @param department Phòng ban
-     * @return Danh sách nhân viên của phòng ban 'department'
-     */
-    public List<JoinDepartment> getList(Department department) {
-        return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getDepartment().equals(department))
-            .collect(Collectors.toList());
+            .map(joinDepartment -> joinDepartment.getDepartment()).collect(Collectors.toList());
     }
 
     /**
