@@ -659,22 +659,10 @@ public class UIManager {
                 String email = tokens[4];
                 switch (id.substring(0, 1)) {
                     case "N" -> employee = new Normal(name, gender, dob, id, email);
-                    case "P" -> {
-                        double salaryOT = Double.parseDouble(tokens[5]);
-                        employee = new Programmer(name, gender, dob, id, email, salaryOT);
-                    }
-                    case "D" -> {
-                        double bonus = Double.parseDouble(tokens[5]);
-                        employee = new Designer(name, gender, dob, id, email, bonus);
-                    }
-                    case "T" -> {
-                        int errors = Integer.parseInt(tokens[5]);
-                        employee = new Tester(name, gender, dob, id, email, errors);
-                    }
-                    case "M" -> {
-                        Date takeOfficeDate = SIMPLEDATEFORMAT.parse(tokens[5]);
-                        employee = new Manager(name, gender, dob, id, email, takeOfficeDate);
-                    }
+                    case "P" -> employee = new Programmer(name, gender, dob, id, email, Double.parseDouble(tokens[5]));
+                    case "D" -> employee = new Designer(name, gender, dob, id, email, Double.parseDouble(tokens[5]));
+                    case "T" -> employee = new Tester(name, gender, dob, id, email, Integer.parseInt(tokens[5]));
+                    case "M" -> employee = new Manager(name, gender, dob, id, email, SIMPLEDATEFORMAT.parse(tokens[5]));
                 }
                 employeeManager.add(employee);
             }
@@ -717,8 +705,7 @@ public class UIManager {
                 String id = tokens[5];
                 Employee employee = employeeManager.searchById(id);
                 Relative relative = new Relative(name, gender, dob, relationship);
-                ProvideInsurance provideInsurance = new ProvideInsurance(insNumber, relative, employee);
-                employeeManager.add(provideInsurance);
+                employeeManager.add(new ProvideInsurance(insNumber, relative, employee));
             }
             /**
              * Đọc danh sách dự án từ file ProjectList
@@ -752,9 +739,11 @@ public class UIManager {
             readEmployee.close();
             readDepartment.close();
         } catch (FileNotFoundException e) {
-            System.out.printf("\n** KHÔNG TÌM THẤY FILE %s **\n", e.getMessage());
-        } catch (ParseException | AmountException e) {
-            throw new RuntimeException();
+            System.out.println("\n** ĐỌC FILE KHÔNG THÀNH CÔNG **");
+        } catch (ParseException e) {
+            System.out.println("\n** DỮ LIỆU KHÔNG ĐÚNG ĐỊNH DẠNG **");
+        } catch (AmountException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -774,26 +763,27 @@ public class UIManager {
              */
             PrintWriter writeDepartment = new PrintWriter(departmentFile);
             departmentManager.getDepartmentList().forEach(department -> {
-                StringBuilder builder = new StringBuilder();
-                department.getEmployeeList().forEach(employee -> builder.append(", " + employee.getId()));
-                writeDepartment.println(department.getName() + builder);
+                StringBuilder departmentInfo = new StringBuilder();
+                departmentInfo.append(department.getName());
+                department.getEmployeeList().forEach(employee -> departmentInfo.append(", " + employee.getId()));
+                writeDepartment.println(departmentInfo);
             });
             /**
              * Ghi danh sách nhân viên ra file EmployeeList
              */
             PrintWriter writeEmployee = new PrintWriter(employeeFile);
             employeeManager.getEmployeeList().forEach(employee -> {
-                StringBuilder builder = new StringBuilder();
+                StringBuilder employeeInfo = new StringBuilder();
                 boolean gender = !employee.getGender().equals("1");
-                builder.append(String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
+                employeeInfo.append(String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
                     SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail()));
                 switch (employee.getId().substring(0, 1)) {
-                    case "P" -> builder.append(", " + ((Programmer) employee).getSalaryOT());
-                    case "D" -> builder.append(", " + ((Designer) employee).getBonus());
-                    case "T" -> builder.append(", " + ((Tester) employee).getErrors());
-                    case "M" -> builder.append(", " + SIMPLEDATEFORMAT.format(((Manager) employee).getTakeOfficeDate()));
+                    case "P" -> employeeInfo.append(", " + ((Programmer) employee).getSalaryOT());
+                    case "D" -> employeeInfo.append(", " + ((Designer) employee).getBonus());
+                    case "T" -> employeeInfo.append(", " + ((Tester) employee).getErrors());
+                    case "M" -> employeeInfo.append(", " + SIMPLEDATEFORMAT.format(((Manager) employee).getTakeOfficeDate()));
                 }
-                writeEmployee.println(builder);
+                writeEmployee.println(employeeInfo);
             });
             /**
              * Ghi danh sách nhân thân ra file RelativeList
@@ -811,21 +801,19 @@ public class UIManager {
              */
             PrintWriter writeProject = new PrintWriter(projectFile);
             projectManager.getProjectList().forEach(project -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append(String.format("%s, %s, %s, %s, %f", project.getId(), project.getName(),
+                StringBuilder projectInfo = new StringBuilder();
+                projectInfo.append(String.format("%s, %s, %s, %s, %f", project.getId(), project.getName(),
                     SIMPLEDATEFORMAT.format(project.getStartDate()), SIMPLEDATEFORMAT.format(project.getEndDate()),
                     project.getCost()));
-                projectManager.getList(project).forEach(employee -> builder.append(", " + employee.getId()));
-                writeProject.println(builder);
+                projectManager.getList(project).forEach(employee -> projectInfo.append(", " + employee.getId()));
+                writeProject.println(projectInfo);
             });
             writeProject.close();
             writeRelative.close();
             writeEmployee.close();
             writeDepartment.close();
         } catch (FileNotFoundException e) {
-            System.out.println("\n** KHÔNG TÌM THẤY FILE **");
-        } finally {
-            System.out.println("\n*** HOÀN TẤT QUÁ TRÌNH LƯU THÔNG TIN HỆ THỐNG VÀO FILE ***");
+            System.out.println("\n** GHI FILE KHÔNG THÀNH CÔNG **");
         }
     }
 }
