@@ -8,7 +8,7 @@ import topic2.entity.other.Department;
 import topic2.entity.people.Employee;
 import topic2.ui.Factory;
 
-public final class DepartmentManager {
+public class DepartmentManager {
 
     private List<Department> departmentList = new LinkedList<>();
     private List<JoinDepartment> joinDepartments = new LinkedList<>();

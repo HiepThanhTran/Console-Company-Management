@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-public final class Factory {
+public class Factory {
 
     public static final File departmentFile = new File("src/main/resources/DepartmentList.txt");
     public static final File employeeFile = new File("src/main/resources/EmployeeList.txt");
