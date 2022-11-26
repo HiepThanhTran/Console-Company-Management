@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import topic2.behavior.JoinDepartment;
 import topic2.behavior.JoinProject;
@@ -775,9 +774,8 @@ public class UIManager {
              */
             PrintWriter writeDepartment = new PrintWriter(departmentFile);
             departmentManager.getDepartmentList().forEach(department -> {
-                List<Employee> employeeList = department.getEmployeeList();
                 StringBuilder builder = new StringBuilder();
-                employeeList.forEach(employee -> builder.append(", " + employee.getId()));
+                department.getEmployeeList().forEach(employee -> builder.append(", " + employee.getId()));
                 writeDepartment.println(department.getName() + builder);
             });
             /**
@@ -786,19 +784,15 @@ public class UIManager {
             PrintWriter writeEmployee = new PrintWriter(employeeFile);
             employeeManager.getEmployeeList().forEach(employee -> {
                 StringBuilder builder = new StringBuilder();
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 boolean gender = !employee.getGender().equals("1");
-                String employeeInfo = String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
-                    SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail());
-                builder.append(employeeInfo);
-                switch (employee.getClass().getName()) {
-                    case "topic2.entity.people.Programmer" -> builder.append(", " + ((Programmer) employee).getSalaryOT());
-                    case "topic2.entity.people.Designer" -> builder.append(", " + ((Designer) employee).getBonus());
-                    case "topic2.entity.people.Tester" -> builder.append(", " + ((Tester) employee).getErrors());
-                    case "topic2.entity.people.Manager" ->
-                        builder.append(", " + SIMPLEDATEFORMAT.format(((Manager) employee).getTakeOfficeDate()));
+                builder.append(String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
+                    SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail()));
+                switch (employee.getId().substring(0, 1)) {
+                    case "P" -> builder.append(", " + ((Programmer) employee).getSalaryOT());
+                    case "D" -> builder.append(", " + ((Designer) employee).getBonus());
+                    case "T" -> builder.append(", " + ((Tester) employee).getErrors());
+                    case "M" -> builder.append(", " + SIMPLEDATEFORMAT.format(((Manager) employee).getTakeOfficeDate()));
                 }
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 writeEmployee.println(builder);
             });
             /**
@@ -818,13 +812,10 @@ public class UIManager {
             PrintWriter writeProject = new PrintWriter(projectFile);
             projectManager.getProjectList().forEach(project -> {
                 StringBuilder builder = new StringBuilder();
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                String projectInfo = String.format("%s, %s, %s, %s, %f", project.getId(), project.getName(),
+                builder.append(String.format("%s, %s, %s, %s, %f", project.getId(), project.getName(),
                     SIMPLEDATEFORMAT.format(project.getStartDate()), SIMPLEDATEFORMAT.format(project.getEndDate()),
-                    project.getCost());
-                builder.append(projectInfo);
+                    project.getCost()));
                 projectManager.getList(project).forEach(employee -> builder.append(", " + employee.getId()));
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 writeProject.println(builder);
             });
             writeProject.close();
