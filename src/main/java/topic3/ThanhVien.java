@@ -1,4 +1,4 @@
-package topic3.user;
+package topic3;
 
 import static topic3.CauHinh.c;
 import static topic3.CauHinh.f;
@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class ThanhVien {
 
+    private static int dem = 0;
+    private final int maThanhVien;
     private Date ngayGiaNhap;
     private String hoTen;
     private String queQuan;
@@ -17,6 +19,7 @@ public class ThanhVien {
 
     {
         ngayGiaNhap = c.getTime();
+        maThanhVien = ++dem;
     }
 
     public ThanhVien() {
@@ -31,6 +34,14 @@ public class ThanhVien {
 
     public ThanhVien(String hoTen, String queQuan, String gioiTinh, String ngaySinh) throws ParseException {
         this(hoTen, queQuan, gioiTinh, f.parse(ngaySinh));
+    }
+
+    public static int getDem() {
+        return dem;
+    }
+
+    public int getMaThanhVien() {
+        return maThanhVien;
     }
 
     public Date getNgayGiaNhap() {
@@ -82,10 +93,6 @@ public class ThanhVien {
         this.gioiTinh = sc.nextLine();
         System.out.print("- Ngay sinh: ");
         this.ngaySinh = f.parse(sc.nextLine());
-    }
-
-    public void hienThiThongTin() {
-        System.out.println(this);
     }
 
     public String toString() {

@@ -1,4 +1,4 @@
-package topic3.user;
+package topic3;
 
 import java.util.List;
 

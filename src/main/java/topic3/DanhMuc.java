@@ -1,4 +1,6 @@
-package topic3.cauhoi;
+package topic3;
+
+import static topic3.CauHinh.sc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,6 +54,11 @@ public class DanhMuc {
 
     public void xoaCauHoi(CauHoi... dsCauHoi) {
         this.dsCauHoi.removeAll(Arrays.asList(dsCauHoi));
+    }
+
+    public void nhapThongTin() {
+        System.out.print("- Ten danh muc: ");
+        this.tenDanhMuc = sc.nextLine();
     }
 
     @Override

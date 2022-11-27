@@ -1,4 +1,4 @@
-package topic3.cauhoi;
+package topic3;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,6 @@
-package topic3.quanly;
+package topic3;
 
 import java.util.List;
-import topic3.user.LuyenTap;
-import topic3.user.ThanhVien;
 
 public class QuanLyHeThong {
 

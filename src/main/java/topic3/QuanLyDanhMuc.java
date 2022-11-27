@@ -1,17 +1,12 @@
-package topic3.quanly;
+package topic3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import topic3.cauhoi.DanhMuc;
 
 public class QuanLyDanhMuc {
 
     private final List<DanhMuc> dsDanhMuc = new ArrayList<>();
-
-    public static void hienThiDS(List<DanhMuc> dsDanhMuc) {
-        dsDanhMuc.forEach(danhMuc -> System.out.printf("\n%s\n", danhMuc));
-    }
 
     public List<DanhMuc> getDsDanhMuc() {
         return dsDanhMuc;
@@ -31,6 +26,10 @@ public class QuanLyDanhMuc {
 
     public void xoaDanhMuc(DanhMuc... dsDanhMuc) {
         this.dsDanhMuc.removeAll(Arrays.asList(dsDanhMuc));
+    }
+
+    public void hienThiDS() {
+        this.dsDanhMuc.forEach(danhMuc -> System.out.printf("\n%s\n", danhMuc));
     }
 
     public DanhMuc traCuu(String tenDanhMuc) {

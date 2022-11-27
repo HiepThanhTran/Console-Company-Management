@@ -1,21 +1,14 @@
-package topic3.quanly;
+package topic3;
 
-import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import topic3.user.ThanhVien;
 
 public class QuanLyThanhVien {
 
     private final List<ThanhVien> dsThanhVien = new ArrayList<>();
-
-    public static void hienThiDS(List<ThanhVien> dsThanhVien) {
-        for (int i = 0; i < dsThanhVien.size(); i++) {
-            System.out.printf("\n\t\t* Thanh vien thu %d *\n%s\n", i + 1, dsThanhVien.get(i));
-        }
-    }
 
     public List<ThanhVien> getDsThanhVien() {
         return dsThanhVien;
@@ -25,12 +18,32 @@ public class QuanLyThanhVien {
         this.dsThanhVien.add(tv);
     }
 
-    public void xoaTV(int index) {
-        this.dsThanhVien.remove(index);
+    public void themTV(ThanhVien... dsThanhVien) {
+        this.dsThanhVien.addAll(Arrays.asList(dsThanhVien));
     }
 
-    public void capNhat(int index) throws ParseException {
-        this.dsThanhVien.get(index).nhapThongTin();
+    public void xoaTV(ThanhVien tv) {
+        this.dsThanhVien.remove(tv);
+    }
+
+    public void xoaTV(ThanhVien... dsThanhVien) {
+        this.dsThanhVien.addAll(Arrays.asList(dsThanhVien));
+    }
+
+    public void hienThiDS() {
+        for (int i = 0; i < this.dsThanhVien.size(); i++) {
+            System.out.printf("\n\t\t* Thanh vien thu %d *\n%s\n", i + 1, this.dsThanhVien.get(i));
+        }
+    }
+
+    /**
+     * Tra cứu học viên theo mã học viên
+     *
+     * @param maThanhVien Mã học viên
+     * @return Học viên tương ứng
+     */
+    public ThanhVien traCuu(int maThanhVien) {
+        return this.dsThanhVien.stream().filter(thanhVien -> thanhVien.getMaThanhVien() == maThanhVien).findFirst().orElse(null);
     }
 
     /**

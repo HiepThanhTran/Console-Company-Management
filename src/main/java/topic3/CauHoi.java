@@ -1,12 +1,18 @@
-package topic3.cauhoi;
+package topic3;
 
 import static topic3.CauHinh.sc;
 
 public abstract class CauHoi {
 
+    private static int dem = 0;
+    private final int maCauHoi;
     private int mucDo;
     private String noiDung;
     private DanhMuc danhMuc;
+
+    {
+        maCauHoi = ++dem;
+    }
 
     public CauHoi() {
     }
@@ -15,6 +21,14 @@ public abstract class CauHoi {
         this.mucDo = mucDo;
         this.noiDung = noiDung;
         this.danhMuc = danhMuc;
+    }
+
+    public static int getDem() {
+        return dem;
+    }
+
+    public int getMaCauHoi() {
+        return maCauHoi;
     }
 
     public int getMucDo() {
