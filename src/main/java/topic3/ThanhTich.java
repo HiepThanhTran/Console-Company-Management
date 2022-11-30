@@ -51,7 +51,6 @@ public class ThanhTich {
     }
 
     public String toString() {
-        return String.format("- So lan lam: %d\n- Danh sach diem cac lan lam: %s\n- Diem trung binh: %.2f", soLanLam,
-            this.formula(), this.getDiemTrungBinh());
+        return String.format("- So lan lam: %d\n- Diem trung binh: %.2f", soLanLam, this.getDiemTrungBinh());
     }
 }

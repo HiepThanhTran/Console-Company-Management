@@ -1,7 +1,9 @@
 package topic3;
 
 import static topic3.CauHinh.quanLyCauHoi;
+import static topic3.CauHinh.sc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LuyenTap {
@@ -33,14 +35,42 @@ public class LuyenTap {
         this.thanhVien = thanhVien;
     }
 
-    public void luyenTap(String path) throws ClassNotFoundException {
-        CauHoi cauHoi = quanLyCauHoi.randomCauHoi(path);
+    public void luyenTap(String type) throws ClassNotFoundException {
+        CauHoi cauHoi = quanLyCauHoi.randomCauHoi(type);
+        System.out.println("\n== THONG TIN CAU HOI ==");
+        System.out.println(cauHoi);
+        int soCauDung = traLoiCauHoi(cauHoi.getDsCauHoi());
+        this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
+        this.thanhTich.themDiem(soCauDung * (10 / cauHoi.getDsCauHoi().size()));
     }
 
-    public void luyenTap(String path, int soLuong) throws ClassNotFoundException {
-        List<CauHoi> ds = quanLyCauHoi.randomCauHoi(path, soLuong);
-        for (int i = 0; i < ds.size(); i++) {
-            System.out.println(ds.get(i));
+    public void luyenTap(int soLuong) {
+        List<MultipleChoice> dsCauHoi = quanLyCauHoi.randomCauHoi(soLuong);
+        int soCauDung = traLoiCauHoi(dsCauHoi);
+        this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
+        this.thanhTich.themDiem(soCauDung * (10 / soLuong));
+    }
+
+    private int traLoiCauHoi(List<MultipleChoice> dsCauHoi) {
+        List<Character> dsDapAn = new ArrayList<>();
+        int soCauDung = 0;
+        for (int i = 0; i < dsCauHoi.size(); i++) {
+            System.out.printf("\n== CAU HOI THU %d ==\n", i + 1);
+            System.out.println(dsCauHoi.get(i));
+            System.out.println(dsCauHoi.get(i).formula());
+            System.out.print("- Chon dap an: ");
+            dsDapAn.add(sc.next().toUpperCase().charAt(0));
         }
+        for (int i = 0; i < dsCauHoi.size(); i++) {
+            System.out.printf("\n== CAU HOI THU %d ==\n", i + 1);
+            MultipleChoice cauHoi = dsCauHoi.get(i);
+            int index = (dsDapAn.get(i)) - 'A';
+            boolean dapAn = index >= 0 && index < cauHoi.getDsPhuongAn().size() && cauHoi.getDsPhuongAn().get(index).isDapAn();
+            System.out.println(cauHoi.getNoiDung() + " - " + (dapAn ? "Đúng" : "Sai"));
+            if (dapAn) {
+                soCauDung++;
+            }
+        }
+        return soCauDung;
     }
 }

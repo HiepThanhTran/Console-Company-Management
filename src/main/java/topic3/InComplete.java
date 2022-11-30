@@ -1,10 +1,11 @@
 package topic3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InComplete extends CauHoi {
 
-    private List<MultipleChoice> dsCauHoi;
+    private List<MultipleChoice> dsCauHoi = new ArrayList<>();
 
     public InComplete() {
     }

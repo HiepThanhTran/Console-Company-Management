@@ -1,5 +1,10 @@
 package topic3;
 
+import static topic3.CauHinh.sc;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PhuongAn {
 
     private String noiDung;
@@ -13,6 +18,16 @@ public class PhuongAn {
         this.noiDung = noiDung;
         this.dapAn = dapAn;
         this.giaiThich = giaiThich;
+    }
+
+    public static List<PhuongAn> nhapDSPhuongAn(int soLuong) {
+        List<PhuongAn> dsPhuongAn = new ArrayList<>();
+        for (int i = 0; i < soLuong; i++) {
+            PhuongAn phuongAn = new PhuongAn();
+            phuongAn.nhapThongTin();
+            dsPhuongAn.add(phuongAn);
+        }
+        return dsPhuongAn;
     }
 
     public String getNoiDung() {
@@ -37,6 +52,15 @@ public class PhuongAn {
 
     public void setGiaiThich(String giaiThich) {
         this.giaiThich = giaiThich;
+    }
+
+    public void nhapThongTin() {
+        System.out.print("- Noi dung: ");
+        this.noiDung = sc.nextLine();
+        System.out.print("- Dap an dung (0: Dung, 1: Sai): ");
+        this.dapAn = sc.next().equals("0");
+        System.out.print("- Giai thich: ");
+        this.giaiThich = sc.nextLine();
     }
 
     @Override

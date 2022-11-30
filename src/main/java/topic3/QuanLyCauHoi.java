@@ -1,5 +1,8 @@
 package topic3;
 
+import static topic3.CauHinh.quanLyDanhMuc;
+import static topic3.CauHinh.sc;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +15,23 @@ public class QuanLyCauHoi {
     public static int random(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min) + min;
+    }
+
+    public static List<MultipleChoice> nhapDsMultipleChoice(int soLuong) {
+        List<MultipleChoice> dsCauHoi = new ArrayList<>();
+        for (int i = 0; i < soLuong; i++) {
+            MultipleChoice cauHoi = new MultipleChoice();
+            System.out.print("- Cau hoi thuoc danh muc: ");
+            DanhMuc danhMuc = quanLyDanhMuc.traCuu(sc.nextLine());
+            cauHoi.nhapThongTin();
+            System.out.print("- Nhap so luong phuong an: ");
+            int soLuongPA = Integer.parseInt(sc.next());
+            List<PhuongAn> dsPhuongAn = PhuongAn.nhapDSPhuongAn(soLuongPA);
+            cauHoi.setDanhMuc(danhMuc);
+            cauHoi.setDsPhuongAn(dsPhuongAn);
+            dsCauHoi.add(cauHoi);
+        }
+        return dsCauHoi;
     }
 
     public List<CauHoi> getDsCauHoi() {
@@ -46,19 +66,18 @@ public class QuanLyCauHoi {
         return this.dsCauHoi.stream().filter(cauHoi -> cauHoi.getNoiDung().equals(noiDung)).collect(Collectors.toList());
     }
 
-    public CauHoi randomCauHoi(String path) throws ClassNotFoundException {
-        Class c = Class.forName(path);
+    public CauHoi randomCauHoi(String type) throws ClassNotFoundException {
+        Class c = Class.forName(type);
         List<CauHoi> temp = this.dsCauHoi.stream().filter(cauHoi -> c.isInstance(cauHoi)).collect(Collectors.toList());
         return temp.get(random(0, temp.size() - 1));
     }
 
-    public List<CauHoi> randomCauHoi(String path, int soLuong) throws ClassNotFoundException {
-        List<CauHoi> temp = new ArrayList<>();
-        Class c = Class.forName(path);
+    public List<MultipleChoice> randomCauHoi(int soLuong) {
+        List<MultipleChoice> temp = new ArrayList<>();
         while (soLuong > 0) {
             CauHoi cauHoi = this.dsCauHoi.get(random(0, this.dsCauHoi.size() - 1));
-            if (c.isInstance(cauHoi) && !temp.contains(cauHoi)) {
-                temp.add(cauHoi);
+            if (cauHoi instanceof MultipleChoice multipleChoice && !temp.contains(cauHoi)) {
+                temp.add(multipleChoice);
             }
             soLuong--;
         }

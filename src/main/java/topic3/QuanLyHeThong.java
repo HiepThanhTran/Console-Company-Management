@@ -26,6 +26,7 @@ public class QuanLyHeThong {
     public void thongKe(LuyenTap luyenTap) {
         System.out.println("\n== THONG TIN THANH VIEN ==");
         System.out.println(luyenTap.getThanhVien());
+        System.out.println(luyenTap.getThanhTich().formula());
         System.out.println(luyenTap.getThanhTich());
     }
 

@@ -2,6 +2,7 @@ package topic3;
 
 import static topic3.CauHinh.sc;
 
+import java.util.List;
 import java.util.Objects;
 
 public abstract class CauHoi {
@@ -64,6 +65,8 @@ public abstract class CauHoi {
         this.noiDung = sc.nextLine();
     }
 
+    public abstract List<MultipleChoice> getDsCauHoi();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -84,6 +87,6 @@ public abstract class CauHoi {
     @Override
     public String toString() {
         String lv = (mucDo == 1) ? "De" : (mucDo == 2 ? "Trung binh" : "Kho");
-        return String.format("- Muc do: %s\t\t- Danh muc: %s\n- Noi dung: %s", lv, danhMuc, noiDung);
+        return String.format("- Muc do: %s\t\t- Danh muc: %s\n- Noi dung: %s", lv, danhMuc.getTenDanhMuc(), noiDung);
     }
 }
