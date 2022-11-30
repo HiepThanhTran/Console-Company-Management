@@ -41,6 +41,6 @@ public class PhuongAn {
 
     @Override
     public String toString() {
-        return String.format("- Noi dung: %s\n- Giai thich: %s", noiDung, giaiThich);
+        return String.format("- Noi dung: %s\n", noiDung);
     }
 }

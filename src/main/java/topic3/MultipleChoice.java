@@ -22,4 +22,16 @@ public class MultipleChoice extends CauHoi {
     public void setDsPhuongAn(List<PhuongAn> dsPhuongAn) {
         this.dsPhuongAn = dsPhuongAn;
     }
+
+    public String formula() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < this.dsPhuongAn.size(); i++) {
+            sb.append(((char) ('A' + 1)) + "" + this.dsPhuongAn.get(i));
+        }
+        return sb.toString();
+    }
+
+    public String toString() {
+        return String.format("%s\n%s", super.toString(), this.formula());
+    }
 }

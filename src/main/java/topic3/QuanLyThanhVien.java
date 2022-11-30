@@ -1,33 +1,28 @@
 package topic3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuanLyThanhVien {
 
-    private final List<ThanhVien> dsThanhVien = new ArrayList<>();
+    private List<ThanhVien> dsThanhVien = new ArrayList<>();
 
     public List<ThanhVien> getDsThanhVien() {
         return dsThanhVien;
+    }
+
+    public void setDsThanhVien(List<ThanhVien> dsThanhVien) {
+        this.dsThanhVien = dsThanhVien;
     }
 
     public void themTV(ThanhVien tv) {
         this.dsThanhVien.add(tv);
     }
 
-    public void themTV(ThanhVien... dsThanhVien) {
-        this.dsThanhVien.addAll(Arrays.asList(dsThanhVien));
-    }
-
     public void xoaTV(ThanhVien tv) {
         this.dsThanhVien.remove(tv);
-    }
-
-    public void xoaTV(ThanhVien... dsThanhVien) {
-        this.dsThanhVien.addAll(Arrays.asList(dsThanhVien));
     }
 
     public void hienThiDS() {

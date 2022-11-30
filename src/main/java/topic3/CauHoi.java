@@ -2,6 +2,8 @@ package topic3;
 
 import static topic3.CauHinh.sc;
 
+import java.util.Objects;
+
 public abstract class CauHoi {
 
     private static int dem = 0;
@@ -60,6 +62,23 @@ public abstract class CauHoi {
         this.mucDo = Integer.parseInt(sc.nextLine());
         System.out.print("- Noi dung: ");
         this.noiDung = sc.nextLine();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CauHoi cauHoi = (CauHoi) o;
+        return maCauHoi == cauHoi.maCauHoi;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maCauHoi);
     }
 
     @Override

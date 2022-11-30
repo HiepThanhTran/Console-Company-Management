@@ -3,7 +3,6 @@ package topic3;
 import static topic3.CauHinh.sc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,21 +43,17 @@ public class DanhMuc {
         this.dsCauHoi.add(cauHoi);
     }
 
-    public void themCauHoi(CauHoi... dsCauHoi) {
-        this.dsCauHoi.addAll(Arrays.asList(dsCauHoi));
-    }
-
     public void xoaCauHoi(CauHoi cauHoi) {
         this.dsCauHoi.remove(cauHoi);
-    }
-
-    public void xoaCauHoi(CauHoi... dsCauHoi) {
-        this.dsCauHoi.removeAll(Arrays.asList(dsCauHoi));
     }
 
     public void nhapThongTin() {
         System.out.print("- Ten danh muc: ");
         this.tenDanhMuc = sc.nextLine();
+    }
+
+    public void hienThiDsCauHoi() {
+        this.dsCauHoi.forEach(cauHoi -> System.out.printf("\n%s\n", cauHoi));
     }
 
     @Override

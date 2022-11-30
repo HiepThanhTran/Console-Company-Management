@@ -6,6 +6,7 @@ import static topic3.CauHinh.sc;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Objects;
 
 public class ThanhVien {
 
@@ -93,6 +94,23 @@ public class ThanhVien {
         this.gioiTinh = sc.nextLine();
         System.out.print("- Ngay sinh: ");
         this.ngaySinh = f.parse(sc.nextLine());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ThanhVien thanhVien = (ThanhVien) o;
+        return maThanhVien == thanhVien.maThanhVien;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maThanhVien);
     }
 
     public String toString() {
