@@ -60,15 +60,4 @@ public class ValidatorService {
             throw new GenderException("\n** GIỚI TÍNH KHÔNG HỢP LỆ **\n");
         }
     }
-
-    /**
-     * Kiểm tra đối tượng có null hay không
-     *
-     * @param obj Đối tượng
-     */
-    public static void checkNullObject(Object obj) {
-        if (obj == null) {
-            throw new NullPointerException();
-        }
-    }
 }
