@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class Factory {
 
-    public static final File departmentFile = new File("src/main/resources/DepartmentList.txt");
-    public static final File employeeFile = new File("src/main/resources/EmployeeList.txt");
-    public static final File relativeFile = new File("src/main/resources/RelativeList.txt");
-    public static final File projectFile = new File("src/main/resources/ProjectList.txt");
+    public static final File departmentFile = new File("src/main/resources/topic2/DepartmentList.txt");
+    public static final File employeeFile = new File("src/main/resources/topic2/EmployeeList.txt");
+    public static final File relativeFile = new File("src/main/resources/topic2/RelativeList.txt");
+    public static final File projectFile = new File("src/main/resources/topic2/ProjectList.txt");
     public static final SimpleDateFormat SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("###,###.##");
     public static final GregorianCalendar GREGORIANCALENDAR = new GregorianCalendar();
