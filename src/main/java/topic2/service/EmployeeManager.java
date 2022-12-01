@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.ProvideInsurance;
-import topic2.entity.people.Employee;
-import topic2.entity.people.Manager;
+import topic2.entity.Employee;
+import topic2.entity.Manager;
 import topic2.ui.Factory;
 
 public class EmployeeManager {

@@ -17,16 +17,16 @@ import java.util.Scanner;
 import topic2.behavior.JoinDepartment;
 import topic2.behavior.JoinProject;
 import topic2.behavior.ProvideInsurance;
-import topic2.entity.other.Department;
-import topic2.entity.other.Project;
-import topic2.entity.people.Designer;
-import topic2.entity.people.Employee;
-import topic2.entity.people.Manager;
-import topic2.entity.people.Normal;
-import topic2.entity.people.Person;
-import topic2.entity.people.Programmer;
-import topic2.entity.people.Relative;
-import topic2.entity.people.Tester;
+import topic2.entity.Department;
+import topic2.entity.Designer;
+import topic2.entity.Employee;
+import topic2.entity.Manager;
+import topic2.entity.Normal;
+import topic2.entity.Person;
+import topic2.entity.Programmer;
+import topic2.entity.Project;
+import topic2.entity.Relative;
+import topic2.entity.Tester;
 import topic2.exception.AmountException;
 import topic2.exception.BirthDayException;
 import topic2.exception.EmailException;
@@ -243,7 +243,7 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     projectManager.add(new JoinProject(project, employee));
                     System.out.printf("\n== Nhân viên %s tham gia dự án %s thành công ==\n", employee.getId(),
-                        project.getName().toUpperCase());
+                        project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
                     System.out.println(e.getMessage());
                     UIEmployeeManager();
@@ -536,7 +536,8 @@ public class UIManager {
                     Project project = projectManager.search(keyword);
                     Employee employee = employeeManager.searchById(id);
                     projectManager.add(new JoinProject(project, employee));
-                    System.out.printf("\n== Thêm nhân viên %s vào dự án %s thành công ==\n", id, project.getName().toUpperCase());
+                    System.out.printf("\n== Thêm nhân viên %s vào dự án %s thành công ==\n", id,
+                        project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
                     System.out.println(e.getMessage());
                     UIProjectManager();
@@ -579,7 +580,7 @@ public class UIManager {
                 String keyword = SCANNER.nextLine();
                 try {
                     Project project = projectManager.search(keyword);
-                    System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CỦA DỰ ÁN %s ***\n", project.getName().toUpperCase());
+                    System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CỦA DỰ ÁN %s ***\n", project.getProjectName().toUpperCase());
                     projectManager.getList(project).forEach(employee -> {
                         Factory.printLine(120, "~");
                         employee.showInfo();
@@ -764,7 +765,7 @@ public class UIManager {
             PrintWriter writeDepartment = new PrintWriter(departmentFile);
             departmentManager.getDepartmentList().forEach(department -> {
                 StringBuilder departmentInfo = new StringBuilder();
-                departmentInfo.append(department.getName());
+                departmentInfo.append(department.getDepartmentName());
                 department.getEmployeeList().forEach(employee -> departmentInfo.append(", " + employee.getId()));
                 writeDepartment.println(departmentInfo);
             });
@@ -802,7 +803,7 @@ public class UIManager {
             PrintWriter writeProject = new PrintWriter(projectFile);
             projectManager.getProjectList().forEach(project -> {
                 StringBuilder projectInfo = new StringBuilder();
-                projectInfo.append(String.format("%s, %s, %s, %s, %f", project.getId(), project.getName(),
+                projectInfo.append(String.format("%s, %s, %s, %s, %f", project.getProjectId(), project.getProjectName(),
                     SIMPLEDATEFORMAT.format(project.getStartDate()), SIMPLEDATEFORMAT.format(project.getEndDate()),
                     project.getCost()));
                 projectManager.getList(project).forEach(employee -> projectInfo.append(", " + employee.getId()));

@@ -2,9 +2,9 @@ package topic2;
 
 import static topic2.ui.Factory.SCANNER;
 
-import topic2.entity.other.Department;
-import topic2.entity.other.Project;
-import topic2.entity.people.Employee;
+import topic2.entity.Department;
+import topic2.entity.Employee;
+import topic2.entity.Project;
 import topic2.ui.Factory;
 import topic2.ui.UIManager;
 

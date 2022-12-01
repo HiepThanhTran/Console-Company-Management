@@ -1,4 +1,4 @@
-package topic2.entity.other;
+package topic2.entity;
 
 import static topic2.ui.Factory.DECIMALFORMAT;
 import static topic2.ui.Factory.SCANNER;
@@ -7,13 +7,12 @@ import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Objects;
-import topic2.entity.people.Employee;
 
 public class Project implements Comparable<Project> {
 
     private static int PROJECT_AMOUNT = 0;
-    private String id;
-    private String name;
+    private String projectId;
+    private String projectName;
     private Date startDate;
     private Date endDate;
     private double cost;
@@ -30,9 +29,9 @@ public class Project implements Comparable<Project> {
         this.manager = manager;
     }
 
-    public Project(String id, String name, Date startDate, Date endDate, double cost, Employee manager) {
-        this.id = id;
-        this.name = name;
+    public Project(String projectId, String projectName, Date startDate, Date endDate, double cost, Employee manager) {
+        this.projectId = projectId;
+        this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.cost = cost;
@@ -47,20 +46,20 @@ public class Project implements Comparable<Project> {
         PROJECT_AMOUNT -= x;
     }
 
-    public String getId() {
-        return id;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
-    public String getName() {
-        return name;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public Date getStartDate() {
@@ -97,9 +96,9 @@ public class Project implements Comparable<Project> {
 
     public void setInfo() throws ParseException {
         System.out.print("- Mã dự án: ");
-        this.id = SCANNER.nextLine();
+        this.projectId = SCANNER.nextLine();
         System.out.print("- Tên dự án: ");
-        this.name = SCANNER.nextLine();
+        this.projectName = SCANNER.nextLine();
         System.out.print("- Ngày bắt đầu dự án: ");
         this.startDate = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
         System.out.print("- Ngày kết thúc dự kiến: ");
@@ -109,7 +108,7 @@ public class Project implements Comparable<Project> {
     }
 
     public void showInfo() {
-        System.out.printf("== Thông tin dự án %s ==", name.toUpperCase());
+        System.out.printf("== Thông tin dự án %s ==", projectName.toUpperCase());
         System.out.println(this);
         System.out.println("\t== Thông tin người chủ nhiệm dự án ==");
         this.manager.showInfo();
@@ -129,18 +128,19 @@ public class Project implements Comparable<Project> {
             return false;
         }
         Project project = (Project) o;
-        return id.equals(project.id) && name.equals(project.name);
+        return projectId.equals(project.projectId) && projectName.equals(project.projectName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(projectId, projectName);
     }
 
     @Override
     public String toString() {
         return String.format(
             "\n- Mã dự án: %s\n- Tên dự án: %s\n- Ngày bắt đầu dự án: %s\n- Ngày kết thúc dự kiến: %s\n- Kinh phí đầu tư: %s",
-            id, name, SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate), DECIMALFORMAT.format(cost));
+            projectId, projectName, SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate),
+            DECIMALFORMAT.format(cost));
     }
 }

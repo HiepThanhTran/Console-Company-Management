@@ -1,4 +1,4 @@
-package topic2.entity.people;
+package topic2.entity;
 
 import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;

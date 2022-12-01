@@ -1,7 +1,7 @@
 package topic2.behavior;
 
-import topic2.entity.other.Department;
-import topic2.entity.people.Employee;
+import topic2.entity.Department;
+import topic2.entity.Employee;
 
 public class JoinDepartment {
 

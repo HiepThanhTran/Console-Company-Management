@@ -1,4 +1,4 @@
-package topic2.entity.people;
+package topic2.entity;
 
 import static topic2.ui.Factory.GREGORIANCALENDAR;
 import static topic2.ui.Factory.MAX_MANAGER_ROOM;
@@ -7,8 +7,6 @@ import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import topic2.entity.other.Department;
-import topic2.entity.other.Type;
 import topic2.exception.AmountException;
 
 public class Manager extends Employee {
