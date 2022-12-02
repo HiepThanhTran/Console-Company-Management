@@ -17,9 +17,9 @@ public class Main {
             System.out.printf("\t\tSố lượng phòng ban hiện có: %d\n", Department.getDepartmentAmount());
             System.out.printf("\t\tSố lượng nhân viên hiện có: %d\n", Employee.getEmployeeAmount());
             System.out.printf("\t\tSố lượng dự án hiện có: %d\n", Project.getProjectAmount());
-            System.out.println("\n1- Quản lý phòng ban");
+            System.out.println("\n1- Quản lý dự án");
             System.out.println("2- Quản lý nhân viên");
-            System.out.println("3- Quản lý dự án");
+            System.out.println("3- Quản lý phòng ban");
             System.out.println("4- Quản lý nhân thân của nhân viên");
             System.out.println("5- Lưu thông tin và kết thúc chương trình");
             System.out.print("- Chọn chức năng: ");
@@ -27,7 +27,7 @@ public class Main {
             switch (choice) {
                 case "1" -> {
                     Factory.printLine(120, "-");
-                    uiManager.UIDepartmentManager();
+                    uiManager.UIProjectManager();
                     Factory.printLine(120, "-");
                 }
                 case "2" -> {
@@ -37,7 +37,7 @@ public class Main {
                 }
                 case "3" -> {
                     Factory.printLine(120, "-");
-                    uiManager.UIProjectManager();
+                    uiManager.UIDepartmentManager();
                     Factory.printLine(120, "-");
                 }
                 case "4" -> {
