@@ -47,8 +47,8 @@ public class Main {
                     Factory.printLine(120, "-");
                 }
                 case "5" -> {
-                    FileUtils.writeFile();
                     System.out.println("\n*** KẾT THÚC CHƯƠNG TRÌNH ***");
+                    FileUtils.writeFile();
                     return;
                 }
                 default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");

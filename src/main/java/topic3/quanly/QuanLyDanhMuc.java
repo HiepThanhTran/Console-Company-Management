@@ -1,6 +1,7 @@
 package topic3.quanly;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import topic3.cauhoi.DanhMuc;
 
@@ -12,12 +13,12 @@ public class QuanLyDanhMuc {
         return dsDanhMuc;
     }
 
-    public void themDanhMuc(DanhMuc danhMuc) {
-        this.dsDanhMuc.add(danhMuc);
+    public void themDanhMuc(DanhMuc... dsDanhMuc) {
+        this.dsDanhMuc.addAll(Arrays.asList(dsDanhMuc));
     }
 
-    public void xoaDanhMuc(DanhMuc danhMuc) {
-        this.dsDanhMuc.remove(danhMuc);
+    public void xoaDanhMuc(DanhMuc... dsDanhMuc) {
+        this.dsDanhMuc.removeAll(Arrays.asList(dsDanhMuc));
     }
 
     public void hienThiDS() {
