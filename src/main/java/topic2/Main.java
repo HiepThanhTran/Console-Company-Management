@@ -15,9 +15,9 @@ public class Main {
         UIManager uiManager = UIManager.getINSTANCE();
         while (true) {
             System.out.println("\n*** H&H COMPANY ***");
-            System.out.printf("\t\tSố lượng phòng ban hiện có: %d\n", Department.getDepartmentAmount());
-            System.out.printf("\t\tSố lượng nhân viên hiện có: %d\n", Employee.getEmployeeAmount());
             System.out.printf("\t\tSố lượng dự án hiện có: %d\n", Project.getProjectAmount());
+            System.out.printf("\t\tSố lượng nhân viên hiện có: %d\n", Employee.getEmployeeAmount());
+            System.out.printf("\t\tSố lượng phòng ban hiện có: %d\n", Department.getDepartmentAmount());
             System.out.println("\n1- Quản lý dự án");
             System.out.println("2- Quản lý nhân viên");
             System.out.println("3- Quản lý phòng ban");
