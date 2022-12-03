@@ -1,4 +1,4 @@
-package topic3;
+package topic3.cauhoi;
 
 import static topic3.CauHinh.sc;
 
@@ -58,7 +58,8 @@ public class PhuongAn {
         System.out.print("- Noi dung: ");
         this.noiDung = sc.nextLine();
         System.out.print("- Dap an dung (0: Dung, 1: Sai): ");
-        this.dapAn = sc.next().equals("0");
+        String dapAn = sc.nextLine();
+        this.dapAn = dapAn.equals("0") || dapAn.equalsIgnoreCase("DUNG");
         System.out.print("- Giai thich: ");
         this.giaiThich = sc.nextLine();
     }

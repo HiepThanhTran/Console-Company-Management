@@ -1,5 +1,6 @@
-package topic2.entity.people;
+package topic2.entity;
 
+import static topic2.ui.Factory.BASIC_SALARY;
 import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
@@ -9,11 +10,10 @@ import java.util.Objects;
 
 public abstract class Employee extends Person {
 
-    protected static final double BASIC_SALARY = 5000000;
-    protected static final double ERROR_SALARY = 200000;
     protected static int EMPLOYEE_AMOUNT = 0;
     protected String id;
     protected String email;
+    protected double salary;
 
     {
         EMPLOYEE_AMOUNT++;
@@ -58,11 +58,19 @@ public abstract class Employee extends Person {
         this.email = email;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
     public abstract double getAllowance();
 
     public abstract double getCoefficient();
 
-    public double getSalary() {
+    public double calculateSalary() {
         return BASIC_SALARY * this.getCoefficient() + this.getAllowance();
     }
 
@@ -93,12 +101,12 @@ public abstract class Employee extends Person {
             return false;
         }
         Employee employee = (Employee) o;
-        return id.equals(employee.id) && email.equals(employee.email);
+        return id.equals(employee.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email);
+        return Objects.hash(id);
     }
 
     @Override

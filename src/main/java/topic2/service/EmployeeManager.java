@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.ProvideInsurance;
-import topic2.entity.people.Employee;
-import topic2.entity.people.Manager;
+import topic2.entity.Employee;
+import topic2.entity.Manager;
 import topic2.ui.Factory;
 
 public class EmployeeManager {
@@ -69,9 +69,10 @@ public class EmployeeManager {
     /**
      * Tính tiền lương cho các nhân viên
      */
-    public void calculateSalary() {
+    public void calculateSalaryOfList() {
         this.employeeList.forEach(employee -> {
             Factory.printLine(120, "~");
+            employee.setSalary(employee.calculateSalary());
             employee.showInfo();
             System.out.printf("\n- Lương: %s\n", DECIMALFORMAT.format(employee.getSalary()));
         });

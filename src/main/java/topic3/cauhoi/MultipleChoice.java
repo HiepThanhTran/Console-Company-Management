@@ -1,4 +1,4 @@
-package topic3;
+package topic3.cauhoi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,12 @@ public class MultipleChoice extends CauHoi {
     public MultipleChoice() {
     }
 
-    public MultipleChoice(int mucDo, String noiDung, DanhMuc danhMuc, List<PhuongAn> dsPhuongAn) {
+    public MultipleChoice(String mucDo, String noiDung, List<PhuongAn> dsPhuongAn) {
+        super(mucDo, noiDung);
+        this.dsPhuongAn = dsPhuongAn;
+    }
+
+    public MultipleChoice(String mucDo, String noiDung, DanhMuc danhMuc, List<PhuongAn> dsPhuongAn) {
         super(mucDo, noiDung, danhMuc);
         this.dsPhuongAn = dsPhuongAn;
     }
@@ -28,11 +33,9 @@ public class MultipleChoice extends CauHoi {
         return null;
     }
 
-    public String formula() {
-        StringBuilder sb = new StringBuilder();
+    public void hienThiDsPhuongAn() {
         for (int i = 0; i < this.dsPhuongAn.size(); i++) {
-            sb.append(((char) ('A' + i)) + "" + this.dsPhuongAn.get(i));
+            System.out.println(((char) ('A' + i)) + "" + this.dsPhuongAn.get(i));
         }
-        return sb.toString();
     }
 }

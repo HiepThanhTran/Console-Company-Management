@@ -1,9 +1,12 @@
-package topic3;
+package topic3.quanly;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import topic3.user.LuyenTap;
+import topic3.user.ThanhVien;
 
-public class QuanLyHeThong {
+public class QuanLyHeThongLT {
 
     private List<LuyenTap> dsLuyenTap = new ArrayList<>();
 
@@ -15,19 +18,17 @@ public class QuanLyHeThong {
         this.dsLuyenTap = dsLuyenTap;
     }
 
-    public void themLuyenTap(LuyenTap luyenTap) {
-        this.dsLuyenTap.add(luyenTap);
+    public void themLuyenTap(LuyenTap... dsLuyenTap) {
+        this.dsLuyenTap.addAll(Arrays.asList(dsLuyenTap));
     }
 
-    public void xoaLuyenTap(LuyenTap luyenTap) {
-        this.dsLuyenTap.remove(luyenTap);
+    public void xoaLuyenTap(LuyenTap... dsLuyenTap) {
+        this.dsLuyenTap.removeAll(Arrays.asList(dsLuyenTap));
     }
 
     public void thongKe(LuyenTap luyenTap) {
-        System.out.println("\n== THONG TIN THANH VIEN ==");
-        System.out.println(luyenTap.getThanhVien());
-        System.out.println(luyenTap.getThanhTich().formula());
-        System.out.println(luyenTap.getThanhTich());
+        luyenTap.getThanhVien().hienThiThongTin();
+        luyenTap.getThanhTich().hienThiThongTin();
     }
 
     public LuyenTap traCuu(ThanhVien tv) {

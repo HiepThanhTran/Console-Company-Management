@@ -1,29 +1,30 @@
-package topic2.entity.other;
+package topic2.entity;
 
 import static topic2.ui.Factory.SCANNER;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import topic2.entity.people.Employee;
-import topic2.entity.people.Manager;
 
 public class Department {
 
     private static int DEPARTMENT_AMOUNT = 0;
-    private String name;
+    private String departmentName;
     private List<Employee> employeeList = new LinkedList<>(); // Danh sách các nhân viên trực thuộc phòng ban này
 
     {
         DEPARTMENT_AMOUNT++;
     }
 
-    public Department(String name) {
-        this.name = name;
+    public Department() {
     }
 
-    public Department(String name, List<Employee> employeeList) {
-        this.name = name;
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public Department(String departmentName, List<Employee> employeeList) {
+        this.departmentName = departmentName;
         this.employeeList = employeeList;
     }
 
@@ -35,12 +36,12 @@ public class Department {
         DEPARTMENT_AMOUNT -= x;
     }
 
-    public String getName() {
-        return name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public List<Employee> getEmployeeList() {
@@ -80,16 +81,16 @@ public class Department {
 
     public void setInfo() {
         System.out.print("- Tên phòng ban: ");
-        this.name = SCANNER.nextLine();
+        this.departmentName = SCANNER.nextLine();
     }
 
     public void showInfo() {
-        System.out.printf("== Thông tin phòng ban %s ==", name.toUpperCase());
+        System.out.printf("== Thông tin phòng ban %s ==", departmentName.toUpperCase());
         System.out.println(this);
-        this.showList();
+        this.showEmployeeList();
     }
 
-    public void showList() {
+    public void showEmployeeList() {
         System.out.println("-- DANH SÁCH NHÂN VIÊN --");
         this.employeeList.forEach(employee -> {
             System.out.println();
@@ -106,16 +107,16 @@ public class Department {
             return false;
         }
         Department that = (Department) o;
-        return name.equals(that.name);
+        return departmentName.equals(that.departmentName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(departmentName);
     }
 
     @Override
     public String toString() {
-        return String.format("\n- Tên phòng ban: %s", name);
+        return String.format("\n- Tên phòng ban: %s", departmentName);
     }
 }

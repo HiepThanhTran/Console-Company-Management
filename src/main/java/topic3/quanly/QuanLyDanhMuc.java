@@ -1,7 +1,8 @@
-package topic3;
+package topic3.quanly;
 
 import java.util.ArrayList;
 import java.util.List;
+import topic3.cauhoi.DanhMuc;
 
 public class QuanLyDanhMuc {
 
@@ -20,7 +21,7 @@ public class QuanLyDanhMuc {
     }
 
     public void hienThiDS() {
-        this.dsDanhMuc.forEach(danhMuc -> System.out.printf("\n%s\n", danhMuc));
+        this.dsDanhMuc.forEach(danhMuc -> danhMuc.hienThiThongTin());
     }
 
     public DanhMuc traCuu(String tenDanhMuc) {

@@ -1,18 +1,17 @@
-package topic3;
+package topic3.user;
 
 import static topic3.CauHinh.quanLyCauHoi;
 import static topic3.CauHinh.sc;
 
 import java.util.ArrayList;
 import java.util.List;
+import topic3.cauhoi.CauHoi;
+import topic3.cauhoi.MultipleChoice;
 
 public class LuyenTap {
 
     private ThanhTich thanhTich;
     private ThanhVien thanhVien;
-
-    public LuyenTap() {
-    }
 
     public LuyenTap(ThanhTich thanhTich, ThanhVien thanhVien) {
         this.thanhTich = thanhTich;
@@ -35,17 +34,18 @@ public class LuyenTap {
         this.thanhVien = thanhVien;
     }
 
-    public void luyenTap(String type) throws ClassNotFoundException {
-        CauHoi cauHoi = quanLyCauHoi.randomCauHoi(type);
-        System.out.println("\n== THONG TIN CAU HOI ==");
-        System.out.println(cauHoi);
+    public void luyenTap(String type, String mucDo) throws ClassNotFoundException {
+        CauHoi cauHoi = quanLyCauHoi.randomCauHoi(type, mucDo);
+        cauHoi.hienThiThongTin();
         int soCauDung = traLoiCauHoi(cauHoi.getDsCauHoi());
         this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
         this.thanhTich.themDiem(soCauDung * (10 / cauHoi.getDsCauHoi().size()));
     }
 
-    public void luyenTap(int soLuong) {
-        List<MultipleChoice> dsCauHoi = quanLyCauHoi.randomCauHoi(soLuong);
+    public void luyenTap(String type, int soLuong) throws ClassNotFoundException {
+        List<CauHoi> temp = quanLyCauHoi.randomCauHoi(type, soLuong);
+        // List<MultipleChoice> dsCauHoi = temp.stream().map(cauHoi -> (MultipleChoice) cauHoi).collect(Collectors.toList());
+        List<MultipleChoice> dsCauHoi = (List<MultipleChoice>) (Object) temp;
         int soCauDung = traLoiCauHoi(dsCauHoi);
         this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
         this.thanhTich.themDiem(soCauDung * (10 / soLuong));
@@ -54,22 +54,19 @@ public class LuyenTap {
     private int traLoiCauHoi(List<MultipleChoice> dsCauHoi) {
         List<Character> dsDapAn = new ArrayList<>();
         int soCauDung = 0;
-        for (int i = 0; i < dsCauHoi.size(); i++) {
-            System.out.printf("\n== CAU HOI THU %d ==\n", i + 1);
-            System.out.println(dsCauHoi.get(i));
-            System.out.println(dsCauHoi.get(i).formula());
+        dsCauHoi.forEach(multipleChoice -> {
+            multipleChoice.hienThiThongTin();
+            multipleChoice.hienThiDsPhuongAn();
             System.out.print("- Chon dap an: ");
             dsDapAn.add(sc.next().toUpperCase().charAt(0));
-        }
+        });
         for (int i = 0; i < dsCauHoi.size(); i++) {
-            System.out.printf("\n== CAU HOI THU %d ==\n", i + 1);
             MultipleChoice cauHoi = dsCauHoi.get(i);
+            dsCauHoi.get(i).hienThiThongTin();
             int index = (dsDapAn.get(i)) - 'A';
             boolean dapAn = index >= 0 && index < cauHoi.getDsPhuongAn().size() && cauHoi.getDsPhuongAn().get(index).isDapAn();
-            System.out.println(cauHoi.getNoiDung() + " - " + (dapAn ? "Đúng" : "Sai"));
-            if (dapAn) {
-                soCauDung++;
-            }
+            System.out.println("=> " + (dapAn ? "Dung" : "Sai"));
+            soCauDung = (dapAn) ? soCauDung + 1 : soCauDung;
         }
         return soCauDung;
     }

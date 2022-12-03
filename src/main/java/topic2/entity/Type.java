@@ -1,4 +1,4 @@
-package topic2.entity.other;
+package topic2.entity;
 
 public enum Type {
     NORMAL(1),

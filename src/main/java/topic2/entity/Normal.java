@@ -1,7 +1,6 @@
-package topic2.entity.people;
+package topic2.entity;
 
 import java.util.Date;
-import topic2.entity.other.Type;
 
 public class Normal extends Employee {
 

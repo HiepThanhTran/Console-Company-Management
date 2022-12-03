@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.JoinDepartment;
-import topic2.entity.other.Department;
-import topic2.entity.people.Employee;
+import topic2.entity.Department;
+import topic2.entity.Employee;
 import topic2.ui.Factory;
 
 public class DepartmentManager {
@@ -93,7 +93,12 @@ public class DepartmentManager {
      * @return
      */
     public Department search(String name) {
-        return this.departmentList.stream().filter(department -> department.getName().equals(name)).findFirst()
+        return this.departmentList.stream().filter(department -> department.getDepartmentName().equals(name)).findFirst()
             .orElseThrow(() -> new NullPointerException("\n== Không tìm thấy phòng ban ==\n"));
+    }
+
+    public JoinDepartment search(Employee employee) {
+        return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getEmployee().equals(employee)).findFirst()
+            .orElseThrow(() -> new NullPointerException("\n== Không tìm thấy nhân viên ==\n"));
     }
 }

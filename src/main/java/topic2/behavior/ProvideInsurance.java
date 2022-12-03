@@ -1,8 +1,8 @@
 package topic2.behavior;
 
 import java.util.UUID;
-import topic2.entity.people.Employee;
-import topic2.entity.people.Relative;
+import topic2.entity.Employee;
+import topic2.entity.Relative;
 
 public class ProvideInsurance {
 
@@ -53,7 +53,7 @@ public class ProvideInsurance {
         relative.showInfo();
     }
 
-    public void showEmpInfo() {
+    public void showEmployeeInfo() {
         employee.showInfo();
     }
 }

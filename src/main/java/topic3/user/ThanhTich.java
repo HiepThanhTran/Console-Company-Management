@@ -1,4 +1,4 @@
-package topic3;
+package topic3.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +40,14 @@ public class ThanhTich {
 
     public double getDiemTrungBinh() {
         return this.dsDiem.stream().mapToDouble(diem -> diem).average().getAsDouble();
+    }
+
+    public void hienThiThongTin() {
+//        System.out.println(this);
+//        System.out.println(this.formula());
+        System.out.printf("- So lan lam: %d\n", soLanLam);
+        System.out.println(this.formula());
+        System.out.printf("- Diem trung binh: %.2f\n", this.getDiemTrungBinh());
     }
 
     public String formula() {

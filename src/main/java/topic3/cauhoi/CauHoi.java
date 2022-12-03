@@ -1,4 +1,4 @@
-package topic3;
+package topic3.cauhoi;
 
 import static topic3.CauHinh.sc;
 
@@ -9,7 +9,7 @@ public abstract class CauHoi {
 
     private static int dem = 0;
     private final int maCauHoi;
-    private int mucDo;
+    private String mucDo;
     private String noiDung;
     private DanhMuc danhMuc;
 
@@ -20,7 +20,12 @@ public abstract class CauHoi {
     public CauHoi() {
     }
 
-    public CauHoi(int mucDo, String noiDung, DanhMuc danhMuc) {
+    public CauHoi(String mucDo, String noiDung) {
+        this.mucDo = mucDo;
+        this.noiDung = noiDung;
+    }
+
+    public CauHoi(String mucDo, String noiDung, DanhMuc danhMuc) {
         this.mucDo = mucDo;
         this.noiDung = noiDung;
         this.danhMuc = danhMuc;
@@ -30,15 +35,17 @@ public abstract class CauHoi {
         return dem;
     }
 
+    public abstract List<MultipleChoice> getDsCauHoi();
+
     public int getMaCauHoi() {
         return maCauHoi;
     }
 
-    public int getMucDo() {
+    public String getMucDo() {
         return mucDo;
     }
 
-    public void setMucDo(int mucDo) {
+    public void setMucDo(String mucDo) {
         this.mucDo = mucDo;
     }
 
@@ -59,13 +66,19 @@ public abstract class CauHoi {
     }
 
     public void nhapThongTin() {
-        System.out.print("- Muc do: ");
-        this.mucDo = Integer.parseInt(sc.nextLine());
+        System.out.print("- Muc do (De/Trung binh/Kho): ");
+        this.mucDo = sc.nextLine();
         System.out.print("- Noi dung: ");
         this.noiDung = sc.nextLine();
     }
 
-    public abstract List<MultipleChoice> getDsCauHoi();
+    public void hienThiThongTin() {
+        System.out.printf("\n== THONG TIN CAU HOI %d ==\n", maCauHoi);
+//        System.out.println(this);
+        System.out.printf("- Muc do: %s\t\t", mucDo);
+        System.out.printf("- Danh muc: %s\n", danhMuc.getTenDanhMuc());
+        System.out.printf("- Noi dung: %s\n", noiDung);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -86,7 +99,6 @@ public abstract class CauHoi {
 
     @Override
     public String toString() {
-        String lv = (mucDo == 1) ? "De" : (mucDo == 2 ? "Trung binh" : "Kho");
-        return String.format("- Muc do: %s\t\t- Danh muc: %s\n- Noi dung: %s", lv, danhMuc.getTenDanhMuc(), noiDung);
+        return String.format("- Muc do: %s\t\t- Danh muc: %s\n- Noi dung: %s", mucDo, danhMuc.getTenDanhMuc(), noiDung);
     }
 }

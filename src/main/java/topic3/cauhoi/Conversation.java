@@ -1,4 +1,4 @@
-package topic3;
+package topic3.cauhoi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Conversation extends CauHoi {
     public Conversation() {
     }
 
-    public Conversation(int mucDo, String noiDung, DanhMuc danhMuc, List<MultipleChoice> dsCauHoi) {
+    public Conversation(String mucDo, String noiDung, DanhMuc danhMuc, List<MultipleChoice> dsCauHoi) {
         super(mucDo, noiDung, danhMuc);
         this.dsCauHoi = dsCauHoi;
     }

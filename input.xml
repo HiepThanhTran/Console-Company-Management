@@ -1,0 +1,23 @@
+<?xml version = "1.0"?>
+<class>
+  <student rollno="400">
+    <firstname>Nguyen</firstname>
+    <lastname>Hai</lastname>
+    <marks>12</marks>
+    <nickname>deft</nickname>
+  </student>
+
+  <student rollno="103">
+    <firstname>Nguyen</firstname>
+    <lastname>Tu</lastname>
+    <marks>95</marks>
+    <nickname>vinni</nickname>
+  </student>
+
+  <student rollno="593">
+    <firstname>Le</firstname>
+    <lastname>dung</lastname>
+    <marks>90</marks>
+    <nickname>jazz</nickname>
+  </student>
+</class>

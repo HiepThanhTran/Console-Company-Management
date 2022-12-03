@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.JoinProject;
-import topic2.entity.other.Project;
-import topic2.entity.people.Employee;
+import topic2.entity.Employee;
+import topic2.entity.Project;
 import topic2.exception.AmountException;
 import topic2.ui.Factory;
 
@@ -152,7 +152,8 @@ public class ProjectManager {
      * @return
      */
     public Project search(String key) {
-        return this.projectList.stream().filter(project -> project.getName().equals(key) || project.getId().equals(key))
+        return this.projectList.stream()
+            .filter(project -> project.getProjectName().equals(key) || project.getProjectId().equals(key))
             .findFirst().orElseThrow(() -> new NullPointerException("\n== Không tìm thấy dự án ==\n"));
     }
 

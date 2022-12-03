@@ -1,4 +1,4 @@
-package topic3;
+package topic3.cauhoi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class InComplete extends CauHoi {
     public InComplete() {
     }
 
-    public InComplete(int mucDo, String noiDung, DanhMuc danhMuc, List<MultipleChoice> dsCauHoi) {
+    public InComplete(String mucDo, String noiDung, DanhMuc danhMuc, List<MultipleChoice> dsCauHoi) {
         super(mucDo, noiDung, danhMuc);
         this.dsCauHoi = dsCauHoi;
     }

@@ -1,9 +1,11 @@
-package topic3;
+package topic3.quanly;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import topic3.user.ThanhVien;
 
 public class QuanLyThanhVien {
 
@@ -17,18 +19,16 @@ public class QuanLyThanhVien {
         this.dsThanhVien = dsThanhVien;
     }
 
-    public void themTV(ThanhVien tv) {
-        this.dsThanhVien.add(tv);
+    public void themTV(ThanhVien... dsThanhVien) {
+        this.dsThanhVien.addAll(Arrays.asList(dsThanhVien));
     }
 
-    public void xoaTV(ThanhVien tv) {
-        this.dsThanhVien.remove(tv);
+    public void xoaTV(ThanhVien... dsThanhVien) {
+        this.dsThanhVien.removeAll(Arrays.asList(dsThanhVien));
     }
 
     public void hienThiDS() {
-        for (int i = 0; i < this.dsThanhVien.size(); i++) {
-            System.out.printf("\n\t\t* Thanh vien thu %d *\n%s\n", i + 1, this.dsThanhVien.get(i));
-        }
+        this.dsThanhVien.forEach(thanhVien -> thanhVien.hienThiThongTin());
     }
 
     /**

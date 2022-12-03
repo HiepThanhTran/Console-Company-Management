@@ -8,7 +8,7 @@ import topic2.exception.EmailException;
 import topic2.exception.FullNameException;
 import topic2.exception.GenderException;
 
-public class ValidatorService {
+public final class ValidatorService {
 
     private ValidatorService() {
     }

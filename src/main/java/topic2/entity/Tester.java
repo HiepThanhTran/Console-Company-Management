@@ -1,10 +1,10 @@
-package topic2.entity.people;
+package topic2.entity;
 
+import static topic2.ui.Factory.ERROR_SALARY;
 import static topic2.ui.Factory.SCANNER;
 
 import java.text.ParseException;
 import java.util.Date;
-import topic2.entity.other.Type;
 
 public class Tester extends Employee {
 

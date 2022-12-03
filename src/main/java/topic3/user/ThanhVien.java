@@ -1,4 +1,4 @@
-package topic3;
+package topic3.user;
 
 import static topic3.CauHinh.c;
 import static topic3.CauHinh.f;
@@ -94,6 +94,15 @@ public class ThanhVien {
         this.gioiTinh = sc.nextLine();
         System.out.print("- Ngay sinh: ");
         this.ngaySinh = f.parse(sc.nextLine());
+    }
+
+    public void hienThiThongTin() {
+        System.out.printf("\n== THONG TIN THANH VIEN %d ==\n", maThanhVien);
+//        System.out.println(this);
+        System.out.printf("- Ho ten: %s\n", hoTen);
+        System.out.printf("- Que quan: %s\n", queQuan);
+        System.out.printf("- Gioi tinh: %s\n", gioiTinh);
+        System.out.printf("- Ngay sinh: %s\n", f.format(ngaySinh));
     }
 
     @Override
