@@ -28,12 +28,4 @@ public class JoinProject {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
-    public void showProjectInfo() {
-        project.showInfo();
-    }
-
-    public void showEmployeeInfo() {
-        employee.showInfo();
-    }
 }

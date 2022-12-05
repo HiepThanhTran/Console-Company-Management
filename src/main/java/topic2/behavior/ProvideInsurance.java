@@ -48,12 +48,4 @@ public class ProvideInsurance {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
-    public void showRelativeInfo() {
-        relative.showInfo();
-    }
-
-    public void showEmployeeInfo() {
-        employee.showInfo();
-    }
 }

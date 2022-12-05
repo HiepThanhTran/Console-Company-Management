@@ -28,12 +28,4 @@ public class JoinDepartment {
     public void setDepartment(Department department) {
         this.department = department;
     }
-
-    public void showEmployeeInfo() {
-        this.employee.showInfo();
-    }
-
-    public void showDepartmentInfo() {
-        this.department.showInfo();
-    }
 }
