@@ -67,6 +67,7 @@ public abstract class Person {
 
     public String toString() {
         String gender = this.gender.equals("1") ? "Nam" : "Nữ";
-        return String.format("\n- Họ tên: %s\n- Giới tính: %s\n- Ngày sinh: %s", name, gender, SIMPLEDATEFORMAT.format(dob));
+//        return String.format("\n- Họ tên: %s\n- Giới tính: %s\n- Ngày sinh: %s", name, gender, SIMPLEDATEFORMAT.format(dob));
+        return String.format("| %-20s | %-9s | %-10s |", name, gender, SIMPLEDATEFORMAT.format(dob));
     }
 }

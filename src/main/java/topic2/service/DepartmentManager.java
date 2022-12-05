@@ -1,6 +1,6 @@
 package topic2.service;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.JoinDepartment;
@@ -10,8 +10,8 @@ import topic2.ui.Factory;
 
 public class DepartmentManager {
 
-    private List<Department> departmentList = new LinkedList<>();
-    private List<JoinDepartment> joinDepartments = new LinkedList<>();
+    private List<Department> departmentList = new ArrayList<>();
+    private List<JoinDepartment> joinDepartments = new ArrayList<>();
 
     public List<Department> getDepartmentList() {
         return departmentList;
@@ -51,8 +51,10 @@ public class DepartmentManager {
      * @param employee Nhân viên
      */
     public void removeAll(Employee employee) {
-        this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getEmployee().equals(employee))
-            .forEach(joinDepartment -> this.remove(joinDepartment));
+        List<JoinDepartment> temp = this.joinDepartments.stream()
+            .filter(joinDepartment -> joinDepartment.getEmployee().equals(employee))
+            .collect(Collectors.toList());
+        temp.forEach(joinDepartment -> this.remove(joinDepartment));
     }
 
     /**
@@ -61,8 +63,10 @@ public class DepartmentManager {
      * @param department Phòng ban
      */
     public void removeAll(Department department) {
-        this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getDepartment().equals(department))
-            .forEach(joinDepartment -> this.remove(joinDepartment));
+        List<JoinDepartment> temp = this.joinDepartments.stream()
+            .filter(joinDepartment -> joinDepartment.getDepartment().equals(department))
+            .collect(Collectors.toList());
+        temp.forEach(joinDepartment -> this.remove(joinDepartment));
     }
 
     /**

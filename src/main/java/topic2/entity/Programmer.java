@@ -54,6 +54,7 @@ public class Programmer extends Employee {
 
     @Override
     public String toString() {
-        return String.format("%s\n- Lương OT: %s", super.toString(), DECIMALFORMAT.format(salaryOT));
+//        return String.format("%s\n- Lương OT: %s", super.toString(), DECIMALFORMAT.format(salaryOT));
+        return String.format("%s Lương OT: %-20s |", super.toString(), DECIMALFORMAT.format(salaryOT));
     }
 }

@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class Normal extends Employee {
 
+    {
+        id = String.format("N-%05d", EMPLOYEE_AMOUNT);
+    }
+
     public Normal() {
     }
 
@@ -23,5 +27,10 @@ public class Normal extends Employee {
     @Override
     public double getCoefficient() {
         return Type.NORMAL.getCoefficient();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %-30s |", super.toString(), "");
     }
 }

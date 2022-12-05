@@ -17,7 +17,6 @@ public abstract class Employee extends Person {
 
     {
         EMPLOYEE_AMOUNT++;
-        id = String.format("N-%05d", EMPLOYEE_AMOUNT);
     }
 
     public Employee() {
@@ -111,6 +110,7 @@ public abstract class Employee extends Person {
 
     @Override
     public String toString() {
-        return String.format("\n- Mã nhân viên: %s%s\n- Email: %s", id, super.toString(), email);
+//        return String.format("\n- Mã nhân viên: %s%s\n- Email: %s", id, super.toString(), email);
+        return String.format("> %-12s %s %-25s |", id, super.toString(), email);
     }
 }

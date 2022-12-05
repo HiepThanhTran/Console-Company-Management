@@ -1,4 +1,4 @@
-N-00001, Đặng Trung Thắng, false, 01/01/1998, 2151050000thang@ou.edu.vn
+N-00001, Đặng Trung Thắng, false, 1/1/1998, 21510501234thang@ou.eud.vn
 P-00002, Trần Thanh Hiệp, false, 29/01/2003, hieptt.2003@gmail.com, 5000000.0
 D-00003, Nguyễn Song Hậu, false, 27/07/2003, 2151050123hau@ou.edu.vn, 300000.0
 T-00004, Nguyễn Huỳnh Ngọc Như, true, 27/05/2003, 2151053045nhu@ou.edu.vn, 10

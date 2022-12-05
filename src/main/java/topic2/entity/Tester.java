@@ -54,6 +54,7 @@ public class Tester extends Employee {
 
     @Override
     public String toString() {
-        return String.format("%s\n- Số lỗi tìm được: %d", super.toString(), errors);
+//        return String.format("%s\n- Số lỗi tìm được: %d", super.toString(), errors);
+        return String.format("%s Số lỗi tìm được: %-13d |", super.toString(), errors);
     }
 }

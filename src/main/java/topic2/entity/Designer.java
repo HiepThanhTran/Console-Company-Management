@@ -54,6 +54,7 @@ public class Designer extends Employee {
 
     @Override
     public String toString() {
-        return String.format("%s\n- Thưởng thêm: %s", super.toString(), DECIMALFORMAT.format(bonus));
+//        return String.format("%s\n- Thưởng thêm: %s", super.toString(), DECIMALFORMAT.format(bonus));
+        return String.format("%s Thưởng thêm: %-17s |", super.toString(), DECIMALFORMAT.format(bonus));
     }
 }

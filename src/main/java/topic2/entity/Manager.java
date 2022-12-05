@@ -4,15 +4,15 @@ import static topic2.ui.Factory.GREGORIANCALENDAR;
 import static topic2.ui.Factory.MAX_MANAGER_ROOM;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import topic2.exception.AmountException;
 
 public class Manager extends Employee {
 
     private Date takeOfficeDate;
-    private List<Department> departmentList = new LinkedList<>();
+    private List<Department> departmentList = new ArrayList<>();
 
     {
         takeOfficeDate = GREGORIANCALENDAR.getTime();

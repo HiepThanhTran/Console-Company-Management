@@ -3,9 +3,9 @@ package topic2.service;
 import static topic2.ui.Factory.MAX_EMPLOYEE;
 import static topic2.ui.Factory.MAX_PROJECT;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.JoinProject;
@@ -16,8 +16,8 @@ import topic2.ui.Factory;
 
 public class ProjectManager {
 
-    private List<Project> projectList = new LinkedList<>();
-    private List<JoinProject> joinProjects = new LinkedList<>();
+    private List<Project> projectList = new ArrayList<>();
+    private List<JoinProject> joinProjects = new ArrayList<>();
 
     public List<Project> getProjectList() {
         return projectList;
@@ -62,9 +62,10 @@ public class ProjectManager {
      *
      * @param project Dự án
      */
-    public void removeAll(Project project) {
-        this.joinProjects.stream().filter(joinProject -> joinProject.getProject().equals(project))
-            .forEach(joinProject -> this.remove(joinProject));
+    public void removeAll(Project project) { // size = 9
+        List<JoinProject> temp = this.joinProjects.stream().filter(joinProject -> joinProject.getProject().equals(project))
+            .collect(Collectors.toList());
+        temp.forEach(joinProject -> this.remove(joinProject));
     }
 
     /**
@@ -73,8 +74,9 @@ public class ProjectManager {
      * @param employee Nhân viên
      */
     public void removeAll(Employee employee) {
-        this.joinProjects.stream().filter(joinProject -> joinProject.getEmployee().equals(employee))
-            .forEach(joinProject -> this.remove(joinProject));
+        List<JoinProject> temp = this.joinProjects.stream().filter(joinProject -> joinProject.getEmployee().equals(employee))
+            .collect(Collectors.toList());
+        temp.forEach(joinProject -> this.remove(joinProject));
     }
 
     /**

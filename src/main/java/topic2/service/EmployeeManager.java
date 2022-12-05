@@ -2,9 +2,9 @@ package topic2.service;
 
 import static topic2.ui.Factory.DECIMALFORMAT;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import topic2.behavior.ProvideInsurance;
@@ -14,8 +14,8 @@ import topic2.ui.Factory;
 
 public class EmployeeManager {
 
-    private List<Employee> employeeList = new LinkedList<>();
-    private List<ProvideInsurance> relativeList = new LinkedList<>();
+    private List<Employee> employeeList = new ArrayList<>();
+    private List<ProvideInsurance> relativeList = new ArrayList<>();
 
     public List<Employee> getEmployeeList() {
         return employeeList;

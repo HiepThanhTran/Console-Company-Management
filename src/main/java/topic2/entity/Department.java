@@ -2,7 +2,7 @@ package topic2.entity;
 
 import static topic2.ui.Factory.SCANNER;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ public class Department {
 
     private static int DEPARTMENT_AMOUNT = 0;
     private String departmentName;
-    private List<Employee> employeeList = new LinkedList<>(); // Danh sách các nhân viên trực thuộc phòng ban này
+    private List<Employee> employeeList = new ArrayList<>(); // Danh sách các nhân viên trực thuộc phòng ban này
 
     {
         DEPARTMENT_AMOUNT++;
