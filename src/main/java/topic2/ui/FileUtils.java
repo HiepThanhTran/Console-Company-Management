@@ -134,12 +134,9 @@ public final class FileUtils {
             readRelative.close();
             readEmployee.close();
             readDepartment.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("\n** ĐỌC FILE KHÔNG THÀNH CÔNG **");
-        } catch (ParseException e) {
-            System.out.println("\n** DỮ LIỆU KHÔNG ĐÚNG ĐỊNH DẠNG **");
-        } catch (AmountException e) {
-            System.out.println(e.getMessage());
+        } catch (FileNotFoundException | ParseException | AmountException e) {
+            System.err.println("\n** ĐỌC FILE KHÔNG THÀNH CÔNG **");
+            e.printStackTrace();
         }
     }
 
@@ -209,7 +206,8 @@ public final class FileUtils {
             writeEmployee.close();
             writeDepartment.close();
         } catch (FileNotFoundException e) {
-            System.out.println("\n** GHI FILE KHÔNG THÀNH CÔNG **");
+            System.err.println("\n** GHI FILE KHÔNG THÀNH CÔNG **");
+            e.printStackTrace();
         }
     }
 }

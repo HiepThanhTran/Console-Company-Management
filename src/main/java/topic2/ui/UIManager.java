@@ -93,7 +93,7 @@ public class UIManager {
                     departmentManager.removeAll(department);
                     System.out.println("\n== Xóa phòng ban thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIDepartmentManager();
                 }
             }
@@ -115,7 +115,7 @@ public class UIManager {
                         System.out.println("\n== Thêm nhân viên vào phòng ban thành công ==");
                     }
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIDepartmentManager();
                 }
             }
@@ -134,12 +134,12 @@ public class UIManager {
                         department.showInfo();
                     });
                 } catch (NullPointerException e) {
-                    System.out.println("\n== Không tìm thấy nhân viên ==");
+                    System.err.println("\n== Không tìm thấy nhân viên ==");
                     UIDepartmentManager();
                 }
             }
             case "6" -> System.out.println("\n== Hoàn tất quản lý phòng ban ==");
-            default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
+            default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
         }
     }
 
@@ -182,27 +182,27 @@ public class UIManager {
                     employeeManager.add(employee);
                     System.out.println("\n== Thêm nhân viên thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 } catch (ParseException | NumberFormatException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     Employee.decreaseEmployeeAmount(1);
                     UIEmployeeManager();
                 } catch (FullNameException e) {
                     Employee.decreaseEmployeeAmount(1);
-                    System.out.print(e.getMessage());
+                    System.err.print(e.getMessage());
                     UIEmployeeManager();
                 } catch (GenderException e) {
                     Employee.decreaseEmployeeAmount(1);
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 } catch (BirthDayException e) {
                     Employee.decreaseEmployeeAmount(1);
-                    System.out.print(e.getMessage());
+                    System.err.print(e.getMessage());
                     UIEmployeeManager();
                 } catch (EmailException e) {
                     Employee.decreaseEmployeeAmount(1);
-                    System.out.print(e.getMessage());
+                    System.err.print(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -218,7 +218,7 @@ public class UIManager {
                     employeeManager.getList(employee).forEach(provideInsurance -> employeeManager.remove(provideInsurance));
                     System.out.println("\n== Xóa nhân viên thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
 
@@ -235,10 +235,10 @@ public class UIManager {
                     System.out.printf("\n== Nhân viên %s tham gia dự án %s thành công ==\n", employee.getId(),
                         project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 } catch (AmountException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -251,9 +251,9 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     Department department = departmentManager.search(name);
                     if (!department.hasEmployee(employee)) {
-                        System.out.println("\n== Nhân viên không thuộc phòng ban này ==");
+                        System.err.println("\n== Nhân viên không thuộc phòng ban này ==");
                     } else if (department.hasManager()) {
-                        System.out.println("\n== Phòng ban này đã có quản lý ==");
+                        System.err.println("\n== Phòng ban này đã có quản lý ==");
                     } else {
                         Employee manager = employeeManager.promote(employee);
                         department.removeEmployee(employee);
@@ -263,7 +263,7 @@ public class UIManager {
                         System.out.println("\n== Thăng chức thành công ==");
                     }
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -286,7 +286,7 @@ public class UIManager {
                         project.showInfo();
                     });
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -309,7 +309,7 @@ public class UIManager {
                         employee.showInfo();
                     });
                 } catch (ParseException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIEmployeeManager();
                 }
             }
@@ -321,7 +321,7 @@ public class UIManager {
                     System.out.printf("\n*** DANH SÁCH CÁC NHÂN VIÊN THUỘC PHÒNG BAN %s ***\n", name.toUpperCase());
                     department.showEmployeeList();
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
@@ -335,7 +335,7 @@ public class UIManager {
                         employee.showInfo();
                     });
                 } catch (NumberFormatException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIEmployeeManager();
                 }
             }
@@ -351,15 +351,15 @@ public class UIManager {
                         employee.showInfo();
                     });
                 } catch (NumberFormatException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIEmployeeManager();
                 } catch (InputMismatchException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
             }
             case "13" -> System.out.println("\n== Hoàn tất quản lý nhân viên ==");
-            default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
+            default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
         }
     }
 
@@ -403,19 +403,19 @@ public class UIManager {
                     employeeManager.add(new ProvideInsurance(relative, employee));
                     System.out.println("\n== Cung cấp thông tin nhân thân thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIRelativeManager();
                 } catch (ParseException | EmailException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIRelativeManager();
                 } catch (FullNameException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIRelativeManager();
                 } catch (GenderException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIRelativeManager();
                 } catch (BirthDayException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIRelativeManager();
                 }
             }
@@ -431,12 +431,12 @@ public class UIManager {
                         System.out.printf("- Mã bảo hiểm xã hội: %s\n", provideInsurance.getInsNumber());
                     });
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIRelativeManager();
                 }
             }
             case "3" -> System.out.println("\n== Hoàn tất quản lý dự án ==");
-            default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
+            default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
         }
     }
 
@@ -472,15 +472,15 @@ public class UIManager {
                     projectManager.add(project);
                     System.out.println("\n== Thêm dự án thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 } catch (ParseException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     Project.decreaseProjectAmount(1);
                     UIProjectManager();
                 } catch (AmountException e) {
                     Project.decreaseProjectAmount(1);
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -495,13 +495,13 @@ public class UIManager {
                         project.setManager(employee);
                         System.out.println("\n== Cập nhật dự án thành công ==");
                     } else {
-                        System.out.println("\n== Nhân viên không thuộc dự án này ==");
+                        System.err.println("\n== Nhân viên không thuộc dự án này ==");
                     }
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 } catch (ParseException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIProjectManager();
                 }
             }
@@ -515,7 +515,7 @@ public class UIManager {
                     projectManager.removeAll(project);
                     System.out.println("\n== Xóa dự án thành công ==");
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -531,10 +531,10 @@ public class UIManager {
                     System.out.printf("\n== Thêm nhân viên %s vào dự án %s thành công ==\n", id,
                         project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 } catch (AmountException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -545,7 +545,7 @@ public class UIManager {
                     Project project = projectManager.search(name);
                     project.showInfo();
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -559,7 +559,7 @@ public class UIManager {
                         project.showInfo();
                     });
                 } catch (ParseException e) {
-                    System.out.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
+                    System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIProjectManager();
                 }
             }
@@ -578,7 +578,7 @@ public class UIManager {
                         employee.showInfo();
                     });
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                     UIProjectManager();
                 }
             }
@@ -587,7 +587,7 @@ public class UIManager {
                 System.out.println("\n== Sắp xếp thành công. Chọn xem danh sách để kiểm tra ==");
             }
             case "10" -> System.out.println("\n== Hoàn tất quản lý dự án ==");
-            default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
+            default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
         }
     }
 
@@ -615,9 +615,9 @@ public class UIManager {
                 projectManager.add(new JoinProject(project, employee));
             }
         } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         } catch (AmountException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }
