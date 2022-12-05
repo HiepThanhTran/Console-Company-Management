@@ -167,7 +167,7 @@ public final class FileUtils {
             PrintWriter writeEmployee = new PrintWriter(employeeFile);
             employeeManager.getEmployeeList().forEach(employee -> {
                 StringBuilder employeeInfo = new StringBuilder();
-                boolean gender = !employee.getGender().equals("1");
+                boolean gender = employee.getGender().equals("Nữ");
                 employeeInfo.append(String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
                     SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail()));
                 switch (employee.getId().substring(0, 1)) {
@@ -184,7 +184,7 @@ public final class FileUtils {
             PrintWriter writeRelative = new PrintWriter(relativeFile);
             employeeManager.getRelativeList().forEach(provideInsurance -> {
                 Relative relative = provideInsurance.getRelative();
-                boolean gender = !relative.getGender().equals("1");
+                boolean gender = relative.getGender().equals("Nữ");
                 writeRelative.printf("%s, %s, %s, %s, %s, %s\n", relative.getName(), gender,
                     SIMPLEDATEFORMAT.format(relative.getDob()), relative.getRelationship(), provideInsurance.getInsNumber(),
                     provideInsurance.getEmployee().getId());

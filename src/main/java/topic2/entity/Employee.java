@@ -79,7 +79,7 @@ public abstract class Employee extends Person {
         this.name = SCANNER.nextLine();
         System.out.print("- Giới tính (1 - Nam, 0 - Nữ): ");
         String gender = SCANNER.nextLine();
-        this.gender = gender.equals("1") ? "Nam" : (gender.equals("0") ? "Nữ" : "KXĐ");
+        this.gender = (gender.equals("1")) ? "Nam" : (gender.equals("0") ? "Nữ" : "KXĐ");
         System.out.print("- Ngày sinh: ");
         this.dob = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
         System.out.print("- Email: ");
