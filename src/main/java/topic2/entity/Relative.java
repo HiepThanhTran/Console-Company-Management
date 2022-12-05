@@ -38,10 +38,15 @@ public class Relative extends Person {
     }
 
     public void showInfo() {
-        System.out.println(this);
+//        System.out.println(this);
+        System.out.printf("- Họ tên: %s\n", name);
+        System.out.printf("- Giới tính: %s\n", gender);
+        System.out.printf("- Ngày sinh: %s\n", SIMPLEDATEFORMAT.format(dob));
+        System.out.printf("- Mối quan hệ: %s\n", relationship);
     }
 
     public String toString() {
-        return String.format("%s\n- Mối quan hệ: %s", super.toString(), relationship);
+//        return String.format("%s\n- Mối quan hệ: %s", super.toString(), relationship);
+        return String.format("%s %-11s |", super.toString(), relationship);
     }
 }

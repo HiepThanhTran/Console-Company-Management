@@ -78,7 +78,8 @@ public abstract class Employee extends Person {
         System.out.print("- Họ tên: ");
         this.name = SCANNER.nextLine();
         System.out.print("- Giới tính (1 - Nam, 0 - Nữ): ");
-        this.gender = SCANNER.nextLine();
+        String gender = SCANNER.nextLine();
+        this.gender = gender.equals("1") ? "Nam" : (gender.equals("0") ? "Nữ" : "KXĐ");
         System.out.print("- Ngày sinh: ");
         this.dob = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
         System.out.print("- Email: ");
@@ -87,8 +88,13 @@ public abstract class Employee extends Person {
 
     @Override
     public void showInfo() {
-        System.out.printf("\t\t== Thông tin nhân viên %s ==", id);
-        System.out.println(this);
+//        System.out.printf("\t\t== Thông tin nhân viên %s ==", id);
+//        System.out.println(this);
+        System.out.printf("- Mã nhân viên: %s\n", id);
+        System.out.printf("- Tên nhân viên: %s\n", name);
+        System.out.printf("- Giới tính: %s\n", gender);
+        System.out.printf("- Ngày sinh: %s\n", SIMPLEDATEFORMAT.format(dob));
+        System.out.printf("- Email: %s\n", email);
     }
 
     @Override
@@ -111,6 +117,6 @@ public abstract class Employee extends Person {
     @Override
     public String toString() {
 //        return String.format("\n- Mã nhân viên: %s%s\n- Email: %s", id, super.toString(), email);
-        return String.format("> %-12s %s %-25s |", id, super.toString(), email);
+        return String.format("> %-12s %s %-30s |", id, super.toString(), email);
     }
 }

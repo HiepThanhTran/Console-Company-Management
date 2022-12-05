@@ -5,6 +5,7 @@ import static topic2.ui.Factory.SCANNER;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import topic2.ui.Factory;
 
 public class Department {
 
@@ -87,14 +88,15 @@ public class Department {
     public void showInfo() {
         System.out.printf("== Thông tin phòng ban %s ==", departmentName.toUpperCase());
         System.out.println(this);
+        System.out.println("== DANH SÁCH NHÂN VIÊN ==");
         this.showEmployeeList();
     }
 
     public void showEmployeeList() {
-        System.out.println("-- DANH SÁCH NHÂN VIÊN --");
+        Factory.employeeMenuHeader();
         this.employeeList.forEach(employee -> {
-            System.out.println();
-            employee.showInfo();
+            System.out.println(employee);
+            Factory.printLine(140, "-");
         });
     }
 

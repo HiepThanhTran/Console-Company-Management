@@ -62,7 +62,7 @@ public class ProjectManager {
      *
      * @param project Dự án
      */
-    public void removeAll(Project project) { // size = 9
+    public void removeAll(Project project) {
         List<JoinProject> temp = this.joinProjects.stream().filter(joinProject -> joinProject.getProject().equals(project))
             .collect(Collectors.toList());
         temp.forEach(joinProject -> this.remove(joinProject));
@@ -119,9 +119,10 @@ public class ProjectManager {
      * Hiển thị danh sách dự án
      */
     public void showList() {
+        Factory.projectMenuHeader();
         this.projectList.forEach(project -> {
-            Factory.printLine(120, "~");
-            project.showInfo();
+            System.out.println(project);
+            Factory.printLine(149, "-");
         });
     }
 

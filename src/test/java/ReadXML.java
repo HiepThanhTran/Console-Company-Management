@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class Test1 {
+public class ReadXML {
 
     public static void main(String[] args) {
         try {

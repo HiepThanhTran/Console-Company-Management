@@ -11,7 +11,7 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Test2 {
+public class WriteXML {
 
     public static final String xmlFilePath = "output.xml";
 

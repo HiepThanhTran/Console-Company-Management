@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
+import topic2.color.Color;
 import topic2.service.DepartmentManager;
 import topic2.service.EmployeeManager;
 import topic2.service.ProjectManager;
@@ -35,16 +36,60 @@ public class Factory {
     private Factory() {
     }
 
-    /**
-     * In ra 'amount' dòng có ký tự 'characters'
-     *
-     * @param amount     Số lượng
-     * @param characters Ký tự
-     */
+    public static void printLine(int amount) {
+        for (int i = 0; i < amount; i++) {
+            System.out.println();
+        }
+        System.out.println();
+    }
+
     public static void printLine(int amount, String characters) {
         for (int i = 0; i < amount; i++) {
             System.out.print(characters);
         }
         System.out.println();
+    }
+
+    public static void printLine(int amount, String characters, Color color) {
+        System.out.printf(color.toString());
+        for (int i = 0; i < amount; i++) {
+            System.out.print(characters);
+        }
+        System.out.println(Color.RESET);
+    }
+
+    public static void projectMenuHeader() {
+        Factory.printLine(149, "-");
+        System.out.printf("| %-23s | %-41s | %-12s | %-12s | %-29s | %-56s |\n",
+            Color.RED + "MÃ DỰ ÁN" + Color.RESET,
+            Color.CYAN + "TÊN DỰ ÁN" + Color.RESET,
+            Color.MAGENTA + "NGÀY BẮT ĐẦU" + Color.RESET,
+            Color.YELLOW + "NGÀY KẾT THÚC" + Color.RESET,
+            Color.BLUE + "KINH PHÍ ĐẦU TƯ" + Color.RESET,
+            Color.GREEN + "CHỦ NHIỆM DỰ ÁN" + Color.RESET);
+        Factory.printLine(149, "-");
+    }
+
+    public static void employeeMenuHeader() {
+        Factory.printLine(140, "-");
+        System.out.printf("| %-12s | %-41s | %-9s | %-21s | %-41s | %-30s |\n",
+            Color.RED + "MÃ NHÂN VIÊN" + Color.RESET,
+            Color.CYAN + "HỌ TÊN" + Color.RESET,
+            Color.MAGENTA + "GIỚI TÍNH" + Color.RESET,
+            Color.YELLOW + "NGÀY SINH" + Color.RESET,
+            Color.BLUE + "EMAIL" + Color.RESET,
+            Color.GREEN + "//////////////////////////////" + Color.RESET);
+        Factory.printLine(140, "-");
+    }
+
+    public static void relativeMenuHeader() {
+        Factory.printLine(112, "-");
+        System.out.printf("| %-41s | %-9s | %-21s | %-22s | %-47s |\n",
+            Color.CYAN + "HỌ TÊN" + Color.RESET,
+            Color.MAGENTA + "GIỚI TÍNH" + Color.RESET,
+            Color.YELLOW + "NGÀY SINH" + Color.RESET,
+            Color.BLUE + "MỐI QUAN HỆ" + Color.RESET,
+            Color.GREEN + "SỐ BẢO HIỂM" + Color.RESET);
+        Factory.printLine(112, "-");
     }
 }

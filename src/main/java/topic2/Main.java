@@ -2,6 +2,7 @@ package topic2;
 
 import static topic2.ui.Factory.SCANNER;
 
+import topic2.color.Color;
 import topic2.entity.Department;
 import topic2.entity.Employee;
 import topic2.entity.Project;
@@ -27,24 +28,20 @@ public class Main {
             String choice = SCANNER.nextLine();
             switch (choice) {
                 case "1" -> {
-                    Factory.printLine(120, "-");
+                    Factory.printLine(180, "-");
                     uiManager.UIProjectManager();
-                    Factory.printLine(120, "-");
                 }
                 case "2" -> {
-                    Factory.printLine(120, "-");
+                    Factory.printLine(180, "-");
                     uiManager.UIEmployeeManager();
-                    Factory.printLine(120, "-");
                 }
                 case "3" -> {
-                    Factory.printLine(120, "-");
+                    Factory.printLine(180, "-");
                     uiManager.UIDepartmentManager();
-                    Factory.printLine(120, "-");
                 }
                 case "4" -> {
-                    Factory.printLine(120, "-");
+                    Factory.printLine(180, "-");
                     uiManager.UIRelativeManager();
-                    Factory.printLine(120, "-");
                 }
                 case "5" -> {
                     System.out.println("\n*** KẾT THÚC CHƯƠNG TRÌNH ***");
@@ -53,6 +50,7 @@ public class Main {
                 }
                 default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
             }
+            System.out.printf("%s=> BẤM PHÍM BẤT KỲ ĐỂ TIẾP TỤC%s", Color.RED_BOLD_BRIGHT, Color.RESET);
             SCANNER.nextLine();
         }
     }

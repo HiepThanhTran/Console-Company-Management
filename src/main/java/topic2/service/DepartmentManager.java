@@ -74,8 +74,8 @@ public class DepartmentManager {
      */
     public void showList() {
         this.departmentList.forEach(department -> {
-            Factory.printLine(120, "~");
             department.showInfo();
+            Factory.printLine(180, "~");
         });
     }
 

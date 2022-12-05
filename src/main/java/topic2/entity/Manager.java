@@ -26,9 +26,17 @@ public class Manager extends Employee {
         super(employee.getName(), employee.getGender(), employee.getDob(), employee.getEmail());
     }
 
+    public Manager(String name, String gender, Date dob, String email) {
+        super(name, gender, dob, email);
+    }
+
     public Manager(String name, String gender, Date dob, String email, Date takeOfficeDate) {
         super(name, gender, dob, email);
         this.takeOfficeDate = takeOfficeDate;
+    }
+
+    public Manager(String name, String gender, Date dob, String id, String email) {
+        super(name, gender, dob, id, email);
     }
 
     public Manager(String name, String gender, Date dob, String id, String email, Date takeOfficeDate) {
@@ -70,6 +78,7 @@ public class Manager extends Employee {
     }
 
     public String toString() {
-        return String.format("%s\n- Ngày nhậm chức: %s", super.toString(), SIMPLEDATEFORMAT.format(takeOfficeDate));
+//        return String.format("%s\n- Ngày nhậm chức: %s", super.toString(), SIMPLEDATEFORMAT.format(takeOfficeDate));
+        return String.format("%s Ngày nhậm chức: %-14s |", super.toString(), SIMPLEDATEFORMAT.format(takeOfficeDate));
     }
 }

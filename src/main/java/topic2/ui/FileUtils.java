@@ -50,7 +50,7 @@ public final class FileUtils {
                 Employee employee = null;
                 String id = tokens[0];
                 String name = tokens[1];
-                String gender = (tokens[2].equals("false")) ? "1" : "0";
+                String gender = (tokens[2].equals("false")) ? "Nam" : "Nữ";
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[3]);
                 String email = tokens[4];
                 switch (id.substring(0, 1)) {
@@ -94,7 +94,7 @@ public final class FileUtils {
             while (readRelative.hasNextLine()) {
                 String[] tokens = readRelative.nextLine().split(", ");
                 String name = tokens[0];
-                String gender = (tokens[1].equals("false")) ? "1" : "0";
+                String gender = (tokens[1].equals("false")) ? "Nam" : "Nữ";
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[2]);
                 String relationship = tokens[3];
                 String insNumber = tokens[4];

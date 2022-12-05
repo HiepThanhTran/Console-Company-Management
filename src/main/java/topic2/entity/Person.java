@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 public abstract class Person {
 
     protected String name;
-    protected String gender; // 1 - Nam , 0 - Nữ
+    protected String gender;
     protected Date dob;
 
     public Person() {
@@ -66,8 +66,7 @@ public abstract class Person {
     public abstract void showInfo();
 
     public String toString() {
-        String gender = this.gender.equals("1") ? "Nam" : "Nữ";
 //        return String.format("\n- Họ tên: %s\n- Giới tính: %s\n- Ngày sinh: %s", name, gender, SIMPLEDATEFORMAT.format(dob));
-        return String.format("| %-20s | %-9s | %-10s |", name, gender, SIMPLEDATEFORMAT.format(dob));
+        return String.format("| %-30s | %-9s | %-10s |", name, gender, SIMPLEDATEFORMAT.format(dob));
     }
 }

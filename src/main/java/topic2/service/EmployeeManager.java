@@ -70,11 +70,12 @@ public class EmployeeManager {
      * Tính tiền lương cho các nhân viên
      */
     public void calculateSalaryOfList() {
+        Factory.employeeMenuHeader();
         this.employeeList.forEach(employee -> {
-            Factory.printLine(120, "~");
             employee.setSalary(employee.calculateSalary());
-            employee.showInfo();
-            System.out.printf("\n- Lương: %s\n", DECIMALFORMAT.format(employee.getSalary()));
+            System.out.print(employee);
+            System.out.printf("\t=> Lương: %s\n", DECIMALFORMAT.format(employee.getSalary()));
+            Factory.printLine(140, "-");
         });
     }
 
@@ -82,9 +83,10 @@ public class EmployeeManager {
      * Hiển thị danh sách nhân viên
      */
     public void showList() {
+        Factory.employeeMenuHeader();
         this.employeeList.forEach(employee -> {
-            Factory.printLine(120, "~");
-            employee.showInfo();
+            System.out.println(employee);
+            Factory.printLine(140, "-");
         });
     }
 

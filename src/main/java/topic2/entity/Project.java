@@ -108,9 +108,14 @@ public class Project implements Comparable<Project> {
     }
 
     public void showInfo() {
-        System.out.printf("== Thông tin dự án %s ==", projectName.toUpperCase());
-        System.out.println(this);
-        System.out.println("\t== Thông tin người chủ nhiệm dự án ==");
+//        System.out.printf("== Thông tin dự án %s ==", projectName.toUpperCase());
+//        System.out.println(this);
+        System.out.printf("- Mã dự án: %s\n", projectId);
+        System.out.printf("- Tên dự án: %s\n", projectName);
+        System.out.printf("- Ngày bắt đầu: %s\n", SIMPLEDATEFORMAT.format(startDate));
+        System.out.printf("- Ngày kết thúc dự kiến: %s\n", SIMPLEDATEFORMAT.format(endDate));
+        System.out.printf("- Kinh phí đầu tư: %s\n", DECIMALFORMAT.format(cost));
+        System.out.println("\n\t== Thông tin người chủ nhiệm dự án ==");
         this.manager.showInfo();
     }
 
@@ -138,9 +143,12 @@ public class Project implements Comparable<Project> {
 
     @Override
     public String toString() {
-        return String.format(
-            "\n- Mã dự án: %s\n- Tên dự án: %s\n- Ngày bắt đầu dự án: %s\n- Ngày kết thúc dự kiến: %s\n- Kinh phí đầu tư: %s",
-            projectId, projectName, SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate),
-            DECIMALFORMAT.format(cost));
+//        return String.format(
+//            "\n- Mã dự án: %s\n- Tên dự án: %s\n- Ngày bắt đầu dự án: %s\n- Ngày kết thúc dự kiến: %s\n- Kinh phí đầu tư: %s",
+//            projectId, projectName, SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate),
+//            DECIMALFORMAT.format(cost));
+        return String.format("| %-12s | %-30s | %-12s | %-13s | %-18s | %-45s |", projectId, projectName,
+            SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate), DECIMALFORMAT.format(cost),
+            manager.getId() + " - " + manager.getName());
     }
 }
