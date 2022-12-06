@@ -17,12 +17,12 @@ public class Tester extends Employee {
     public Tester() {
     }
 
-    public Tester(String name, String gender, Date dob, String email, int errors) {
+    public Tester(String name, boolean gender, Date dob, String email, int errors) {
         super(name, gender, dob, email);
         this.errors = errors;
     }
 
-    public Tester(String name, String gender, Date dob, String id, String email, int errors) {
+    public Tester(String name, boolean gender, Date dob, String id, String email, int errors) {
         super(name, gender, dob, id, email);
         this.errors = errors;
     }
@@ -54,7 +54,6 @@ public class Tester extends Employee {
 
     @Override
     public String toString() {
-//        return String.format("%s\n- Số lỗi tìm được: %d", super.toString(), errors);
         return String.format("%s Số lỗi tìm được: %-13d |", super.toString(), errors);
     }
 }

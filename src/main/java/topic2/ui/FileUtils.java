@@ -50,7 +50,7 @@ public final class FileUtils {
                 Employee employee = null;
                 String id = tokens[0];
                 String name = tokens[1];
-                String gender = (tokens[2].equals("false")) ? "Nam" : "Nữ";
+                boolean gender = Boolean.parseBoolean(tokens[2]);
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[3]);
                 String email = tokens[4];
                 switch (id.substring(0, 1)) {
@@ -94,7 +94,7 @@ public final class FileUtils {
             while (readRelative.hasNextLine()) {
                 String[] tokens = readRelative.nextLine().split(", ");
                 String name = tokens[0];
-                String gender = (tokens[1].equals("false")) ? "Nam" : "Nữ";
+                boolean gender = Boolean.parseBoolean(tokens[1]);
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[2]);
                 String relationship = tokens[3];
                 String insNumber = tokens[4];
@@ -167,7 +167,7 @@ public final class FileUtils {
             PrintWriter writeEmployee = new PrintWriter(employeeFile);
             employeeManager.getEmployeeList().forEach(employee -> {
                 StringBuilder employeeInfo = new StringBuilder();
-                boolean gender = employee.getGender().equals("Nữ");
+                boolean gender = employee.getGender();
                 employeeInfo.append(String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
                     SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail()));
                 switch (employee.getId().substring(0, 1)) {
@@ -184,7 +184,7 @@ public final class FileUtils {
             PrintWriter writeRelative = new PrintWriter(relativeFile);
             employeeManager.getRelativeList().forEach(provideInsurance -> {
                 Relative relative = provideInsurance.getRelative();
-                boolean gender = relative.getGender().equals("Nữ");
+                boolean gender = relative.getGender();
                 writeRelative.printf("%s, %s, %s, %s, %s, %s\n", relative.getName(), gender,
                     SIMPLEDATEFORMAT.format(relative.getDob()), relative.getRelationship(), provideInsurance.getInsNumber(),
                     provideInsurance.getEmployee().getId());

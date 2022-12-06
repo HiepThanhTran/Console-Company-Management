@@ -80,7 +80,7 @@ public class ProjectManager {
     }
 
     /**
-     * Kiểm tra dự án này có phải dự án nhân viên đang thực hiện hay không<br> Kiểm tra nhân viên có thuộc dự án này hay không
+     * Kiểm tra nhân viên có thuộc dự án này hay không
      *
      * @param project  Dự án
      * @param employee Nhân viên
@@ -122,7 +122,7 @@ public class ProjectManager {
         Factory.projectMenuHeader();
         this.projectList.forEach(project -> {
             System.out.println(project);
-            Factory.printLine(149, "-");
+            Factory.printLine(162, "-");
         });
     }
 

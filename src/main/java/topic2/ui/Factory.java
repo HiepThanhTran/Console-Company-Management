@@ -59,15 +59,16 @@ public class Factory {
     }
 
     public static void projectMenuHeader() {
-        Factory.printLine(149, "-");
-        System.out.printf("| %-23s | %-41s | %-12s | %-12s | %-29s | %-56s |\n",
+        Factory.printLine(162, "-");
+        System.out.printf("| %-23s | %-41s | %-12s | %-12s | %-29s | %-56s | %-21s |\n",
             Color.RED + "MÃ DỰ ÁN" + Color.RESET,
             Color.CYAN + "TÊN DỰ ÁN" + Color.RESET,
             Color.MAGENTA + "NGÀY BẮT ĐẦU" + Color.RESET,
             Color.YELLOW + "NGÀY KẾT THÚC" + Color.RESET,
             Color.BLUE + "KINH PHÍ ĐẦU TƯ" + Color.RESET,
-            Color.GREEN + "CHỦ NHIỆM DỰ ÁN" + Color.RESET);
-        Factory.printLine(149, "-");
+            Color.GREEN + "CHỦ NHIỆM DỰ ÁN" + Color.RESET,
+            Color.GREEN_BOLD_BRIGHT + "TRẠNG THÁI" + Color.RESET);
+        Factory.printLine(162, "-");
     }
 
     public static void employeeMenuHeader() {

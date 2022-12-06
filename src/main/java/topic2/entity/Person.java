@@ -1,6 +1,7 @@
 package topic2.entity;
 
 import static topic2.ui.Factory.GREGORIANCALENDAR;
+import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
 import java.text.ParseException;
@@ -11,13 +12,13 @@ import java.util.GregorianCalendar;
 public abstract class Person {
 
     protected String name;
-    protected String gender;
+    protected boolean gender;
     protected Date dob;
 
     public Person() {
     }
 
-    public Person(String name, String gender, Date dob) {
+    public Person(String name, boolean gender, Date dob) {
         this.name = name;
         this.gender = gender;
         this.dob = dob;
@@ -31,11 +32,11 @@ public abstract class Person {
         this.name = name;
     }
 
-    public String getGender() {
+    public boolean getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
@@ -53,20 +54,24 @@ public abstract class Person {
         int age = GREGORIANCALENDAR.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
         if (GREGORIANCALENDAR.get(Calendar.MONTH) < birthDay.get(Calendar.MONTH)) {
             age--;
-        } else if (GREGORIANCALENDAR.get(Calendar.MONTH) == birthDay.get(Calendar.MONTH)) {
-            if (GREGORIANCALENDAR.get(Calendar.DAY_OF_MONTH) < birthDay.get(Calendar.DAY_OF_MONTH)) {
-                age--;
-            }
+        } else if (GREGORIANCALENDAR.get(Calendar.MONTH) == birthDay.get(Calendar.MONTH)
+            && GREGORIANCALENDAR.get(Calendar.DAY_OF_MONTH) < birthDay.get(Calendar.DAY_OF_MONTH)) {
+            age--;
         }
         return age;
     }
 
-    public abstract void setInfo() throws ParseException;
-
-    public abstract void showInfo();
+    public void setInfo() throws ParseException {
+        System.out.print("- Họ tên: ");
+        this.name = SCANNER.nextLine();
+        System.out.print("- Giới tính (1 - Nam, 0 - Nữ): ");
+        this.gender = SCANNER.nextLine().equals("0");
+        System.out.print("- Ngày sinh: ");
+        this.dob = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
+    }
 
     public String toString() {
-//        return String.format("\n- Họ tên: %s\n- Giới tính: %s\n- Ngày sinh: %s", name, gender, SIMPLEDATEFORMAT.format(dob));
+        String gender = this.gender ? "Nữ" : "Nam";
         return String.format("| %-30s | %-9s | %-10s |", name, gender, SIMPLEDATEFORMAT.format(dob));
     }
 }

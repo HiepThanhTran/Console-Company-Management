@@ -2,7 +2,6 @@ package topic2.entity;
 
 import static topic2.ui.Factory.BASIC_SALARY;
 import static topic2.ui.Factory.SCANNER;
-import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -22,12 +21,12 @@ public abstract class Employee extends Person {
     public Employee() {
     }
 
-    public Employee(String name, String gender, Date dob, String email) {
+    public Employee(String name, boolean gender, Date dob, String email) {
         super(name, gender, dob);
         this.email = email;
     }
 
-    public Employee(String name, String gender, Date dob, String id, String email) {
+    public Employee(String name, boolean gender, Date dob, String id, String email) {
         super(name, gender, dob);
         this.id = id;
         this.email = email;
@@ -75,26 +74,9 @@ public abstract class Employee extends Person {
 
     @Override
     public void setInfo() throws ParseException {
-        System.out.print("- Họ tên: ");
-        this.name = SCANNER.nextLine();
-        System.out.print("- Giới tính (1 - Nam, 0 - Nữ): ");
-        String gender = SCANNER.nextLine();
-        this.gender = (gender.equals("1")) ? "Nam" : (gender.equals("0") ? "Nữ" : "KXĐ");
-        System.out.print("- Ngày sinh: ");
-        this.dob = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
+        super.setInfo();
         System.out.print("- Email: ");
         this.email = SCANNER.nextLine();
-    }
-
-    @Override
-    public void showInfo() {
-//        System.out.printf("\t\t== Thông tin nhân viên %s ==", id);
-//        System.out.println(this);
-        System.out.printf("- Mã nhân viên: %s\n", id);
-        System.out.printf("- Tên nhân viên: %s\n", name);
-        System.out.printf("- Giới tính: %s\n", gender);
-        System.out.printf("- Ngày sinh: %s\n", SIMPLEDATEFORMAT.format(dob));
-        System.out.printf("- Email: %s\n", email);
     }
 
     @Override
@@ -116,7 +98,6 @@ public abstract class Employee extends Person {
 
     @Override
     public String toString() {
-//        return String.format("\n- Mã nhân viên: %s%s\n- Email: %s", id, super.toString(), email);
         return String.format("> %-12s %s %-30s |", id, super.toString(), email);
     }
 }

@@ -13,15 +13,15 @@ import topic2.ui.Factory;
 public class TestConsole {
 
     public static void main(String[] args) throws ParseException {
-        Employee employee1 = new Normal("Trần Thanh Hiệp", "1", SIMPLEDATEFORMAT.parse("29/01/2003"),
+        Employee employee1 = new Normal("Trần Thanh Hiệp", false, SIMPLEDATEFORMAT.parse("29/01/2003"),
             "2151050469hiep@ou.edu.vn");
-        Employee employee2 = new Manager("Trần Thanh Hậu", "1", SIMPLEDATEFORMAT.parse("18/12/1993"),
+        Employee employee2 = new Manager("Trần Thanh Hậu", false, SIMPLEDATEFORMAT.parse("18/12/1993"),
             "tranhau1993@gmail.com");
-        Employee employee3 = new Programmer("Tống Thị Thu Hiền", "0", SIMPLEDATEFORMAT.parse("10/07/2003"),
+        Employee employee3 = new Programmer("Tống Thị Thu Hiền", true, SIMPLEDATEFORMAT.parse("10/07/2003"),
             "2151050126hien@ou.edu.vn", 1000000);
-        Employee employee4 = new Designer("Nguyễn Song Hậu", "1", SIMPLEDATEFORMAT.parse("27/07/2003"),
+        Employee employee4 = new Designer("Nguyễn Song Hậu", false, SIMPLEDATEFORMAT.parse("27/07/2003"),
             "2151050123hau@ou.edu.vn", 500000);
-        Employee employee5 = new Tester("Nguyễn Huỳnh Ngọc Như", "0", SIMPLEDATEFORMAT.parse("27/05/2003"),
+        Employee employee5 = new Tester("Nguyễn Huỳnh Ngọc Như", true, SIMPLEDATEFORMAT.parse("27/05/2003"),
             "2151053045nhu@ou.edu.vn", 10);
 
         Factory.employeeMenuHeader();
@@ -51,14 +51,14 @@ public class TestConsole {
 
         Factory.projectMenuHeader();
         System.out.println(project1);
-        Factory.printLine(101, "-");
+        Factory.printLine(162, "-");
         System.out.println(project2);
-        Factory.printLine(101, "-");
+        Factory.printLine(162, "-");
         System.out.println(project3);
-        Factory.printLine(101, "-");
+        Factory.printLine(162, "-");
         System.out.println(project4);
-        Factory.printLine(101, "-");
+        Factory.printLine(162, "-");
         System.out.println(project5);
-        Factory.printLine(101, "-");
+        Factory.printLine(162, "-");
     }
 }

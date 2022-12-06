@@ -1,8 +1,10 @@
 package topic2.entity;
 
 import static topic2.ui.Factory.DECIMALFORMAT;
+import static topic2.ui.Factory.MIN_EMPLOYEE;
 import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
+import static topic2.ui.Factory.projectManager;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -107,18 +109,6 @@ public class Project implements Comparable<Project> {
         this.cost = Double.parseDouble(SCANNER.nextLine());
     }
 
-    public void showInfo() {
-//        System.out.printf("== Thông tin dự án %s ==", projectName.toUpperCase());
-//        System.out.println(this);
-        System.out.printf("- Mã dự án: %s\n", projectId);
-        System.out.printf("- Tên dự án: %s\n", projectName);
-        System.out.printf("- Ngày bắt đầu: %s\n", SIMPLEDATEFORMAT.format(startDate));
-        System.out.printf("- Ngày kết thúc dự kiến: %s\n", SIMPLEDATEFORMAT.format(endDate));
-        System.out.printf("- Kinh phí đầu tư: %s\n", DECIMALFORMAT.format(cost));
-        System.out.println("\n\t== Thông tin người chủ nhiệm dự án ==");
-        this.manager.showInfo();
-    }
-
     @Override
     public int compareTo(Project project) {
         return (int) (this.cost - project.getCost());
@@ -143,12 +133,9 @@ public class Project implements Comparable<Project> {
 
     @Override
     public String toString() {
-//        return String.format(
-//            "\n- Mã dự án: %s\n- Tên dự án: %s\n- Ngày bắt đầu dự án: %s\n- Ngày kết thúc dự kiến: %s\n- Kinh phí đầu tư: %s",
-//            projectId, projectName, SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate),
-//            DECIMALFORMAT.format(cost));
-        return String.format("| %-12s | %-30s | %-12s | %-13s | %-18s | %-45s |", projectId, projectName,
+        String flag = (projectManager.getAmount(this) < MIN_EMPLOYEE) ? "❌" : "✔";
+        return String.format("| %-12s | %-30s | %-12s | %-13s | %-18s | %-45s | %-9s |", projectId, projectName,
             SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate), DECIMALFORMAT.format(cost),
-            manager.getId() + " - " + manager.getName());
+            manager.getId() + " ~ " + manager.getName(), flag);
     }
 }

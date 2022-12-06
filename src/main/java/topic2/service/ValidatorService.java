@@ -6,7 +6,6 @@ import java.util.Date;
 import topic2.exception.BirthDayException;
 import topic2.exception.EmailException;
 import topic2.exception.FullNameException;
-import topic2.exception.GenderException;
 
 public final class ValidatorService {
 
@@ -46,18 +45,6 @@ public final class ValidatorService {
     public static void checkFullName(String fullName) throws FullNameException {
         if (!fullName.matches("^([\\p{L}]{1}[\\p{L}]+\\s{1})+[\\p{L}]{1}[\\p{L}]+$")) {
             throw new FullNameException("\n** HỌ TÊN KHÔNG HỢP LỆ **\n");
-        }
-    }
-
-    /**
-     * Kiểm tra tính hợp lệ của Giới tính
-     *
-     * @param gender
-     * @throws GenderException
-     */
-    public static void checkGender(String gender) throws GenderException {
-        if (!gender.matches("[0|1]")) {
-            throw new GenderException("\n** GIỚI TÍNH KHÔNG HỢP LỆ **\n");
         }
     }
 }

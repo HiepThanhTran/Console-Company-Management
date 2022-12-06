@@ -48,7 +48,7 @@ public class Main {
                     FileUtils.writeFile();
                     return;
                 }
-                default -> System.out.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
+                default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
             }
             System.out.printf("%s=> BẤM PHÍM BẤT KỲ ĐỂ TIẾP TỤC%s", Color.RED_BOLD_BRIGHT, Color.RESET);
             SCANNER.nextLine();

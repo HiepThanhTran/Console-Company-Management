@@ -17,12 +17,12 @@ public class Designer extends Employee {
     public Designer() {
     }
 
-    public Designer(String name, String gender, Date dob, String email, double bonus) {
+    public Designer(String name, boolean gender, Date dob, String email, double bonus) {
         super(name, gender, dob, email);
         this.bonus = bonus;
     }
 
-    public Designer(String name, String gender, Date dob, String id, String email, double bonus) {
+    public Designer(String name, boolean gender, Date dob, String id, String email, double bonus) {
         super(name, gender, dob, id, email);
         this.bonus = bonus;
     }
@@ -54,7 +54,6 @@ public class Designer extends Employee {
 
     @Override
     public String toString() {
-//        return String.format("%s\n- Thưởng thêm: %s", super.toString(), DECIMALFORMAT.format(bonus));
         return String.format("%s Thưởng thêm: %-17s |", super.toString(), DECIMALFORMAT.format(bonus));
     }
 }
