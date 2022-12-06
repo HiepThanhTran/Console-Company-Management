@@ -1,4 +1,5 @@
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
+import static topic2.ui.Factory.centerString;
 
 import java.text.ParseException;
 import topic2.entity.Designer;
@@ -60,5 +61,8 @@ public class TestConsole {
         Factory.printLine(162, "-");
         System.out.println(project5);
         Factory.printLine(162, "-");
+
+        String out = centerString(10, "abcd");
+        System.out.println(out);
     }
 }

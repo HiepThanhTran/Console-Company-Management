@@ -36,6 +36,10 @@ public class Factory {
     private Factory() {
     }
 
+    public static String centerString(int width, String s) {
+        return String.format("%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
+    }
+
     public static void printLine(int amount) {
         for (int i = 0; i < amount; i++) {
             System.out.println();
