@@ -25,6 +25,11 @@ public abstract class CauHoi {
         this.noiDung = noiDung;
     }
 
+    public CauHoi(String mucDo, DanhMuc danhMuc) {
+        this.mucDo = mucDo;
+        this.danhMuc = danhMuc;
+    }
+
     public CauHoi(String mucDo, String noiDung, DanhMuc danhMuc) {
         this.mucDo = mucDo;
         this.noiDung = noiDung;
