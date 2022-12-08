@@ -50,7 +50,7 @@ public class QuanLyCauHoi {
         this.dsCauHoi.forEach(cauHoi -> cauHoi.hienThiThongTin());
     }
 
-    public CauHoi traCuuTheoId(int maCauHoi) {
+    public CauHoi traCuu(int maCauHoi) {
         return this.dsCauHoi.stream().filter(cauHoi -> cauHoi.getMaCauHoi() == maCauHoi).findFirst().orElse(null);
     }
 

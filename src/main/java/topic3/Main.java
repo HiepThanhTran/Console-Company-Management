@@ -128,9 +128,9 @@ public class Main {
                                 if (danhMuc == null) {
                                     throw new NullPointerException("\n== KHONG TIM THAY DANH MUC ==\n");
                                 }
-                                System.out.println("1. MultipleChoice");
-                                System.out.println("2. InComplete");
-                                System.out.println("3. Conversation");
+                                System.out.println("1. MultipleChoice.txt");
+                                System.out.println("2. InComplete.txt");
+                                System.out.println("3. Conversation.txt");
                                 System.out.print("- Chon loai cau hoi: ");
                                 String c2 = sc.nextLine();
                                 CauHoi cauHoi = null;
@@ -173,7 +173,7 @@ public class Main {
                         case "3" -> {
                             System.out.print("- Ma cau hoi can xoa: ");
                             int maCauHoi = Integer.parseInt(sc.nextLine());
-                            CauHoi cauHoi = quanLyCauHoi.traCuuTheoId(maCauHoi);
+                            CauHoi cauHoi = quanLyCauHoi.traCuu(maCauHoi);
                             if (cauHoi != null) {
                                 quanLyCauHoi.xoaCauHoi(cauHoi);
                                 System.out.println("\n== XOA CAU HOI THANH CONG ==");
@@ -218,26 +218,26 @@ public class Main {
                     LuyenTap lt = quanLyHeThongLT.traCuu(tv);
                     if (tv != null) {
                         if (lt != null) {
-                            System.out.println("1. MultipleChoice");
-                            System.out.println("2. InComplete");
-                            System.out.println("3. Conversation");
+                            System.out.println("1. MultipleChoice.txt");
+                            System.out.println("2. InComplete.txt");
+                            System.out.println("3. Conversation.txt");
                             System.out.print("- Chon loai cau hoi: ");
                             String c3 = sc.nextLine();
                             switch (c3) {
                                 case "1" -> {
                                     System.out.print("- So luong cau hoi muon luyen tap: ");
                                     int soLuong = Integer.parseInt(sc.nextLine());
-                                    lt.luyenTap("topic3.cauhoi.MultipleChoice", soLuong);
+                                    lt.luyenTap("topic3.cauhoi.MultipleChoice.txt", soLuong);
                                 }
                                 case "2" -> {
                                     System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
                                     String mucDo = sc.nextLine();
-                                    lt.luyenTap("topic3.cauhoi.InComplete", mucDo);
+                                    lt.luyenTap("topic3.cauhoi.InComplete.txt", mucDo);
                                 }
                                 case "3" -> {
                                     System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
                                     String mucDo = sc.nextLine();
-                                    lt.luyenTap("topic3.cauhoi.Conversation", mucDo);
+                                    lt.luyenTap("topic3.cauhoi.Conversation.txt", mucDo);
                                 }
                                 default -> System.out.println("\n** CHUC NANG HIEN CHUA CO **");
                             }

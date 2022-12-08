@@ -44,7 +44,6 @@ public class LuyenTap {
 
     public void luyenTap(String type, int soLuong) throws ClassNotFoundException {
         List<CauHoi> temp = quanLyCauHoi.randomCauHoi(type, soLuong);
-        // List<MultipleChoice> dsCauHoi = temp.stream().map(cauHoi -> (MultipleChoice) cauHoi).collect(Collectors.toList());
         List<MultipleChoice> dsCauHoi = (List<MultipleChoice>) (Object) temp;
         int soCauDung = traLoiCauHoi(dsCauHoi);
         this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);

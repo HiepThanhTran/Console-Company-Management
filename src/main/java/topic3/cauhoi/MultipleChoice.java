@@ -35,7 +35,7 @@ public class MultipleChoice extends CauHoi {
 
     public void hienThiDsPhuongAn() {
         for (int i = 0; i < this.dsPhuongAn.size(); i++) {
-            System.out.println(((char) ('A' + i)) + "" + this.dsPhuongAn.get(i));
+            System.out.println(this.dsPhuongAn.get(i));
         }
     }
 }
