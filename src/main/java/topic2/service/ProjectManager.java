@@ -122,7 +122,7 @@ public class ProjectManager {
         Factory.projectMenuHeader();
         this.projectList.forEach(project -> {
             System.out.println(project);
-            Factory.printLine(162, "-");
+            Factory.printLine(157, "-");
         });
     }
 

@@ -87,7 +87,7 @@ public class Department {
 
     public void showInfo() {
         System.out.printf("** Thông tin phòng ban %s **\n", departmentName.toUpperCase());
-        System.out.printf("- Tên phòng ban: %s", departmentName);
+        System.out.printf("- Tên phòng ban: %s\n", departmentName);
         System.out.println("== DANH SÁCH NHÂN VIÊN ==");
         this.showEmployeeList();
     }

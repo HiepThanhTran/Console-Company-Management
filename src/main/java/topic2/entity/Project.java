@@ -134,7 +134,7 @@ public class Project implements Comparable<Project> {
     @Override
     public String toString() {
         String flag = (projectManager.getAmount(this) < MIN_EMPLOYEE) ? "❌" : "✔";
-        return String.format("| %-12s | %-30s | %-12s | %-13s | %-18s | %-45s | %-9s |", projectId, projectName,
+        return String.format("| %-12s | %-30s | %-12s | %-13s | %-18s | %-40s | %-9s |", projectId, projectName,
             SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate), DECIMALFORMAT.format(cost),
             manager.getId() + " ~ " + manager.getName(), flag);
     }

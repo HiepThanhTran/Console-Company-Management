@@ -63,8 +63,8 @@ public class Factory {
     }
 
     public static void projectMenuHeader() {
-        Factory.printLine(162, "-");
-        System.out.printf("| %-23s | %-41s | %-12s | %-12s | %-29s | %-56s | %-21s |\n",
+        Factory.printLine(157, "-");
+        System.out.printf("| %-23s | %-41s | %-12s | %-12s | %-29s | %-51s | %-21s |\n",
             Color.RED + "MÃ DỰ ÁN" + Color.RESET,
             Color.CYAN + "TÊN DỰ ÁN" + Color.RESET,
             Color.MAGENTA + "NGÀY BẮT ĐẦU" + Color.RESET,
@@ -72,7 +72,7 @@ public class Factory {
             Color.BLUE + "KINH PHÍ ĐẦU TƯ" + Color.RESET,
             Color.GREEN + "CHỦ NHIỆM DỰ ÁN" + Color.RESET,
             Color.GREEN_BOLD_BRIGHT + "TRẠNG THÁI" + Color.RESET);
-        Factory.printLine(162, "-");
+        Factory.printLine(157, "-");
     }
 
     public static void employeeMenuHeader() {

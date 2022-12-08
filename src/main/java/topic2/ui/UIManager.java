@@ -158,7 +158,7 @@ public class UIManager {
                     Project project = projectManager.search(name);
                     Factory.projectMenuHeader();
                     System.out.println(project);
-                    Factory.printLine(162, "-");
+                    Factory.printLine(157, "-");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIProjectManager();
@@ -172,7 +172,7 @@ public class UIManager {
                     Factory.projectMenuHeader();
                     projectManager.search(startDate).forEach(project -> {
                         System.out.println(project);
-                        Factory.printLine(162, "-");
+                        Factory.printLine(157, "-");
                     });
                 } catch (ParseException e) {
                     System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
@@ -348,7 +348,7 @@ public class UIManager {
                     Factory.projectMenuHeader();
                     projectManager.getList(employee).forEach(project -> {
                         System.out.println(project);
-                        Factory.printLine(162, "-");
+                        Factory.printLine(157, "-");
                     });
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
