@@ -1,6 +1,6 @@
 package topic2.model;
 
-public class MouseExampleModel {
+public class ExampleModel {
 
     private int count;
 
