@@ -113,11 +113,9 @@ public class UIManager {
                     project.setInfo();
                     project.setManager(employee);
                     System.out.println("\n\t+----- Cập nhật dự án thành công -----+");
-                } catch (NullPointerException e) {
+                } catch (NullPointerException | AmountException e) {
                     System.err.println(e.getMessage());
                     UIProjectManager();
-                } catch (AmountException e) {
-                    System.err.println(e.getMessage());
                 } catch (ParseException e) {
                     System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     UIProjectManager();
