@@ -7,7 +7,8 @@ public class Conversation extends CauHoi {
 
     private List<MultipleChoice> dsCauHoi = new ArrayList<>();
 
-    public Conversation() {
+    public Conversation(DanhMuc danhMuc) {
+        super(danhMuc);
     }
 
     public Conversation(String mucDo, String noiDung, DanhMuc danhMuc, List<MultipleChoice> dsCauHoi) {

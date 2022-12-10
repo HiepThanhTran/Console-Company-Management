@@ -6,11 +6,9 @@ import java.util.List;
 public class ThanhTich {
 
     private int soLanLam;
-    private List<Double> dsDiem;
+    private List<Double> dsDiem = new ArrayList<>();
 
     public ThanhTich() {
-        this.soLanLam = 0;
-        this.dsDiem = new ArrayList<>();
     }
 
     public ThanhTich(int soLanLam, List<Double> dsDiem) {
@@ -43,19 +41,15 @@ public class ThanhTich {
     }
 
     public void hienThiThongTin() {
-//        System.out.println(this);
-//        System.out.println(this.formula());
         System.out.printf("- So lan lam: %d\n", soLanLam);
-        System.out.println(this.formula());
+        this.hienThiDsDiem();
         System.out.printf("- Diem trung binh: %.2f\n", this.getDiemTrungBinh());
     }
 
-    public String formula() {
-        StringBuilder sb = new StringBuilder();
+    public void hienThiDsDiem() {
         for (int i = 0; i < this.dsDiem.size(); i++) {
-            sb.append(String.format("\t- Diem lan thu %d: %.2f\n", i + 1, this.dsDiem.get(i)));
+            System.out.printf("\t- Diem lan thu %d: %.2f\n", i + 1, this.dsDiem.get(i));
         }
-        return sb.toString();
     }
 
     public String toString() {

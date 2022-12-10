@@ -23,6 +23,7 @@ public class PhuongAn {
     public static List<PhuongAn> nhapDSPhuongAn(int soLuong) {
         List<PhuongAn> dsPhuongAn = new ArrayList<>();
         for (int i = 0; i < soLuong; i++) {
+            System.out.printf("\n== NHAP THONG TIN PHUONG AN THU %d ==\n", i + 1);
             PhuongAn phuongAn = new PhuongAn();
             phuongAn.nhapThongTin();
             dsPhuongAn.add(phuongAn);
@@ -66,6 +67,6 @@ public class PhuongAn {
 
     @Override
     public String toString() {
-        return String.format("- Noi dung: %s\n", noiDung);
+        return noiDung;
     }
 }

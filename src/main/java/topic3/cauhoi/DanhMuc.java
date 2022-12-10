@@ -10,14 +10,13 @@ import java.util.Objects;
 public class DanhMuc {
 
     private String tenDanhMuc;
-    private List<CauHoi> dsCauHoi;
+    private List<CauHoi> dsCauHoi = new ArrayList<>();
 
     public DanhMuc() {
     }
 
     public DanhMuc(String tenDanhMuc) {
         this.tenDanhMuc = tenDanhMuc;
-        this.dsCauHoi = new ArrayList<>();
     }
 
     public DanhMuc(String tenDanhMuc, List<CauHoi> dsCauHoi) {
@@ -62,7 +61,10 @@ public class DanhMuc {
     }
 
     public void hienThiDsCauHoi() {
-        this.dsCauHoi.forEach(cauHoi -> cauHoi.hienThiThongTin());
+        this.dsCauHoi.forEach(cauHoi -> {
+            cauHoi.hienThiThongTin();
+            System.out.println();
+        });
     }
 
     @Override

@@ -7,7 +7,8 @@ public class InComplete extends CauHoi {
 
     private List<MultipleChoice> dsCauHoi = new ArrayList<>();
 
-    public InComplete() {
+    public InComplete(DanhMuc danhMuc) {
+        super(danhMuc);
     }
 
     public InComplete(String mucDo, String noiDung, DanhMuc danhMuc, List<MultipleChoice> dsCauHoi) {

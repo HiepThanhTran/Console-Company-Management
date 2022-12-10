@@ -17,16 +17,7 @@ public abstract class CauHoi {
         maCauHoi = ++dem;
     }
 
-    public CauHoi() {
-    }
-
-    public CauHoi(String mucDo, String noiDung) {
-        this.mucDo = mucDo;
-        this.noiDung = noiDung;
-    }
-
-    public CauHoi(String mucDo, DanhMuc danhMuc) {
-        this.mucDo = mucDo;
+    public CauHoi(DanhMuc danhMuc) {
         this.danhMuc = danhMuc;
     }
 
@@ -38,6 +29,10 @@ public abstract class CauHoi {
 
     public static int getDem() {
         return dem;
+    }
+
+    public static void setDem(int dem) {
+        CauHoi.dem = dem;
     }
 
     public abstract List<MultipleChoice> getDsCauHoi();
@@ -78,7 +73,7 @@ public abstract class CauHoi {
     }
 
     public void hienThiThongTin() {
-        System.out.printf("\n== THONG TIN CAU HOI %d ==\n", maCauHoi);
+        System.out.printf("== THONG TIN CAU HOI %d ==\n", maCauHoi);
 //        System.out.println(this);
         System.out.printf("- Muc do: %s\t\t", mucDo);
         System.out.printf("- Danh muc: %s\n", danhMuc.getTenDanhMuc());
@@ -104,6 +99,6 @@ public abstract class CauHoi {
 
     @Override
     public String toString() {
-        return String.format("- Muc do: %s\t\t- Danh muc: %s\n- Noi dung: %s", mucDo, danhMuc.getTenDanhMuc(), noiDung);
+        return String.format("- Noi dung: %s\n", noiDung);
     }
 }

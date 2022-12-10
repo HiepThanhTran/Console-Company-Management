@@ -33,10 +33,6 @@ public class ThanhVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public ThanhVien(String hoTen, String queQuan, String gioiTinh, String ngaySinh) throws ParseException {
-        this(hoTen, queQuan, gioiTinh, f.parse(ngaySinh));
-    }
-
     public static int getDem() {
         return dem;
     }

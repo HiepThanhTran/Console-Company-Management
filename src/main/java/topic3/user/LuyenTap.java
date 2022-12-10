@@ -34,6 +34,11 @@ public class LuyenTap {
         this.thanhVien = thanhVien;
     }
 
+    public void thongKe() {
+        this.thanhVien.hienThiThongTin();
+        this.thanhTich.hienThiThongTin();
+    }
+
     public void luyenTap(String type, String mucDo) throws ClassNotFoundException {
         CauHoi cauHoi = quanLyCauHoi.randomCauHoi(type, mucDo);
         cauHoi.hienThiThongTin();
@@ -59,6 +64,7 @@ public class LuyenTap {
             System.out.print("- Chon dap an: ");
             dsDapAn.add(sc.next().toUpperCase().charAt(0));
         });
+        System.out.println("====================");
         for (int i = 0; i < dsCauHoi.size(); i++) {
             MultipleChoice cauHoi = dsCauHoi.get(i);
             dsCauHoi.get(i).hienThiThongTin();
@@ -66,6 +72,7 @@ public class LuyenTap {
             boolean dapAn = index >= 0 && index < cauHoi.getDsPhuongAn().size() && cauHoi.getDsPhuongAn().get(index).isDapAn();
             System.out.println("=> " + (dapAn ? "Dung" : "Sai"));
             soCauDung = (dapAn) ? soCauDung + 1 : soCauDung;
+            System.out.println();
         }
         return soCauDung;
     }

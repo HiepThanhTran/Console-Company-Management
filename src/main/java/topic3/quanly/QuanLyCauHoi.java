@@ -1,15 +1,11 @@
 package topic3.quanly;
 
-import static topic3.CauHinh.sc;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import topic3.cauhoi.CauHoi;
-import topic3.cauhoi.MultipleChoice;
-import topic3.cauhoi.PhuongAn;
 
 public class QuanLyCauHoi {
 
@@ -18,20 +14,6 @@ public class QuanLyCauHoi {
     public static int random(int min, int max) {
         Random random = new Random();
         return random.nextInt((max - min) + 1) + min;
-    }
-
-    public static List<MultipleChoice> nhapDsMultipleChoice(int soLuong) {
-        List<MultipleChoice> dsCauHoi = new ArrayList<>();
-        for (int i = 0; i < soLuong; i++) {
-            MultipleChoice cauHoi = new MultipleChoice();
-            cauHoi.nhapThongTin();
-            System.out.print("- Nhap so luong phuong an: ");
-            int soLuongPA = Integer.parseInt(sc.next());
-            List<PhuongAn> dsPhuongAn = PhuongAn.nhapDSPhuongAn(soLuongPA);
-            cauHoi.setDsPhuongAn(dsPhuongAn);
-            dsCauHoi.add(cauHoi);
-        }
-        return dsCauHoi;
     }
 
     public List<CauHoi> getDsCauHoi() {
@@ -47,7 +29,10 @@ public class QuanLyCauHoi {
     }
 
     public void hienThiDS() {
-        this.dsCauHoi.forEach(cauHoi -> cauHoi.hienThiThongTin());
+        this.dsCauHoi.forEach(cauHoi -> {
+            cauHoi.hienThiThongTin();
+            System.out.println();
+        });
     }
 
     public CauHoi traCuu(int maCauHoi) {
