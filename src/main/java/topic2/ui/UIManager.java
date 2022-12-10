@@ -148,10 +148,7 @@ public class UIManager {
                     joinProjectManger.add(new JoinProject(project, employee));
                     System.out.printf("\n\t+----- Thêm nhân viên %s vào dự án %s thành công -----+\n", id,
                         project.getProjectName().toUpperCase());
-                } catch (NullPointerException e) {
-                    System.err.println(e.getMessage());
-                    UIProjectManager();
-                } catch (AmountException e) {
+                } catch (NullPointerException | AmountException e) {
                     System.err.println(e.getMessage());
                     UIProjectManager();
                 }
@@ -264,15 +261,7 @@ public class UIManager {
                     System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
                     Employee.decreaseEmployeeAmount(1);
                     UIEmployeeManager();
-                } catch (FullNameException e) {
-                    Employee.decreaseEmployeeAmount(1);
-                    System.err.print(e.getMessage());
-                    UIEmployeeManager();
-                } catch (BirthDayException e) {
-                    Employee.decreaseEmployeeAmount(1);
-                    System.err.print(e.getMessage());
-                    UIEmployeeManager();
-                } catch (EmailException e) {
+                } catch (FullNameException | EmailException | BirthDayException e) {
                     Employee.decreaseEmployeeAmount(1);
                     System.err.print(e.getMessage());
                     UIEmployeeManager();
@@ -287,8 +276,7 @@ public class UIManager {
                     employeeManager.remove(employee);
                     joinProjectManger.removeAll(employee);
                     joinDepartmentManager.removeAll(employee);
-                    provideInsuranceManager.getList(employee)
-                        .forEach(provideInsurance -> provideInsuranceManager.remove(provideInsurance));
+                    provideInsuranceManager.getList(employee).forEach(provideInsuranceManager::remove);
                     System.out.println("\n\t+----- Xóa nhân viên thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -307,10 +295,7 @@ public class UIManager {
                     joinProjectManger.add(new JoinProject(project, employee));
                     System.out.printf("\n\t+----- Nhân viên %s tham gia dự án %s thành công -----+\n", employee.getId(),
                         project.getProjectName().toUpperCase());
-                } catch (NullPointerException e) {
-                    System.err.println(e.getMessage());
-                    UIEmployeeManager();
-                } catch (AmountException e) {
+                } catch (NullPointerException | AmountException e) {
                     System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
@@ -567,17 +552,11 @@ public class UIManager {
                     Relative relative = newRelative();
                     provideInsuranceManager.add(new ProvideInsurance(relative, employee));
                     System.out.println("\n\t+----- Cung cấp thông tin nhân thân thành công -----+");
-                } catch (NullPointerException e) {
+                } catch (NullPointerException | FullNameException | BirthDayException e) {
                     System.err.println(e.getMessage());
                     UIRelativeManager();
                 } catch (ParseException | EmailException e) {
                     System.err.println("\n** DỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ **");
-                    UIRelativeManager();
-                } catch (FullNameException e) {
-                    System.err.println(e.getMessage());
-                    UIRelativeManager();
-                } catch (BirthDayException e) {
-                    System.err.println(e.getMessage());
                     UIRelativeManager();
                 }
             }
