@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
-import topic2.behavior.ProvideInsurance;
 import topic2.entity.Employee;
 import topic2.entity.Manager;
 import topic2.ui.Factory;
@@ -15,7 +14,6 @@ import topic2.ui.Factory;
 public class EmployeeManager {
 
     private List<Employee> employeeList = new ArrayList<>();
-    private List<ProvideInsurance> relativeList = new ArrayList<>();
 
     public List<Employee> getEmployeeList() {
         return employeeList;
@@ -25,28 +23,12 @@ public class EmployeeManager {
         this.employeeList = employeeList;
     }
 
-    public List<ProvideInsurance> getRelativeList() {
-        return relativeList;
-    }
-
-    public void setRelativeList(List<ProvideInsurance> relativeList) {
-        this.relativeList = relativeList;
-    }
-
     public void add(Employee employee) {
         this.employeeList.add(employee);
     }
 
-    public void add(ProvideInsurance relative) {
-        this.relativeList.add(relative);
-    }
-
     public void remove(Employee employee) {
         this.employeeList.remove(employee);
-    }
-
-    public void remove(ProvideInsurance relative) {
-        this.relativeList.remove(relative);
     }
 
     /**
@@ -88,17 +70,6 @@ public class EmployeeManager {
             System.out.println(employee);
             Factory.printLine(140, "-");
         });
-    }
-
-    /**
-     * Lấy danh sách nhân thân của nhân viên 'employee'
-     *
-     * @param employee Nhân viên
-     * @return Danh sách nhân thân của nhân viên 'employee'
-     */
-    public List<ProvideInsurance> getList(Employee employee) {
-        return this.relativeList.stream().filter(provideInsurance -> provideInsurance.getEmployee().equals(employee))
-            .collect(Collectors.toList());
     }
 
     /**

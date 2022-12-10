@@ -11,6 +11,7 @@ import topic2.service.EmployeeManager;
 import topic2.service.JoinDepartmentManager;
 import topic2.service.JoinProjectManager;
 import topic2.service.ProjectManager;
+import topic2.service.ProvideInsuranceManager;
 
 public class Factory {
 
@@ -24,6 +25,7 @@ public class Factory {
     public static final ProjectManager projectManager = new ProjectManager();
     public static final JoinDepartmentManager joinDepartmentManager = new JoinDepartmentManager();
     public static final JoinProjectManager joinProjectManger = new JoinProjectManager();
+    public static final ProvideInsuranceManager provideInsuranceManager = new ProvideInsuranceManager();
 
     public static final SimpleDateFormat SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("###,###.##");

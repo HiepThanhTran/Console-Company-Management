@@ -26,10 +26,10 @@ import topic3.user.ThanhVien;
 
 public class DocGhiFile {
 
-    public static final File multipleChoiceFile = new File("src/main/resources/MultipleChoice.txt");
-    public static final File inCompleteFile = new File("src/main/resources/InComplete.txt");
-    public static final File conversationFile = new File("src/main/resources/Conversation.txt");
-    public static final File thanhVienFile = new File("src/main/resources/ThanhVien.txt");
+    public static final File multipleChoiceFile = new File("src/main/resources/topic3/MultipleChoice.txt");
+    public static final File inCompleteFile = new File("src/main/resources/topic3/InComplete.txt");
+    public static final File conversationFile = new File("src/main/resources/topic3/Conversation.txt");
+    public static final File thanhVienFile = new File("src/main/resources/topic3/ThanhVien.txt");
 
     public static void docFile() {
         List<String> temp = new ArrayList<>();

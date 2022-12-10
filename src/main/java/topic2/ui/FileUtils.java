@@ -9,6 +9,7 @@ import static topic2.ui.Factory.joinDepartmentManager;
 import static topic2.ui.Factory.joinProjectManger;
 import static topic2.ui.Factory.projectFile;
 import static topic2.ui.Factory.projectManager;
+import static topic2.ui.Factory.provideInsuranceManager;
 import static topic2.ui.Factory.relativeFile;
 
 import java.io.FileNotFoundException;
@@ -103,7 +104,7 @@ public final class FileUtils {
                 String id = tokens[5];
                 Employee employee = employeeManager.searchById(id);
                 Relative relative = new Relative(name, gender, dob, relationship);
-                employeeManager.add(new ProvideInsurance(insNumber, relative, employee));
+                provideInsuranceManager.add(new ProvideInsurance(insNumber, relative, employee));
             }
             /**
              * Đọc danh sách dự án từ file ProjectList
@@ -184,7 +185,7 @@ public final class FileUtils {
              * Ghi danh sách nhân thân ra file RelativeList
              */
             PrintWriter writeRelative = new PrintWriter(relativeFile);
-            employeeManager.getRelativeList().forEach(provideInsurance -> {
+            provideInsuranceManager.getRelativeList().forEach(provideInsurance -> {
                 Relative relative = provideInsurance.getRelative();
                 writeRelative.printf("%s, %s, %s, %s, %s, %s\n", relative.getName(), relative.getGender(),
                     SIMPLEDATEFORMAT.format(relative.getDob()), relative.getRelationship(), provideInsurance.getInsNumber(),

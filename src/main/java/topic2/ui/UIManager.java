@@ -7,6 +7,7 @@ import static topic2.ui.Factory.employeeManager;
 import static topic2.ui.Factory.joinDepartmentManager;
 import static topic2.ui.Factory.joinProjectManger;
 import static topic2.ui.Factory.projectManager;
+import static topic2.ui.Factory.provideInsuranceManager;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -281,7 +282,8 @@ public class UIManager {
                     employeeManager.remove(employee);
                     joinProjectManger.removeAll(employee);
                     joinDepartmentManager.removeAll(employee);
-                    employeeManager.getList(employee).forEach(provideInsurance -> employeeManager.remove(provideInsurance));
+                    provideInsuranceManager.getList(employee)
+                        .forEach(provideInsurance -> provideInsuranceManager.remove(provideInsurance));
                     System.out.println("\n== Xóa nhân viên thành công ==");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -557,7 +559,7 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     System.out.println("\n== Nhập thông tin nhân thân ==");
                     Relative relative = newRelative();
-                    employeeManager.add(new ProvideInsurance(relative, employee));
+                    provideInsuranceManager.add(new ProvideInsurance(relative, employee));
                     System.out.println("\n== Cung cấp thông tin nhân thân thành công ==");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -580,7 +582,7 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     System.out.printf("\n*** DANH SÁCH NHÂN THÂN CỦA NHÂN VIÊN %s ***\n", employee.getId());
                     Factory.relativeMenuHeader();
-                    employeeManager.getList(employee).forEach(provideInsurance -> {
+                    provideInsuranceManager.getList(employee).forEach(provideInsurance -> {
                         System.out.print(provideInsurance.getRelative());
                         System.out.printf(" %s |\n", provideInsurance.getInsNumber());
                         Factory.printLine(112, "-");
