@@ -56,7 +56,7 @@ public class ProjectManager {
     public Project search(String key) {
         return this.projectList.stream()
             .filter(project -> project.getProjectName().equals(key) || project.getProjectId().equals(key))
-            .findFirst().orElseThrow(() -> new NullPointerException("\n== Không tìm thấy dự án ==\n"));
+            .findFirst().orElseThrow(() -> new NullPointerException("\n\t+----- Không tìm thấy dự án -----+"));
     }
 
     /**

@@ -1,4 +1,4 @@
-package topic2.ui;
+package topic2.utils;
 
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 import static topic2.ui.Factory.departmentFile;

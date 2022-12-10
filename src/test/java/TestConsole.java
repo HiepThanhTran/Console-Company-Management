@@ -1,23 +1,15 @@
-import static topic2.ui.Factory.GREGORIANCALENDAR;
-import static topic2.ui.Factory.SIMPLEDATEFORMAT;
-
-import java.text.ParseException;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
 public class TestConsole {
 
-    public static void main(String[] args) throws ParseException {
-        Date currentDate = GREGORIANCALENDAR.getTime();
+    public static void main(String[] args) {
+        int width = 20;
+        String s = "level"; // length = 5
 
-        String startDate = "29/1/2003";
-        String endDate = SIMPLEDATEFORMAT.format(currentDate);
+        int padSize = width - s.length(); // 20 - 5 = 15
+        int padStart = s.length() + padSize / 2; // 5 + 7 = 12
 
-        Date date1 = SIMPLEDATEFORMAT.parse(startDate);
-        Date date2 = SIMPLEDATEFORMAT.parse(endDate);
+        s = String.format("%" + padStart + "s", s); // %12s -> .......hello
+        s = String.format("%-" + width + "s", s); // %-20 -> .......hello........
 
-        long diff = date1.getTime() - date2.getTime();
-        long daysDiff = TimeUnit.MILLISECONDS.toDays(diff);
-        System.out.println(Math.abs(daysDiff));
+        System.out.println(s);
     }
 }

@@ -12,6 +12,7 @@ import topic2.service.JoinDepartmentManager;
 import topic2.service.JoinProjectManager;
 import topic2.service.ProjectManager;
 import topic2.service.ProvideInsuranceManager;
+import topic2.utils.StringUtils;
 
 public class Factory {
 
@@ -42,10 +43,6 @@ public class Factory {
     private Factory() {
     }
 
-    public static String centerString(int width, String s) {
-        return String.format("%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
-    }
-
     public static void printLine(int amount) {
         for (int i = 0; i < amount; i++) {
             System.out.println();
@@ -53,9 +50,9 @@ public class Factory {
         System.out.println();
     }
 
-    public static void printLine(int amount, String characters) {
+    public static void printLine(int amount, String character) {
         for (int i = 0; i < amount; i++) {
-            System.out.print(characters);
+            System.out.print(character);
         }
         System.out.println();
     }
@@ -71,12 +68,12 @@ public class Factory {
     public static void projectMenuHeader() {
         Factory.printLine(157, "-");
         System.out.printf("| %-23s | %-41s | %-12s | %-12s | %-29s | %-51s | %-21s |\n",
-            Color.RED + "MÃ DỰ ÁN" + Color.RESET,
-            Color.CYAN + "TÊN DỰ ÁN" + Color.RESET,
+            StringUtils.center(23, Color.RED + "MÃ DỰ ÁN" + Color.RESET),
+            StringUtils.center(41, Color.CYAN + "TÊN DỰ ÁN" + Color.RESET),
             Color.MAGENTA + "NGÀY BẮT ĐẦU" + Color.RESET,
             Color.YELLOW + "NGÀY KẾT THÚC" + Color.RESET,
-            Color.BLUE + "KINH PHÍ ĐẦU TƯ" + Color.RESET,
-            Color.GREEN + "CHỦ NHIỆM DỰ ÁN" + Color.RESET,
+            StringUtils.center(29, Color.BLUE + "KINH PHÍ ĐẦU TƯ" + Color.RESET),
+            StringUtils.center(51, Color.GREEN + "CHỦ NHIỆM DỰ ÁN" + Color.RESET),
             Color.GREEN_BOLD_BRIGHT + "TRẠNG THÁI" + Color.RESET);
         Factory.printLine(157, "-");
     }
@@ -85,10 +82,10 @@ public class Factory {
         Factory.printLine(140, "-");
         System.out.printf("| %-12s | %-41s | %-9s | %-21s | %-41s | %-30s |\n",
             Color.RED + "MÃ NHÂN VIÊN" + Color.RESET,
-            Color.CYAN + "HỌ TÊN" + Color.RESET,
+            StringUtils.center(41, Color.CYAN + "HỌ TÊN" + Color.RESET),
             Color.MAGENTA + "GIỚI TÍNH" + Color.RESET,
-            Color.YELLOW + "NGÀY SINH" + Color.RESET,
-            Color.BLUE + "EMAIL" + Color.RESET,
+            StringUtils.center(21, Color.YELLOW + "NGÀY SINH" + Color.RESET),
+            StringUtils.center(41, Color.BLUE + "EMAIL" + Color.RESET),
             Color.GREEN + "//////////////////////////////" + Color.RESET);
         Factory.printLine(140, "-");
     }
@@ -96,11 +93,11 @@ public class Factory {
     public static void relativeMenuHeader() {
         Factory.printLine(112, "-");
         System.out.printf("| %-41s | %-9s | %-21s | %-22s | %-47s |\n",
-            Color.CYAN + "HỌ TÊN" + Color.RESET,
+            StringUtils.center(41, Color.CYAN + "HỌ TÊN" + Color.RESET),
             Color.MAGENTA + "GIỚI TÍNH" + Color.RESET,
-            Color.YELLOW + "NGÀY SINH" + Color.RESET,
+            StringUtils.center(21, Color.YELLOW + "NGÀY SINH" + Color.RESET),
             Color.BLUE + "MỐI QUAN HỆ" + Color.RESET,
-            Color.GREEN + "SỐ BẢO HIỂM" + Color.RESET);
+            StringUtils.center(47, Color.GREEN + "SỐ BẢO HIỂM" + Color.RESET));
         Factory.printLine(112, "-");
     }
 }

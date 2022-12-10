@@ -31,6 +31,7 @@ import topic2.exception.BirthDayException;
 import topic2.exception.EmailException;
 import topic2.exception.FullNameException;
 import topic2.service.ValidatorService;
+import topic2.utils.FileUtils;
 
 public class UIManager {
 
@@ -68,24 +69,25 @@ public class UIManager {
      */
     public void UIProjectManager() {
         System.out.println("\n*** HỆ THỐNG QUẢN LÝ DỰ ÁN ***");
-        System.out.println("1. Thêm dự án");
-        System.out.println("2. Sửa dự án");
-        System.out.println("3. Xóa dự án");
-        System.out.println("4. Thêm nhân viên vào dự án");
-        System.out.println("5. Tìm kiếm dự án theo tên");
-        System.out.println("6. Tìm kiếm dự án theo ngày bắt đầu");
-        System.out.println("7. xem danh sách tất cả dự án");
-        System.out.println("8. Xem danh sách nhân viên của dự án");
-        System.out.println("9. Sắp xếp dự án theo kinh phí đầu tư");
-        System.out.println("10. Hoàn tất");
+        System.out.printf("%-3s Thêm dự án\n", "1.");
+        System.out.printf("%-3s Sửa dự án\n", "2.");
+        System.out.printf("%-3s Xóa dự án\n", "3.");
+        System.out.printf("%-3s Thêm nhân viên vào dự án\n", "4.");
+        System.out.printf("%-3s Tìm kiếm dự án theo tên\n", "5.");
+        System.out.printf("%-3s Tìm kiếm dự án theo ngày bắt đầu\n", "6.");
+        System.out.printf("%-3s Xem danh sách tất cả dự án\n", "7.");
+        System.out.printf("%-3s Xem danh sách nhân viên của dự án\n", "8.");
+        System.out.printf("%-3s Sắp xếp dự án theo kinh phí đầu tư\n", "9.");
+        System.out.printf("%-3s Hoàn tất\n", "10.");
         System.out.print("- Chọn chức năng: ");
         String choice = SCANNER.nextLine();
         switch (choice) {
             case "1" -> {
                 try {
+                    System.out.println("\n\t+----- Nhập thông tin dự án -----+");
                     Project project = newProject();
                     projectManager.add(project);
-                    System.out.println("\n== Thêm dự án thành công ==");
+                    System.out.println("\n\t+----- Thêm dự án thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIProjectManager();
@@ -110,7 +112,7 @@ public class UIManager {
                     }
                     project.setInfo();
                     project.setManager(employee);
-                    System.out.println("\n== Cập nhật dự án thành công ==");
+                    System.out.println("\n\t+----- Cập nhật dự án thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIProjectManager();
@@ -129,7 +131,7 @@ public class UIManager {
                     Project.decreaseProjectAmount(1);
                     projectManager.remove(project);
                     joinProjectManger.removeAll(project);
-                    System.out.println("\n== Xóa dự án thành công ==");
+                    System.out.println("\n\t+----- Xóa dự án thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIProjectManager();
@@ -144,7 +146,7 @@ public class UIManager {
                     Project project = projectManager.search(keyword);
                     Employee employee = employeeManager.searchById(id);
                     joinProjectManger.add(new JoinProject(project, employee));
-                    System.out.printf("\n== Thêm nhân viên %s vào dự án %s thành công ==\n", id,
+                    System.out.printf("\n\t+----- Thêm nhân viên %s vào dự án %s thành công -----+\n", id,
                         project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -171,7 +173,8 @@ public class UIManager {
                 try {
                     System.out.print("- Nhập ngày bắt đầu của dự án cần tìm: ");
                     Date startDate = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
-                    System.out.printf("\n*** DANH SÁCH DỰ ÁN CÓ NGÀY BẮT ĐẦU %s ***\n", SIMPLEDATEFORMAT.format(startDate));
+                    System.out.printf("\n\t+----- DANH SÁCH DỰ ÁN CÓ NGÀY BẮT ĐẦU %s -----+\n",
+                        SIMPLEDATEFORMAT.format(startDate));
                     Factory.projectMenuHeader();
                     projectManager.search(startDate).forEach(project -> {
                         System.out.println(project);
@@ -183,7 +186,7 @@ public class UIManager {
                 }
             }
             case "7" -> {
-                System.out.println("\n*** DANH SÁCH TẤT CẢ DỰ ÁN ***");
+                System.out.println("\n\t+----- DANH SÁCH TẤT CẢ DỰ ÁN -----+");
                 projectManager.showList();
             }
             case "8" -> {
@@ -191,7 +194,8 @@ public class UIManager {
                 String keyword = SCANNER.nextLine();
                 try {
                     Project project = projectManager.search(keyword);
-                    System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CỦA DỰ ÁN %s ***\n", project.getProjectName().toUpperCase());
+                    System.out.printf("\n\t+----- DANH SÁCH NHÂN VIÊN CỦA DỰ ÁN %s -----+\n",
+                        project.getProjectName().toUpperCase());
                     Factory.employeeMenuHeader();
                     joinProjectManger.getList(project).forEach(employee -> {
                         System.out.println(employee);
@@ -204,7 +208,7 @@ public class UIManager {
             }
             case "9" -> {
                 projectManager.sort();
-                System.out.println("\n== Sắp xếp thành công. Chọn xem danh sách để kiểm tra ==");
+                System.out.println("\n\t+----- Sắp xếp thành công. Chọn xem danh sách để kiểm tra -----+");
             }
             case "10" -> System.out.printf("%s\n== Hoàn tất quản lý dự án ==\n%s", Color.YELLOW_BRIGHT, Color.RESET);
             default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
@@ -225,19 +229,19 @@ public class UIManager {
      */
     public void UIEmployeeManager() {
         System.out.println("\n*** HỆ THỐNG QUẢN LÝ NHÂN VIÊN ***");
-        System.out.println("1. Thêm nhân viên");
-        System.out.println("2. Xóa nhân viên");
-        System.out.println("3. Tham gia dự án");
-        System.out.println("4. Thăng chức nhân viên");
-        System.out.println("5. Tính lương cho các nhân viên");
-        System.out.println("6. Xem danh sách tất cả nhân viên");
-        System.out.println("7. Xem danh sách dự án của nhân viên");
-        System.out.println("8. Tìm kiếm nhân viên theo họ tên");
-        System.out.println("9. Tìm kiếm nhân viên theo ngày sinh");
-        System.out.println("10. Tìm kiếm nhân viên theo phòng ban");
-        System.out.println("11. Tìm kiếm nhân viên theo độ tuổi cụ thể");
-        System.out.println("12. Tìm kiếm nhân viên theo khoảng độ tuổi");
-        System.out.println("13. Hoàn tất");
+        System.out.printf("%-3s Thêm nhân viên\n", "1.");
+        System.out.printf("%-3s Xóa nhân viên\n", "2.");
+        System.out.printf("%-3s Tham gia dự án\n", "3.");
+        System.out.printf("%-3s Thăng chức nhân viên\n", "4.");
+        System.out.printf("%-3s Tính lương cho các nhân viên\n", "5.");
+        System.out.printf("%-3s Xem danh sách tất cả nhân viên\n", "6.");
+        System.out.printf("%-3s Xem danh sách dự án của nhân viên\n", "7.");
+        System.out.printf("%-3s Tìm kiếm nhân viên theo họ tên\n", "8.");
+        System.out.printf("%-3s Tìm kiếm nhân viên theo ngày sinh\n", "9.");
+        System.out.printf("%-3s Tìm kiếm nhân viên theo phòng ban\n", "10.");
+        System.out.printf("%-3s Tìm kiếm nhân viên theo độ tuổi cụ thể\n", "11.");
+        System.out.printf("%-3s Tìm kiếm nhân viên theo khoảng độ tuổi\n", "12.");
+        System.out.printf("%-3s Hoàn tất\n", "13.");
         System.out.print("- Chọn chức năng: ");
         String choice = SCANNER.nextLine();
         switch (choice) {
@@ -249,9 +253,10 @@ public class UIManager {
                 System.out.print("\n- Chọn loại nhân viên cần thêm: ");
                 String type = SCANNER.nextLine();
                 try {
+                    System.out.println("\n\t+----- Nhập thông tin nhân viên -----+");
                     Employee employee = newEmployee(type);
                     employeeManager.add(employee);
-                    System.out.println("\n== Thêm nhân viên thành công ==");
+                    System.out.println("\n\t+----- Thêm nhân viên thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIEmployeeManager();
@@ -284,7 +289,7 @@ public class UIManager {
                     joinDepartmentManager.removeAll(employee);
                     provideInsuranceManager.getList(employee)
                         .forEach(provideInsurance -> provideInsuranceManager.remove(provideInsurance));
-                    System.out.println("\n== Xóa nhân viên thành công ==");
+                    System.out.println("\n\t+----- Xóa nhân viên thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIEmployeeManager();
@@ -300,7 +305,7 @@ public class UIManager {
                     Project project = projectManager.search(keyword);
                     Employee employee = employeeManager.searchById(id);
                     joinProjectManger.add(new JoinProject(project, employee));
-                    System.out.printf("\n== Nhân viên %s tham gia dự án %s thành công ==\n", employee.getId(),
+                    System.out.printf("\n\t+----- Nhân viên %s tham gia dự án %s thành công -----+\n", employee.getId(),
                         project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -319,16 +324,16 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     Department department = departmentManager.search(name);
                     if (!department.hasEmployee(employee)) {
-                        System.err.println("\n== Nhân viên không thuộc phòng ban này ==");
+                        System.err.println("\n\t+----- Nhân viên không thuộc phòng ban này -----+");
                     } else if (department.hasManager()) {
-                        System.err.println("\n== Phòng ban này đã có quản lý ==");
+                        System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
                     } else {
                         Employee manager = employeeManager.promote(employee);
                         department.removeEmployee(employee);
                         department.addEmployee(manager);
                         joinDepartmentManager.remove(joinDepartmentManager.search(employee));
                         joinDepartmentManager.add(new JoinDepartment(manager, department));
-                        System.out.println("\n== Thăng chức thành công ==");
+                        System.out.println("\n\t+----- Thăng chức thành công -----+");
                     }
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -336,11 +341,11 @@ public class UIManager {
                 }
             }
             case "5" -> {
-                System.out.println("\n*** TIỀN LƯƠNG CỦA CÁC NHÂN VIÊN ***");
+                System.out.println("\n\t+----- TIỀN LƯƠNG CỦA CÁC NHÂN VIÊN -----+");
                 employeeManager.calculateSalaryOfList();
             }
             case "6" -> {
-                System.out.println("\n*** DANH SÁCH TẤT CẢ NHÂN VIÊN ***");
+                System.out.println("\n\t+----- DANH SÁCH TẤT CẢ NHÂN VIÊN -----+");
                 employeeManager.showList();
             }
             case "7" -> {
@@ -348,7 +353,7 @@ public class UIManager {
                 String id = SCANNER.nextLine();
                 try {
                     Employee employee = employeeManager.searchById(id);
-                    System.out.printf("\n*** DANH SÁCH DỰ ÁN NHÂN VIÊN %s ĐANG THỰC HIỆN ***\n", employee.getId());
+                    System.out.printf("\n\t+----- DANH SÁCH DỰ ÁN NHÂN VIÊN %s ĐANG THỰC HIỆN -----+\n", employee.getId());
                     Factory.projectMenuHeader();
                     joinProjectManger.getList(employee).forEach(project -> {
                         System.out.println(project);
@@ -362,7 +367,7 @@ public class UIManager {
             case "8" -> {
                 System.out.print("- Nhập họ tên cần tìm kiếm: ");
                 String name = SCANNER.nextLine();
-                System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CÓ HỌ TÊN %s ***\n", name.toUpperCase());
+                System.out.printf("\n\t+----- DANH SÁCH NHÂN VIÊN CÓ HỌ TÊN %s -----+\n", name.toUpperCase());
                 Factory.employeeMenuHeader();
                 employeeManager.search(name).forEach(employee -> {
                     System.out.println(employee);
@@ -373,7 +378,7 @@ public class UIManager {
                 System.out.print("- Nhập ngày sinh cần tìm kiếm: ");
                 try {
                     Date dob = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
-                    System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CÓ NGÀY SINH %s ***\n", SIMPLEDATEFORMAT.format(dob));
+                    System.out.printf("\n\t+----- DANH SÁCH NHÂN VIÊN CÓ NGÀY SINH %s -----+\n", SIMPLEDATEFORMAT.format(dob));
                     Factory.employeeMenuHeader();
                     employeeManager.search(dob).forEach(employee -> {
                         System.out.println(employee);
@@ -389,7 +394,7 @@ public class UIManager {
                 String name = SCANNER.nextLine();
                 try {
                     Department department = departmentManager.search(name);
-                    System.out.printf("\n*** DANH SÁCH CÁC NHÂN VIÊN THUỘC PHÒNG BAN %s ***\n", name.toUpperCase());
+                    System.out.printf("\n\t+----- DANH SÁCH CÁC NHÂN VIÊN THUỘC PHÒNG BAN %s -----+\n", name.toUpperCase());
                     department.showEmployeeList();
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -400,7 +405,7 @@ public class UIManager {
                 try {
                     System.out.print("- Nhập độ tuổi cần tìm kiếm: ");
                     int age = Integer.parseInt(SCANNER.nextLine());
-                    System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CÓ TUỔI %d ***\n", age);
+                    System.out.printf("\n\t+----- DANH SÁCH NHÂN VIÊN CÓ TUỔI %d -----+\n", age);
                     Factory.employeeMenuHeader();
                     employeeManager.search(age).forEach(employee -> {
                         System.out.println(employee);
@@ -417,7 +422,7 @@ public class UIManager {
                     int fromAge = Integer.parseInt(SCANNER.nextLine());
                     System.out.print("- Nhập độ tuổi thứ 2: ");
                     int toAge = Integer.parseInt(SCANNER.nextLine());
-                    System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CÓ TUỔI TỪ %d ĐẾN %d ***\n", fromAge, toAge);
+                    System.out.printf("\n\t+----- DANH SÁCH NHÂN VIÊN CÓ TUỔI TỪ %d ĐẾN %d -----+\n", fromAge, toAge);
                     Factory.employeeMenuHeader();
                     employeeManager.search(fromAge, toAge).forEach(employee -> {
                         System.out.println(employee);
@@ -445,7 +450,7 @@ public class UIManager {
             case "2" -> employee = new Programmer();
             case "3" -> employee = new Designer();
             case "4" -> employee = new Tester();
-            default -> throw new NullPointerException("\n== Không tìm thấy nhân viên ==\n");
+            default -> throw new NullPointerException("\n\t+----- Không tìm thấy nhân viên -----+\n");
         }
         employee.setInfo();
         checkData(employee);
@@ -459,19 +464,20 @@ public class UIManager {
      */
     public void UIDepartmentManager() {
         System.out.println("\n*** HỆ THỐNG QUẢN LÝ PHÒNG BAN ***");
-        System.out.println("1. Thêm phòng ban");
-        System.out.println("2. Xóa phòng ban");
-        System.out.println("3. Thêm nhân viên vào phòng ban");
-        System.out.println("4. Hiển thị tất cả phòng ban");
-        System.out.println("5. Hiển thị danh sách phòng ban của nhân viên");
-        System.out.println("6. Hoàn tất");
+        System.out.printf("%-3s Thêm phòng ban\n", "1.");
+        System.out.printf("%-3s Xóa phòng ban\n", "2.");
+        System.out.printf("%-3s Thêm nhân viên vào phòng ban\n", "3.");
+        System.out.printf("%-3s Hiển thị tất cả phòng ban\n", "4.");
+        System.out.printf("%-3s Hiển thị danh sách phòng ban của nhân viên\n", "5.");
+        System.out.printf("%-3s Hoàn tất\n", "6.");
         System.out.print("- Chọn chức năng: ");
         String choice = SCANNER.nextLine();
         switch (choice) {
             case "1" -> {
+                System.out.println("\n\t+----- Nhập thông tin phòng ban -----+");
                 Department department = newDepartment();
                 departmentManager.add(department);
-                System.out.println("\n== Thêm phòng ban thành công ==");
+                System.out.println("\n\t+----- Thêm phòng ban thành công -----+");
             }
             case "2" -> {
                 System.out.print("- Nhập tên phòng ban cần xóa: ");
@@ -481,7 +487,7 @@ public class UIManager {
                     Department.decreaseDepartmentAmount(1);
                     departmentManager.remove(department);
                     joinDepartmentManager.removeAll(department);
-                    System.out.println("\n== Xóa phòng ban thành công ==");
+                    System.out.println("\n\t+----- Xóa phòng ban thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIDepartmentManager();
@@ -496,13 +502,13 @@ public class UIManager {
                     Department department = departmentManager.search(name);
                     Employee employee = employeeManager.searchById(id);
                     if (employee instanceof Manager && department.hasManager()) {
-                        System.err.println("\n== Phòng ban này đã có quản lý ==");
+                        System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
                     } else if (department.hasEmployee(employee)) {
-                        System.err.println("\n== Nhân viên đã tồn tại trong phòng ban này ==");
+                        System.err.println("\n\t+----- Nhân viên đã tồn tại trong phòng ban này -----+");
                     } else {
                         department.addEmployee(employee);
                         joinDepartmentManager.add(new JoinDepartment(employee, department));
-                        System.out.println("\n== Thêm nhân viên vào phòng ban thành công ==");
+                        System.out.println("\n\t+----- Thêm nhân viên vào phòng ban thành công -----+");
                     }
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -510,7 +516,7 @@ public class UIManager {
                 }
             }
             case "4" -> {
-                System.out.println("\n*** DANH SÁCH TẤT CẢ PHÒNG BAN ***");
+                System.out.println("\n\t+----- DANH SÁCH TẤT CẢ PHÒNG BAN -----+");
                 Factory.printLine(180, "~");
                 departmentManager.showList();
             }
@@ -519,14 +525,14 @@ public class UIManager {
                 String id = SCANNER.nextLine();
                 try {
                     Employee employee = employeeManager.searchById(id);
-                    System.out.printf("\n*** DANH SÁCH PHÒNG BAN CỦA NHÂN VIÊN %s ***\n", employee.getId());
+                    System.out.printf("\n\t+----- DANH SÁCH PHÒNG BAN CỦA NHÂN VIÊN %s -----+\n", employee.getId());
                     Factory.printLine(180, "~");
                     joinDepartmentManager.getList(employee).forEach(department -> {
                         department.showInfo();
                         Factory.printLine(180, "~");
                     });
                 } catch (NullPointerException e) {
-                    System.err.println("\n== Không tìm thấy nhân viên ==");
+                    System.err.println(e.getMessage());
                     UIDepartmentManager();
                 }
             }
@@ -546,9 +552,9 @@ public class UIManager {
      */
     public void UIRelativeManager() {
         System.out.println("\n*** HỆ THỐNG QUẢN LÝ NHÂN THÂN ***");
-        System.out.println("1. Cung cấp thông tin thân thân của nhân viên");
-        System.out.println("2. Hiển thị danh sách nhân thân của nhân viên");
-        System.out.println("3. Hoàn tất");
+        System.out.printf("%-3s Cung cấp thông tin thân thân của nhân viên\n", "1.");
+        System.out.printf("%-3s Hiển thị danh sách nhân thân của nhân viên\n", "2.");
+        System.out.printf("%-3s Hoàn tất\n", "3.");
         System.out.print("- Chọn chức năng: ");
         String choice = SCANNER.nextLine();
         switch (choice) {
@@ -557,10 +563,10 @@ public class UIManager {
                 String id = SCANNER.nextLine();
                 try {
                     Employee employee = employeeManager.searchById(id);
-                    System.out.println("\n== Nhập thông tin nhân thân ==");
+                    System.out.println("\n\t+----- Nhập thông tin nhân thân -----+");
                     Relative relative = newRelative();
                     provideInsuranceManager.add(new ProvideInsurance(relative, employee));
-                    System.out.println("\n== Cung cấp thông tin nhân thân thành công ==");
+                    System.out.println("\n\t+----- Cung cấp thông tin nhân thân thành công -----+");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
                     UIRelativeManager();
@@ -580,7 +586,7 @@ public class UIManager {
                 String id = SCANNER.nextLine();
                 try {
                     Employee employee = employeeManager.searchById(id);
-                    System.out.printf("\n*** DANH SÁCH NHÂN THÂN CỦA NHÂN VIÊN %s ***\n", employee.getId());
+                    System.out.printf("\n\t+----- DANH SÁCH NHÂN THÂN CỦA NHÂN VIÊN %s -----+\n", employee.getId());
                     Factory.relativeMenuHeader();
                     provideInsuranceManager.getList(employee).forEach(provideInsurance -> {
                         System.out.print(provideInsurance.getRelative());

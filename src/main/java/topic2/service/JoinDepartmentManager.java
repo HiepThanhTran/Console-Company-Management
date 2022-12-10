@@ -64,6 +64,6 @@ public class JoinDepartmentManager {
 
     public JoinDepartment search(Employee employee) {
         return this.joinDepartments.stream().filter(joinDepartment -> joinDepartment.getEmployee().equals(employee)).findFirst()
-            .orElseThrow(() -> new NullPointerException("\n== Không tìm thấy nhân viên ==\n"));
+            .orElseThrow(() -> new NullPointerException("\n\t+----- Không tìm thấy nhân viên -----+"));
     }
 }

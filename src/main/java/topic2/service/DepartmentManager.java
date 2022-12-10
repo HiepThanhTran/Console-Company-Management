@@ -31,7 +31,7 @@ public class DepartmentManager {
     public void showList() {
         this.departmentList.forEach(department -> {
             department.showInfo();
-            Factory.printLine(180, "~");
+            Factory.printLine(158, "~");
         });
     }
 
@@ -43,6 +43,6 @@ public class DepartmentManager {
      */
     public Department search(String name) {
         return this.departmentList.stream().filter(department -> department.getDepartmentName().equals(name)).findFirst()
-            .orElseThrow(() -> new NullPointerException("\n== Không tìm thấy phòng ban ==\n"));
+            .orElseThrow(() -> new NullPointerException("\n\t+----- Không tìm thấy phòng ban -----+"));
     }
 }
