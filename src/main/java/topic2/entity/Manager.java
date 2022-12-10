@@ -26,20 +26,20 @@ public class Manager extends Employee {
         super(employee.getName(), employee.getGender(), employee.getDob(), employee.getEmail());
     }
 
-    public Manager(String name, boolean gender, Date dob, String email) {
+    public Manager(String name, String gender, Date dob, String email) {
         super(name, gender, dob, email);
     }
 
-    public Manager(String name, boolean gender, Date dob, String email, Date takeOfficeDate) {
+    public Manager(String name, String gender, Date dob, String email, Date takeOfficeDate) {
         super(name, gender, dob, email);
         this.takeOfficeDate = takeOfficeDate;
     }
 
-    public Manager(String name, boolean gender, Date dob, String id, String email) {
+    public Manager(String name, String gender, Date dob, String id, String email) {
         super(name, gender, dob, id, email);
     }
 
-    public Manager(String name, boolean gender, Date dob, String id, String email, Date takeOfficeDate) {
+    public Manager(String name, String gender, Date dob, String id, String email, Date takeOfficeDate) {
         super(name, gender, dob, id, email);
         this.takeOfficeDate = takeOfficeDate;
     }

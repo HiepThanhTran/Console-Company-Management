@@ -8,6 +8,8 @@ import java.util.Scanner;
 import topic2.color.Color;
 import topic2.service.DepartmentManager;
 import topic2.service.EmployeeManager;
+import topic2.service.JoinDepartmentManager;
+import topic2.service.JoinProjectManager;
 import topic2.service.ProjectManager;
 
 public class Factory {
@@ -20,6 +22,8 @@ public class Factory {
     public static final DepartmentManager departmentManager = new DepartmentManager();
     public static final EmployeeManager employeeManager = new EmployeeManager();
     public static final ProjectManager projectManager = new ProjectManager();
+    public static final JoinDepartmentManager joinDepartmentManager = new JoinDepartmentManager();
+    public static final JoinProjectManager joinProjectManger = new JoinProjectManager();
 
     public static final SimpleDateFormat SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("###,###.##");

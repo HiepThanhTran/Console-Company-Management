@@ -26,7 +26,7 @@ public class QuanLyHeThongLT {
         this.dsLuyenTap.removeAll(Arrays.asList(dsLuyenTap));
     }
 
-    public LuyenTap traCuu(ThanhVien tv) {
-        return this.dsLuyenTap.stream().filter(luyenTap -> luyenTap.getThanhVien().equals(tv)).findFirst().orElse(null);
+    public LuyenTap traCuu(ThanhVien thanhVien) {
+        return this.dsLuyenTap.stream().filter(luyenTap -> luyenTap.getThanhVien().equals(thanhVien)).findFirst().orElse(null);
     }
 }

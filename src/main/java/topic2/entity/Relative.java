@@ -12,7 +12,7 @@ public class Relative extends Person {
     public Relative() {
     }
 
-    public Relative(String name, boolean gender, Date dob, String relationship) {
+    public Relative(String name, String gender, Date dob, String relationship) {
         super(name, gender, dob);
         this.relationship = relationship;
     }

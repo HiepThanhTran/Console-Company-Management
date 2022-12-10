@@ -21,12 +21,12 @@ public abstract class Employee extends Person {
     public Employee() {
     }
 
-    public Employee(String name, boolean gender, Date dob, String email) {
+    public Employee(String name, String gender, Date dob, String email) {
         super(name, gender, dob);
         this.email = email;
     }
 
-    public Employee(String name, boolean gender, Date dob, String id, String email) {
+    public Employee(String name, String gender, Date dob, String id, String email) {
         super(name, gender, dob);
         this.id = id;
         this.email = email;

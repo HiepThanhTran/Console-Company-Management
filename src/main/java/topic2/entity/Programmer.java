@@ -17,12 +17,12 @@ public class Programmer extends Employee {
     public Programmer() {
     }
 
-    public Programmer(String name, boolean gender, Date dob, String email, double salaryOT) {
+    public Programmer(String name, String gender, Date dob, String email, double salaryOT) {
         super(name, gender, dob, email);
         this.salaryOT = salaryOT;
     }
 
-    public Programmer(String name, boolean gender, Date dob, String id, String email, double salaryOT) {
+    public Programmer(String name, String gender, Date dob, String id, String email, double salaryOT) {
         super(name, gender, dob, id, email);
         this.salaryOT = salaryOT;
     }

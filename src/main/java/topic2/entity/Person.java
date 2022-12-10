@@ -12,13 +12,13 @@ import java.util.GregorianCalendar;
 public abstract class Person {
 
     protected String name;
-    protected boolean gender;
+    protected String gender;
     protected Date dob;
 
     public Person() {
     }
 
-    public Person(String name, boolean gender, Date dob) {
+    public Person(String name, String gender, Date dob) {
         this.name = name;
         this.gender = gender;
         this.dob = dob;
@@ -32,11 +32,11 @@ public abstract class Person {
         this.name = name;
     }
 
-    public boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -64,14 +64,13 @@ public abstract class Person {
     public void setInfo() throws ParseException {
         System.out.print("- Họ tên: ");
         this.name = SCANNER.nextLine();
-        System.out.print("- Giới tính (1 - Nam, 0 - Nữ): ");
-        this.gender = SCANNER.nextLine().equals("0");
+        System.out.print("- Giới tính: ");
+        this.gender = SCANNER.nextLine();
         System.out.print("- Ngày sinh: ");
         this.dob = SIMPLEDATEFORMAT.parse(SCANNER.nextLine());
     }
 
     public String toString() {
-        String gender = this.gender ? "Nữ" : "Nam";
         return String.format("| %-30s | %-9s | %-10s |", name, gender, SIMPLEDATEFORMAT.format(dob));
     }
 }

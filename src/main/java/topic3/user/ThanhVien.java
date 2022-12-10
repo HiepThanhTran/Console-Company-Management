@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ThanhVien {
 
     private static int dem = 0;
-    private final int maThanhVien;
+    private int maThanhVien;
     private Date ngayGiaNhap;
     private String hoTen;
     private String queQuan;
@@ -26,7 +26,9 @@ public class ThanhVien {
     public ThanhVien() {
     }
 
-    public ThanhVien(String hoTen, String queQuan, String gioiTinh, Date ngaySinh) {
+    public ThanhVien(int maThanhVien, Date ngayGiaNhap, String hoTen, String queQuan, String gioiTinh, Date ngaySinh) {
+        this.maThanhVien = maThanhVien;
+        this.ngayGiaNhap = ngayGiaNhap;
         this.hoTen = hoTen;
         this.queQuan = queQuan;
         this.gioiTinh = gioiTinh;

@@ -217,39 +217,36 @@ public class Main {
                     ThanhVien thanhVien = quanLyThanhVien.traCuu(maThanhVien);
                     LuyenTap luyenTap = quanLyHeThongLT.traCuu(thanhVien);
                     if (thanhVien != null) {
-                        if (luyenTap != null) {
-                            System.out.println("1. MultipleChoice");
-                            System.out.println("2. InComplete");
-                            System.out.println("3. Conversation");
-                            System.out.print("- Chon loai cau hoi: ");
-                            String c3 = sc.nextLine();
-                            switch (c3) {
-                                case "1" -> {
-                                    System.out.print("- So luong cau hoi muon luyen tap: ");
-                                    int soLuong = Integer.parseInt(sc.nextLine());
-                                    luyenTap.luyenTap("topic3.cauhoi.MultipleChoice", soLuong);
-                                }
-                                case "2" -> {
-                                    System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
-                                    String mucDo = sc.nextLine();
-                                    luyenTap.luyenTap("topic3.cauhoi.InComplete", mucDo);
-                                }
-                                case "3" -> {
-                                    System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
-                                    String mucDo = sc.nextLine();
-                                    luyenTap.luyenTap("topic3.cauhoi.Conversation", mucDo);
-                                }
-                                default -> System.out.println("\n** CHUC NANG HIEN CHUA CO **");
+                        if (luyenTap == null) {
+                            luyenTap = new LuyenTap(new ThanhTich(), thanhVien);
+                            quanLyHeThongLT.themLuyenTap(luyenTap);
+                        }
+                        System.out.println("1. MultipleChoice");
+                        System.out.println("2. InComplete");
+                        System.out.println("3. Conversation");
+                        System.out.print("- Chon loai cau hoi: ");
+                        String c3 = sc.nextLine();
+                        switch (c3) {
+                            case "1" -> {
+                                System.out.print("- So luong cau hoi muon luyen tap: ");
+                                int soLuong = Integer.parseInt(sc.nextLine());
+                                luyenTap.luyenTap("topic3.cauhoi.MultipleChoice", soLuong);
                             }
-                        } else {
-                            LuyenTap newLuyenTap = new LuyenTap(new ThanhTich(), thanhVien);
-                            quanLyHeThongLT.themLuyenTap(newLuyenTap);
-                            System.out.println("\n== THEM MOI TAI KHOAN LUYEN TAP THANH CONG ==");
+                            case "2" -> {
+                                System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
+                                String mucDo = sc.nextLine();
+                                luyenTap.luyenTap("topic3.cauhoi.InComplete", mucDo);
+                            }
+                            case "3" -> {
+                                System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
+                                String mucDo = sc.nextLine();
+                                luyenTap.luyenTap("topic3.cauhoi.Conversation", mucDo);
+                            }
+                            default -> System.out.println("\n** CHUC NANG HIEN CHUA CO **");
                         }
                     } else {
                         System.out.println("\n== KHONG TIM THAY THANH VIEN ==");
                     }
-
                 }
                 case "4" -> {
                     System.out.print("\n- Nhap ma thanh vien: ");

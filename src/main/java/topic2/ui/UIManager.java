@@ -4,6 +4,8 @@ import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 import static topic2.ui.Factory.departmentManager;
 import static topic2.ui.Factory.employeeManager;
+import static topic2.ui.Factory.joinDepartmentManager;
+import static topic2.ui.Factory.joinProjectManger;
 import static topic2.ui.Factory.projectManager;
 
 import java.text.ParseException;
@@ -102,8 +104,8 @@ public class UIManager {
                     Project project = projectManager.search(SCANNER.nextLine());
                     System.out.print("- Nhập mã nhân viên sẽ làm chủ nhiệm mới của dự án: ");
                     Employee employee = employeeManager.searchById(SCANNER.nextLine());
-                    if (!projectManager.check(project, employee)) {
-                        projectManager.add(new JoinProject(project, employee));
+                    if (!joinProjectManger.check(project, employee)) {
+                        joinProjectManger.add(new JoinProject(project, employee));
                     }
                     project.setInfo();
                     project.setManager(employee);
@@ -125,7 +127,7 @@ public class UIManager {
                     Project project = projectManager.search(keyword);
                     Project.decreaseProjectAmount(1);
                     projectManager.remove(project);
-                    projectManager.removeAll(project);
+                    joinProjectManger.removeAll(project);
                     System.out.println("\n== Xóa dự án thành công ==");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -140,7 +142,7 @@ public class UIManager {
                 try {
                     Project project = projectManager.search(keyword);
                     Employee employee = employeeManager.searchById(id);
-                    projectManager.add(new JoinProject(project, employee));
+                    joinProjectManger.add(new JoinProject(project, employee));
                     System.out.printf("\n== Thêm nhân viên %s vào dự án %s thành công ==\n", id,
                         project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
@@ -190,7 +192,7 @@ public class UIManager {
                     Project project = projectManager.search(keyword);
                     System.out.printf("\n*** DANH SÁCH NHÂN VIÊN CỦA DỰ ÁN %s ***\n", project.getProjectName().toUpperCase());
                     Factory.employeeMenuHeader();
-                    projectManager.getList(project).forEach(employee -> {
+                    joinProjectManger.getList(project).forEach(employee -> {
                         System.out.println(employee);
                         Factory.printLine(140, "-");
                     });
@@ -213,7 +215,7 @@ public class UIManager {
         Employee manager = employeeManager.searchById(SCANNER.nextLine());
         Project project = new Project(manager);
         project.setInfo();
-        projectManager.add(new JoinProject(project, manager));
+        joinProjectManger.add(new JoinProject(project, manager));
         return project;
     }
 
@@ -277,8 +279,8 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     Employee.decreaseEmployeeAmount(1);
                     employeeManager.remove(employee);
-                    projectManager.removeAll(employee);
-                    departmentManager.removeAll(employee);
+                    joinProjectManger.removeAll(employee);
+                    joinDepartmentManager.removeAll(employee);
                     employeeManager.getList(employee).forEach(provideInsurance -> employeeManager.remove(provideInsurance));
                     System.out.println("\n== Xóa nhân viên thành công ==");
                 } catch (NullPointerException e) {
@@ -295,7 +297,7 @@ public class UIManager {
                 try {
                     Project project = projectManager.search(keyword);
                     Employee employee = employeeManager.searchById(id);
-                    projectManager.add(new JoinProject(project, employee));
+                    joinProjectManger.add(new JoinProject(project, employee));
                     System.out.printf("\n== Nhân viên %s tham gia dự án %s thành công ==\n", employee.getId(),
                         project.getProjectName().toUpperCase());
                 } catch (NullPointerException e) {
@@ -322,8 +324,8 @@ public class UIManager {
                         Employee manager = employeeManager.promote(employee);
                         department.removeEmployee(employee);
                         department.addEmployee(manager);
-                        departmentManager.remove(departmentManager.search(employee));
-                        departmentManager.add(new JoinDepartment(manager, department));
+                        joinDepartmentManager.remove(joinDepartmentManager.search(employee));
+                        joinDepartmentManager.add(new JoinDepartment(manager, department));
                         System.out.println("\n== Thăng chức thành công ==");
                     }
                 } catch (NullPointerException e) {
@@ -346,7 +348,7 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     System.out.printf("\n*** DANH SÁCH DỰ ÁN NHÂN VIÊN %s ĐANG THỰC HIỆN ***\n", employee.getId());
                     Factory.projectMenuHeader();
-                    projectManager.getList(employee).forEach(project -> {
+                    joinProjectManger.getList(employee).forEach(project -> {
                         System.out.println(project);
                         Factory.printLine(157, "-");
                     });
@@ -446,7 +448,7 @@ public class UIManager {
         employee.setInfo();
         checkData(employee);
         department.addEmployee(employee);
-        departmentManager.add(new JoinDepartment(employee, department));
+        joinDepartmentManager.add(new JoinDepartment(employee, department));
         return employee;
     }
 
@@ -476,7 +478,7 @@ public class UIManager {
                     Department department = departmentManager.search(name);
                     Department.decreaseDepartmentAmount(1);
                     departmentManager.remove(department);
-                    departmentManager.removeAll(department);
+                    joinDepartmentManager.removeAll(department);
                     System.out.println("\n== Xóa phòng ban thành công ==");
                 } catch (NullPointerException e) {
                     System.err.println(e.getMessage());
@@ -497,7 +499,7 @@ public class UIManager {
                         System.err.println("\n== Nhân viên đã tồn tại trong phòng ban này ==");
                     } else {
                         department.addEmployee(employee);
-                        departmentManager.add(new JoinDepartment(employee, department));
+                        joinDepartmentManager.add(new JoinDepartment(employee, department));
                         System.out.println("\n== Thêm nhân viên vào phòng ban thành công ==");
                     }
                 } catch (NullPointerException e) {
@@ -517,7 +519,7 @@ public class UIManager {
                     Employee employee = employeeManager.searchById(id);
                     System.out.printf("\n*** DANH SÁCH PHÒNG BAN CỦA NHÂN VIÊN %s ***\n", employee.getId());
                     Factory.printLine(180, "~");
-                    departmentManager.getList(employee).forEach(department -> {
+                    joinDepartmentManager.getList(employee).forEach(department -> {
                         department.showInfo();
                         Factory.printLine(180, "~");
                     });

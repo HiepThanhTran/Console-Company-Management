@@ -1,12 +1,17 @@
 package topic3;
 
+import static topic3.CauHinh.f;
 import static topic3.CauHinh.quanLyCauHoi;
 import static topic3.CauHinh.quanLyDanhMuc;
+import static topic3.CauHinh.quanLyHeThongLT;
+import static topic3.CauHinh.quanLyThanhVien;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import topic3.cauhoi.CauHoi;
@@ -15,13 +20,16 @@ import topic3.cauhoi.DanhMuc;
 import topic3.cauhoi.InComplete;
 import topic3.cauhoi.MultipleChoice;
 import topic3.cauhoi.PhuongAn;
+import topic3.user.LuyenTap;
+import topic3.user.ThanhTich;
+import topic3.user.ThanhVien;
 
 public class DocGhiFile {
 
-    public static final File multipleChoiceFile = new File("src/main/resources/topic3/MultipleChoice.txt");
-    public static final File inCompleteFile = new File("src/main/resources/topic3/InComplete.txt");
-    public static final File conversationFile = new File("src/main/resources/topic3/Conversation.txt");
-    public static final File thanhVienFile = new File("src/main/resources/topic3/ThanhVien.txt");
+    public static final File multipleChoiceFile = new File("src/main/resources/MultipleChoice.txt");
+    public static final File inCompleteFile = new File("src/main/resources/InComplete.txt");
+    public static final File conversationFile = new File("src/main/resources/Conversation.txt");
+    public static final File thanhVienFile = new File("src/main/resources/ThanhVien.txt");
 
     public static void docFile() {
         List<String> temp = new ArrayList<>();
@@ -143,15 +151,32 @@ public class DocGhiFile {
 //
             Scanner thanhVien = new Scanner(thanhVienFile);
             while (thanhVien.hasNextLine()) {
-
+                String[] thongTinThanhVien = thanhVien.nextLine().split(" - ");
+                int maThanhVien = Integer.parseInt(thongTinThanhVien[0]);
+                Date ngayGiaNhap = f.parse(thongTinThanhVien[1]);
+                String hoTen = thongTinThanhVien[2];
+                String queQuan = thongTinThanhVien[3];
+                String gioiTinh = thongTinThanhVien[4];
+                Date ngaySinh = f.parse(thongTinThanhVien[5]);
+                ThanhVien thanhVien1 = new ThanhVien(maThanhVien, ngayGiaNhap, hoTen, queQuan, gioiTinh, ngaySinh);
+                if (thongTinThanhVien.length > 6) {
+                    List<Double> dsDiem = new ArrayList<>();
+                    int soLanLam = Integer.parseInt(thongTinThanhVien[6]);
+                    for (int i = 7; i < thongTinThanhVien.length; i++) {
+                        dsDiem.add(Double.parseDouble(thongTinThanhVien[i]));
+                    }
+                    ThanhTich thanhTich = new ThanhTich(soLanLam, dsDiem);
+                    LuyenTap luyenTap = new LuyenTap(thanhTich, thanhVien1);
+                    quanLyHeThongLT.themLuyenTap(luyenTap);
+                }
+                quanLyThanhVien.themTV(thanhVien1);
             }
 
             multipleChoice.close();
             inComplete.close();
             conversation.close();
             thanhVien.close();
-        } catch (FileNotFoundException e) {
-            System.err.println("\n** ĐỌC FILE KHÔNG THÀNH CÔNG **");
+        } catch (FileNotFoundException | ParseException e) {
             e.printStackTrace();
         }
     }
@@ -189,13 +214,27 @@ public class DocGhiFile {
             });
 
             PrintWriter thanhVien = new PrintWriter(thanhVienFile);
-
+            quanLyThanhVien.getDsThanhVien().forEach(thanhVien1 -> {
+                thanhVien.print(thanhVien1.getMaThanhVien());
+                thanhVien.print(" - " + f.format(thanhVien1.getNgayGiaNhap()));
+                thanhVien.print(" - " + thanhVien1.getHoTen());
+                thanhVien.print(" - " + thanhVien1.getQueQuan());
+                thanhVien.print(" - " + thanhVien1.getGioiTinh());
+                thanhVien.print(" - " + f.format(thanhVien1.getNgaySinh()));
+                LuyenTap luyenTap = quanLyHeThongLT.traCuu(thanhVien1);
+                if (luyenTap != null) {
+                    thanhVien.print(" - " + luyenTap.getThanhTich().getSoLanLam());
+                    for (int i = 0; i < luyenTap.getThanhTich().getDsDiem().size(); i++) {
+                        thanhVien.print(" - " + luyenTap.getThanhTich().getDsDiem().get(i));
+                    }
+                }
+                thanhVien.println();
+            });
             multipleChoice.close();
             inComplete.close();
             conversation.close();
             thanhVien.close();
         } catch (FileNotFoundException e) {
-            System.err.println("\n** GHI FILE KHÔNG THÀNH CÔNG **");
             e.printStackTrace();
         }
     }

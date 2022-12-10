@@ -1,6 +1,7 @@
 package topic3.user;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ThanhTich {
@@ -32,8 +33,8 @@ public class ThanhTich {
         this.dsDiem = dsDiem;
     }
 
-    public void themDiem(double diem) {
-        this.dsDiem.add(diem);
+    public void themDiem(Double... dsDiem) {
+        this.dsDiem.addAll(Arrays.asList(dsDiem));
     }
 
     public double getDiemTrungBinh() {

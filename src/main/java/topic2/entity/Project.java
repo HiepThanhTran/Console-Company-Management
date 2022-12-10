@@ -4,7 +4,7 @@ import static topic2.ui.Factory.DECIMALFORMAT;
 import static topic2.ui.Factory.MIN_EMPLOYEE;
 import static topic2.ui.Factory.SCANNER;
 import static topic2.ui.Factory.SIMPLEDATEFORMAT;
-import static topic2.ui.Factory.projectManager;
+import static topic2.ui.Factory.joinProjectManger;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -133,7 +133,7 @@ public class Project implements Comparable<Project> {
 
     @Override
     public String toString() {
-        String flag = (projectManager.getAmount(this) < MIN_EMPLOYEE) ? "❌" : "✔";
+        String flag = (joinProjectManger.getAmount(this) < MIN_EMPLOYEE) ? "❌" : "✔";
         return String.format("| %-12s | %-30s | %-12s | %-13s | %-18s | %-40s | %-9s |", projectId, projectName,
             SIMPLEDATEFORMAT.format(startDate), SIMPLEDATEFORMAT.format(endDate), DECIMALFORMAT.format(cost),
             manager.getId() + " ~ " + manager.getName(), flag);

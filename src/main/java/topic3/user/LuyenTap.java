@@ -44,7 +44,7 @@ public class LuyenTap {
         cauHoi.hienThiThongTin();
         int soCauDung = traLoiCauHoi(cauHoi.getDsCauHoi());
         this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
-        this.thanhTich.themDiem(soCauDung * (10 / cauHoi.getDsCauHoi().size()));
+        this.thanhTich.themDiem(Double.valueOf(soCauDung * (10 / cauHoi.getDsCauHoi().size())));
     }
 
     public void luyenTap(String type, int soLuong) throws ClassNotFoundException {
@@ -52,7 +52,7 @@ public class LuyenTap {
         List<MultipleChoice> dsCauHoi = (List<MultipleChoice>) (Object) temp;
         int soCauDung = traLoiCauHoi(dsCauHoi);
         this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
-        this.thanhTich.themDiem(soCauDung * (10 / soLuong));
+        this.thanhTich.themDiem(Double.valueOf(soCauDung * (10 / soLuong)));
     }
 
     private int traLoiCauHoi(List<MultipleChoice> dsCauHoi) {

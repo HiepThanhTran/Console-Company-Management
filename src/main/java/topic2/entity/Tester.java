@@ -17,12 +17,12 @@ public class Tester extends Employee {
     public Tester() {
     }
 
-    public Tester(String name, boolean gender, Date dob, String email, int errors) {
+    public Tester(String name, String gender, Date dob, String email, int errors) {
         super(name, gender, dob, email);
         this.errors = errors;
     }
 
-    public Tester(String name, boolean gender, Date dob, String id, String email, int errors) {
+    public Tester(String name, String gender, Date dob, String id, String email, int errors) {
         super(name, gender, dob, id, email);
         this.errors = errors;
     }

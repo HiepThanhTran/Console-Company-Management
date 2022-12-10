@@ -5,6 +5,8 @@ import static topic2.ui.Factory.departmentFile;
 import static topic2.ui.Factory.departmentManager;
 import static topic2.ui.Factory.employeeFile;
 import static topic2.ui.Factory.employeeManager;
+import static topic2.ui.Factory.joinDepartmentManager;
+import static topic2.ui.Factory.joinProjectManger;
 import static topic2.ui.Factory.projectFile;
 import static topic2.ui.Factory.projectManager;
 import static topic2.ui.Factory.relativeFile;
@@ -50,7 +52,7 @@ public final class FileUtils {
                 Employee employee = null;
                 String id = tokens[0];
                 String name = tokens[1];
-                boolean gender = Boolean.parseBoolean(tokens[2]);
+                String gender = tokens[2];
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[3]);
                 String email = tokens[4];
                 switch (id.substring(0, 1)) {
@@ -77,7 +79,7 @@ public final class FileUtils {
                         manager.addDepartment(department);
                     }
                     department.addEmployee(employee);
-                    departmentManager.add(new JoinDepartment(employee, department));
+                    joinDepartmentManager.add(new JoinDepartment(employee, department));
                 }
                 departmentManager.add(department);
             }
@@ -94,7 +96,7 @@ public final class FileUtils {
             while (readRelative.hasNextLine()) {
                 String[] tokens = readRelative.nextLine().split(", ");
                 String name = tokens[0];
-                boolean gender = Boolean.parseBoolean(tokens[1]);
+                String gender = tokens[1];
                 Date dob = SIMPLEDATEFORMAT.parse(tokens[2]);
                 String relationship = tokens[3];
                 String insNumber = tokens[4];
@@ -123,10 +125,10 @@ public final class FileUtils {
                 double cost = Double.parseDouble(tokens[4]);
                 Employee manager = employeeManager.searchById(tokens[5]);
                 Project project = new Project(id, name, startDate, endDate, cost, manager);
-                projectManager.add(new JoinProject(project, manager));
+                joinProjectManger.add(new JoinProject(project, manager));
                 for (int i = 6; i < tokens.length; i++) {
                     Employee employee = employeeManager.searchById(tokens[i]);
-                    projectManager.add(new JoinProject(project, employee));
+                    joinProjectManger.add(new JoinProject(project, employee));
                 }
                 projectManager.add(project);
             }
@@ -167,9 +169,9 @@ public final class FileUtils {
             PrintWriter writeEmployee = new PrintWriter(employeeFile);
             employeeManager.getEmployeeList().forEach(employee -> {
                 StringBuilder employeeInfo = new StringBuilder();
-                boolean gender = employee.getGender();
-                employeeInfo.append(String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), gender,
-                    SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail()));
+                employeeInfo.append(
+                    String.format("%s, %s, %s, %s, %s", employee.getId(), employee.getName(), employee.getGender(),
+                        SIMPLEDATEFORMAT.format(employee.getDob()), employee.getEmail()));
                 switch (employee.getId().substring(0, 1)) {
                     case "P" -> employeeInfo.append(", " + ((Programmer) employee).getSalaryOT());
                     case "D" -> employeeInfo.append(", " + ((Designer) employee).getBonus());
@@ -184,8 +186,7 @@ public final class FileUtils {
             PrintWriter writeRelative = new PrintWriter(relativeFile);
             employeeManager.getRelativeList().forEach(provideInsurance -> {
                 Relative relative = provideInsurance.getRelative();
-                boolean gender = relative.getGender();
-                writeRelative.printf("%s, %s, %s, %s, %s, %s\n", relative.getName(), gender,
+                writeRelative.printf("%s, %s, %s, %s, %s, %s\n", relative.getName(), relative.getGender(),
                     SIMPLEDATEFORMAT.format(relative.getDob()), relative.getRelationship(), provideInsurance.getInsNumber(),
                     provideInsurance.getEmployee().getId());
             });
@@ -198,7 +199,7 @@ public final class FileUtils {
                 projectInfo.append(String.format("%s, %s, %s, %s, %f", project.getProjectId(), project.getProjectName(),
                     SIMPLEDATEFORMAT.format(project.getStartDate()), SIMPLEDATEFORMAT.format(project.getEndDate()),
                     project.getCost()));
-                projectManager.getList(project).forEach(employee -> projectInfo.append(", " + employee.getId()));
+                joinProjectManger.getList(project).forEach(employee -> projectInfo.append(", " + employee.getId()));
                 writeProject.println(projectInfo);
             });
             writeProject.close();

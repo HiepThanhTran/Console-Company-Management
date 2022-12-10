@@ -17,12 +17,12 @@ public class Designer extends Employee {
     public Designer() {
     }
 
-    public Designer(String name, boolean gender, Date dob, String email, double bonus) {
+    public Designer(String name, String gender, Date dob, String email, double bonus) {
         super(name, gender, dob, email);
         this.bonus = bonus;
     }
 
-    public Designer(String name, boolean gender, Date dob, String id, String email, double bonus) {
+    public Designer(String name, String gender, Date dob, String id, String email, double bonus) {
         super(name, gender, dob, id, email);
         this.bonus = bonus;
     }
