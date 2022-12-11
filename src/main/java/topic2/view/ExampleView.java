@@ -75,7 +75,7 @@ public class ExampleView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1280, 800);
         this.setLocationRelativeTo(null);
-        this.setTitle("Mouse Example");
+        this.setTitle("Example");
 
         ExampleListener exampleListener = new ExampleListener(this);
 
