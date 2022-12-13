@@ -25,10 +25,10 @@ public class JoinProjectManager {
 
     public void add(JoinProject joinProject) throws AmountException {
         if (this.getAmount(joinProject.getEmployee()) >= MAX_PROJECT) {
-            throw new AmountException("\n\t+----- Nhân viên có thể tham gia tối đa 3 dự án -----+");
+            throw new AmountException("\n\t+----- Nhân viên chỉ được tham gia tối đa 3 dự án -----+");
         }
         if (this.getAmount(joinProject.getProject()) >= MAX_EMPLOYEE) {
-            throw new AmountException("\n\t+----- Dự án có thể có tối đa 10 thành viên -----+");
+            throw new AmountException("\n\t+----- Dự án chỉ được có tối đa 10 thành viên -----+");
         }
         this.joinProjects.add(joinProject);
     }
