@@ -3,7 +3,6 @@ package topic3;
 import static topic3.CauHinh.f;
 import static topic3.CauHinh.quanLyCauHoi;
 import static topic3.CauHinh.quanLyDanhMuc;
-import static topic3.CauHinh.quanLyHeThongLT;
 import static topic3.CauHinh.quanLyThanhVien;
 
 import java.io.File;
@@ -20,7 +19,6 @@ import topic3.cauhoi.DanhMuc;
 import topic3.cauhoi.InComplete;
 import topic3.cauhoi.MultipleChoice;
 import topic3.cauhoi.PhuongAn;
-import topic3.user.LuyenTap;
 import topic3.user.ThanhTich;
 import topic3.user.ThanhVien;
 
@@ -158,7 +156,8 @@ public class DocGhiFile {
                 String queQuan = thongTinThanhVien[3];
                 String gioiTinh = thongTinThanhVien[4];
                 Date ngaySinh = f.parse(thongTinThanhVien[5]);
-                ThanhVien thanhVien1 = new ThanhVien(maThanhVien, ngayGiaNhap, hoTen, queQuan, gioiTinh, ngaySinh);
+                ThanhVien thanhVien1 = new ThanhVien(maThanhVien, ngayGiaNhap, hoTen, queQuan, gioiTinh, ngaySinh,
+                    new ThanhTich());
                 if (thongTinThanhVien.length > 6) {
                     List<Double> dsDiem = new ArrayList<>();
                     int soLanLam = Integer.parseInt(thongTinThanhVien[6]);
@@ -166,8 +165,7 @@ public class DocGhiFile {
                         dsDiem.add(Double.parseDouble(thongTinThanhVien[i]));
                     }
                     ThanhTich thanhTich = new ThanhTich(soLanLam, dsDiem);
-                    LuyenTap luyenTap = new LuyenTap(thanhTich, thanhVien1);
-                    quanLyHeThongLT.themLuyenTap(luyenTap);
+                    thanhVien1.setThanhTich(thanhTich);
                 }
                 quanLyThanhVien.themTV(thanhVien1);
             }
@@ -221,11 +219,10 @@ public class DocGhiFile {
                 thanhVien.print(" - " + thanhVien1.getQueQuan());
                 thanhVien.print(" - " + thanhVien1.getGioiTinh());
                 thanhVien.print(" - " + f.format(thanhVien1.getNgaySinh()));
-                LuyenTap luyenTap = quanLyHeThongLT.traCuu(thanhVien1);
-                if (luyenTap != null) {
-                    thanhVien.print(" - " + luyenTap.getThanhTich().getSoLanLam());
-                    for (int i = 0; i < luyenTap.getThanhTich().getDsDiem().size(); i++) {
-                        thanhVien.print(" - " + luyenTap.getThanhTich().getDsDiem().get(i));
+                thanhVien.print(" - " + thanhVien1.getThanhTich().getSoLanLam());
+                if (thanhVien1.getThanhTich().getSoLanLam() > 0) {
+                    for (int i = 0; i < thanhVien1.getThanhTich().getDsDiem().size(); i++) {
+                        thanhVien.print(" - " + thanhVien1.getThanhTich().getDsDiem().get(i));
                     }
                 }
                 thanhVien.println();

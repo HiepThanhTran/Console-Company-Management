@@ -3,7 +3,6 @@ package topic3;
 import static topic3.CauHinh.f;
 import static topic3.CauHinh.quanLyCauHoi;
 import static topic3.CauHinh.quanLyDanhMuc;
-import static topic3.CauHinh.quanLyHeThongLT;
 import static topic3.CauHinh.quanLyThanhVien;
 import static topic3.CauHinh.sc;
 
@@ -16,8 +15,7 @@ import topic3.cauhoi.DanhMuc;
 import topic3.cauhoi.InComplete;
 import topic3.cauhoi.MultipleChoice;
 import topic3.cauhoi.PhuongAn;
-import topic3.user.LuyenTap;
-import topic3.user.ThanhTich;
+import topic3.quanly.QuanLyHeThong;
 import topic3.user.ThanhVien;
 
 public class Main {
@@ -215,12 +213,7 @@ public class Main {
                     System.out.print("\n- Nhap ma thanh vien: ");
                     int maThanhVien = Integer.parseInt(sc.nextLine());
                     ThanhVien thanhVien = quanLyThanhVien.traCuu(maThanhVien);
-                    LuyenTap luyenTap = quanLyHeThongLT.traCuu(thanhVien);
                     if (thanhVien != null) {
-                        if (luyenTap == null) {
-                            luyenTap = new LuyenTap(new ThanhTich(), thanhVien);
-                            quanLyHeThongLT.themLuyenTap(luyenTap);
-                        }
                         System.out.println("1. MultipleChoice");
                         System.out.println("2. InComplete");
                         System.out.println("3. Conversation");
@@ -230,17 +223,17 @@ public class Main {
                             case "1" -> {
                                 System.out.print("- So luong cau hoi muon luyen tap: ");
                                 int soLuong = Integer.parseInt(sc.nextLine());
-                                luyenTap.luyenTap("topic3.cauhoi.MultipleChoice", soLuong);
+                                QuanLyHeThong.luyenTap(thanhVien, "topic3.cauhoi.MultipleChoice", soLuong);
                             }
                             case "2" -> {
                                 System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
                                 String mucDo = sc.nextLine();
-                                luyenTap.luyenTap("topic3.cauhoi.InComplete", mucDo);
+                                QuanLyHeThong.luyenTap(thanhVien, "topic3.cauhoi.InComplete", mucDo);
                             }
                             case "3" -> {
                                 System.out.print("- Nhap muc do (De/Trung binh/Kho) de luyen tap: ");
                                 String mucDo = sc.nextLine();
-                                luyenTap.luyenTap("topic3.cauhoi.Conversation", mucDo);
+                                QuanLyHeThong.luyenTap(thanhVien, "topic3.cauhoi.Conversation", mucDo);
                             }
                             default -> System.out.println("\n** CHUC NANG HIEN CHUA CO **");
                         }
@@ -252,10 +245,9 @@ public class Main {
                     System.out.print("\n- Nhap ma thanh vien: ");
                     int maThanhVien = Integer.parseInt(sc.nextLine());
                     ThanhVien thanhVien = quanLyThanhVien.traCuu(maThanhVien);
-                    LuyenTap luyenTap = quanLyHeThongLT.traCuu(thanhVien);
-                    if (thanhVien != null && luyenTap != null) {
+                    if (thanhVien != null) {
                         System.out.println("\n*** THONG TIN THONG KE CUA THANH VIEN ***");
-                        luyenTap.thongKe();
+                        quanLyThanhVien.thongKe(thanhVien);
                     } else {
                         System.out.println("\n== KHONG TIM THAY THANH VIEN ==");
                     }

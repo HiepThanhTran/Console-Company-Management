@@ -17,6 +17,7 @@ public class ThanhVien {
     private String queQuan;
     private String gioiTinh;
     private Date ngaySinh;
+    private ThanhTich thanhTich;
 
     {
         ngayGiaNhap = c.getTime();
@@ -26,13 +27,15 @@ public class ThanhVien {
     public ThanhVien() {
     }
 
-    public ThanhVien(int maThanhVien, Date ngayGiaNhap, String hoTen, String queQuan, String gioiTinh, Date ngaySinh) {
+    public ThanhVien(int maThanhVien, Date ngayGiaNhap, String hoTen, String queQuan, String gioiTinh, Date ngaySinh,
+        ThanhTich thanhTich) {
         this.maThanhVien = maThanhVien;
         this.ngayGiaNhap = ngayGiaNhap;
         this.hoTen = hoTen;
         this.queQuan = queQuan;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
+        this.thanhTich = thanhTich;
     }
 
     public static int getDem() {
@@ -81,6 +84,14 @@ public class ThanhVien {
 
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
+    }
+
+    public ThanhTich getThanhTich() {
+        return thanhTich;
+    }
+
+    public void setThanhTich(ThanhTich thanhTich) {
+        this.thanhTich = thanhTich;
     }
 
     public void nhapThongTin() throws ParseException {

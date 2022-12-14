@@ -27,6 +27,11 @@ public class QuanLyThanhVien {
         this.dsThanhVien.removeAll(Arrays.asList(dsThanhVien));
     }
 
+    public void thongKe(ThanhVien thanhVien) {
+        thanhVien.hienThiThongTin();
+        thanhVien.getThanhTich().hienThiThongTin();
+    }
+
     public void hienThiDS() {
         this.dsThanhVien.forEach(thanhVien -> thanhVien.hienThiThongTin());
     }

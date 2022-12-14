@@ -1,4 +1,4 @@
-package topic3.user;
+package topic3.quanly;
 
 import static topic3.CauHinh.quanLyCauHoi;
 import static topic3.CauHinh.sc;
@@ -7,55 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 import topic3.cauhoi.CauHoi;
 import topic3.cauhoi.MultipleChoice;
+import topic3.user.ThanhVien;
 
-public class LuyenTap {
+public class QuanLyHeThong {
 
-    private ThanhTich thanhTich;
-    private ThanhVien thanhVien;
-
-    public LuyenTap(ThanhTich thanhTich, ThanhVien thanhVien) {
-        this.thanhTich = thanhTich;
-        this.thanhVien = thanhVien;
-    }
-
-    public ThanhTich getThanhTich() {
-        return thanhTich;
-    }
-
-    public void setThanhTich(ThanhTich thanhTich) {
-        this.thanhTich = thanhTich;
-    }
-
-    public ThanhVien getThanhVien() {
-        return thanhVien;
-    }
-
-    public void setThanhVien(ThanhVien thanhVien) {
-        this.thanhVien = thanhVien;
-    }
-
-    public void thongKe() {
-        this.thanhVien.hienThiThongTin();
-        this.thanhTich.hienThiThongTin();
-    }
-
-    public void luyenTap(String type, String mucDo) throws ClassNotFoundException {
+    public static void luyenTap(ThanhVien thanhVien, String type, String mucDo) throws ClassNotFoundException {
         CauHoi cauHoi = quanLyCauHoi.randomCauHoi(type, mucDo);
         cauHoi.hienThiThongTin();
         int soCauDung = traLoiCauHoi(cauHoi.getDsCauHoi());
-        this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
-        this.thanhTich.themDiem(Double.valueOf(soCauDung * (10 / cauHoi.getDsCauHoi().size())));
+        thanhVien.getThanhTich().setSoLanLam(thanhVien.getThanhTich().getSoLanLam() + 1);
+        thanhVien.getThanhTich().themDiem(Double.valueOf(soCauDung * (10 / cauHoi.getDsCauHoi().size())));
     }
 
-    public void luyenTap(String type, int soLuong) throws ClassNotFoundException {
+    public static void luyenTap(ThanhVien thanhVien, String type, int soLuong) throws ClassNotFoundException {
         List<CauHoi> temp = quanLyCauHoi.randomCauHoi(type, soLuong);
         List<MultipleChoice> dsCauHoi = (List<MultipleChoice>) (Object) temp;
         int soCauDung = traLoiCauHoi(dsCauHoi);
-        this.thanhTich.setSoLanLam(this.thanhTich.getSoLanLam() + 1);
-        this.thanhTich.themDiem(Double.valueOf(soCauDung * (10 / soLuong)));
+        thanhVien.getThanhTich().setSoLanLam(thanhVien.getThanhTich().getSoLanLam() + 1);
+        thanhVien.getThanhTich().themDiem(Double.valueOf(soCauDung * (10 / soLuong)));
     }
 
-    private int traLoiCauHoi(List<MultipleChoice> dsCauHoi) {
+    private static int traLoiCauHoi(List<MultipleChoice> dsCauHoi) {
         List<Character> dsDapAn = new ArrayList<>();
         int soCauDung = 0;
         dsCauHoi.forEach(multipleChoice -> {
