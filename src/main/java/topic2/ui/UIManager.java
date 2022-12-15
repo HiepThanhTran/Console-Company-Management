@@ -287,9 +287,12 @@ public class UIManager {
                 try {
                     Employee employee = employeeManager.searchById(id);
                     Employee.decreaseEmployeeAmount(1);
+                    Department department = departmentManager.search(employee);
+                    department.removeEmployee(employee);
+                    department.setDateTakeOffice(null);
+                    department.setManager(null);
                     employeeManager.remove(employee);
                     joinProjectManger.removeAll(employee);
-                    departmentManager.search(employee).removeEmployee(employee);
                     provideInsuranceManager.getList(employee).forEach(provideInsuranceManager::remove);
                     System.out.println("\n\t+----- Xóa nhân viên thành công -----+");
                 } catch (NullPointerException e) {
