@@ -330,13 +330,14 @@ public class UIManager {
                         System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
                     } else {
                         Employee manager = employeeManager.promoted(employee);
+                        ((Manager) manager).addDepartment(department);
                         department.removeEmployee(employee);
                         department.addEmployee(manager);
                         department.setManager(manager);
                         department.setDateTakeOffice(GREGORIANCALENDAR.getTime());
                         System.out.println("\n\t+----- Thăng chức thành công -----+");
                     }
-                } catch (NullPointerException e) {
+                } catch (NullPointerException | AmountException e) {
                     System.err.println(e.getMessage());
                     UIEmployeeManager();
                 }
