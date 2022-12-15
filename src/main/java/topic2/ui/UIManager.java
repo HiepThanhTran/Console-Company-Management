@@ -236,80 +236,6 @@ public class UIManager {
     }
 
     /**
-     * <strong>Giao diện hệ thống quản lý phòng ban</strong>
-     */
-    public void UIDepartmentManager() {
-        System.out.println("\n*** HỆ THỐNG QUẢN LÝ PHÒNG BAN ***");
-        System.out.printf("%-3s Thêm phòng ban\n", "1.");
-        System.out.printf("%-3s Xóa phòng ban\n", "2.");
-        System.out.printf("%-3s Thêm nhân viên vào phòng ban\n", "3.");
-        System.out.printf("%-3s Hiển thị tất cả phòng ban\n", "4.");
-        System.out.printf("%-3s Hoàn tất\n", "5.");
-        System.out.print("- Chọn chức năng: ");
-        String choice = SCANNER.nextLine();
-        switch (choice) {
-            case "1" -> {
-                System.out.println("\n\t+----- Nhập thông tin phòng ban -----+");
-                Department department = newDepartment();
-                departmentManager.add(department);
-                System.out.println("\n\t+----- Thêm phòng ban thành công -----+");
-            }
-            case "2" -> {
-                System.out.print("- Nhập tên phòng ban cần xóa: ");
-                String name = SCANNER.nextLine();
-                try {
-                    Department department = departmentManager.search(name);
-                    Department.decreaseDepartmentAmount(1);
-                    departmentManager.remove(department);
-                    System.out.println("\n\t+----- Xóa phòng ban thành công -----+");
-                } catch (NullPointerException e) {
-                    System.err.println(e.getMessage());
-                    UIDepartmentManager();
-                }
-            }
-            case "3" -> {
-                System.out.print("- Nhập tên phòng ban cần thêm nhân viên: ");
-                String name = SCANNER.nextLine();
-                System.out.print("- Nhập mã nhân viên muốn thêm: ");
-                String id = SCANNER.nextLine();
-                try {
-                    Department department = departmentManager.search(name);
-                    Employee employee = employeeManager.searchById(id);
-                    if (employee instanceof Manager && department.hasManager()) {
-                        System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
-                    } else if (department.hasEmployee(employee)) {
-                        System.err.println("\n\t+----- Nhân viên đã tồn tại trong phòng ban này -----+");
-                    } else {
-                        if (employee instanceof Manager manager) {
-                            manager.addDepartment(department);
-                            department.setManager(manager);
-                            department.setDateTakeOffice(GREGORIANCALENDAR.getTime());
-                        }
-                        department.addEmployee(employee);
-                        System.out.println("\n\t+----- Thêm nhân viên vào phòng ban thành công -----+");
-                    }
-                } catch (NullPointerException | AmountException e) {
-                    System.err.println(e.getMessage());
-                    UIDepartmentManager();
-                }
-            }
-            case "4" -> {
-                System.out.println("\n\t+----- DANH SÁCH TẤT CẢ PHÒNG BAN -----+");
-                Factory.printLine(180, "~");
-                departmentManager.showList();
-            }
-            case "5" -> System.out.printf("%s\n== Hoàn tất quản lý phòng ban ==\n%s", Color.YELLOW_BRIGHT, Color.RESET);
-            default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
-        }
-    }
-
-    private Department newDepartment() {
-        Department department = new Department();
-        department.setInfo();
-        return department;
-    }
-
-    /**
      * <strong>Giao diện hệ thống quản lý nhân viên</strong>
      */
     public void UIEmployeeManager() {
@@ -525,6 +451,81 @@ public class UIManager {
         employee.setInfo();
         checkData(employee);
         return employee;
+    }
+
+    /**
+     * <strong>Giao diện hệ thống quản lý phòng ban</strong>
+     */
+    public void UIDepartmentManager() {
+        System.out.println("\n*** HỆ THỐNG QUẢN LÝ PHÒNG BAN ***");
+        System.out.printf("%-3s Thêm phòng ban\n", "1.");
+        System.out.printf("%-3s Xóa phòng ban\n", "2.");
+        System.out.printf("%-3s Thêm nhân viên vào phòng ban\n", "3.");
+        System.out.printf("%-3s Hiển thị tất cả phòng ban\n", "4.");
+        System.out.printf("%-3s Hoàn tất\n", "5.");
+        System.out.print("- Chọn chức năng: ");
+        String choice = SCANNER.nextLine();
+        switch (choice) {
+            case "1" -> {
+                System.out.println("\n\t+----- Nhập thông tin phòng ban -----+");
+                Department department = newDepartment();
+                departmentManager.add(department);
+                System.out.println("\n\t+----- Thêm phòng ban thành công -----+");
+            }
+            case "2" -> {
+                System.out.print("- Nhập tên phòng ban cần xóa: ");
+                String name = SCANNER.nextLine();
+                try {
+                    Department department = departmentManager.search(name);
+                    Department.decreaseDepartmentAmount(1);
+                    departmentManager.remove(department);
+                    System.out.println("\n\t+----- Xóa phòng ban thành công -----+");
+                } catch (NullPointerException e) {
+                    System.err.println(e.getMessage());
+                    UIDepartmentManager();
+                }
+            }
+            case "3" -> {
+                System.out.print("- Nhập tên phòng ban cần thêm nhân viên: ");
+                String name = SCANNER.nextLine();
+                System.out.print("- Nhập mã nhân viên muốn thêm: ");
+                String id = SCANNER.nextLine();
+                try {
+                    Department department = departmentManager.search(name);
+                    Employee employee = employeeManager.searchById(id);
+                    if (employee instanceof Manager manager && department.hasManager()) {
+                        if (department.hasManager()) {
+                            System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
+                        } else {
+                            manager.addDepartment(department);
+                            department.setManager(manager);
+                            department.setDateTakeOffice(GREGORIANCALENDAR.getTime());
+                        }
+                    } else if (department.hasEmployee(employee)) {
+                        System.err.println("\n\t+----- Nhân viên đã tồn tại trong phòng ban này -----+");
+                    } else {
+                        department.addEmployee(employee);
+                        System.out.println("\n\t+----- Thêm nhân viên vào phòng ban thành công -----+");
+                    }
+                } catch (NullPointerException | AmountException e) {
+                    System.err.println(e.getMessage());
+                    UIDepartmentManager();
+                }
+            }
+            case "4" -> {
+                System.out.println("\n\t+----- DANH SÁCH TẤT CẢ PHÒNG BAN -----+");
+                Factory.printLine(180, "~");
+                departmentManager.showList();
+            }
+            case "5" -> System.out.printf("%s\n== Hoàn tất quản lý phòng ban ==\n%s", Color.YELLOW_BRIGHT, Color.RESET);
+            default -> System.err.println("\n== CHỨC NĂNG HIỆN CHƯA CÓ ==");
+        }
+    }
+
+    private Department newDepartment() {
+        Department department = new Department();
+        department.setInfo();
+        return department;
     }
 
     /**
