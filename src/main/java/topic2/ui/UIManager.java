@@ -289,8 +289,10 @@ public class UIManager {
                     Employee.decreaseEmployeeAmount(1);
                     Department department = departmentManager.search(employee);
                     department.removeEmployee(employee);
-                    department.setDateTakeOffice(null);
-                    department.setManager(null);
+                    if (employee instanceof Manager) {
+                        department.setDateTakeOffice(null);
+                        department.setManager(null);
+                    }
                     employeeManager.remove(employee);
                     joinProjectManger.removeAll(employee);
                     provideInsuranceManager.getList(employee).forEach(provideInsuranceManager::remove);
