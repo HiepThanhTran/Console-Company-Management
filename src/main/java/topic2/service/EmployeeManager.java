@@ -36,7 +36,7 @@ public class EmployeeManager {
      *
      * @param employee Nhân viên
      */
-    public Employee promote(Employee employee) {
+    public Employee promoted(Employee employee) {
         if (!(employee instanceof Manager)) {
             Employee.decreaseEmployeeAmount(1);
             Manager manager = new Manager(employee);

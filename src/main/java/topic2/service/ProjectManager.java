@@ -42,8 +42,10 @@ public class ProjectManager {
     public void showList() {
         Factory.projectMenuHeader();
         this.projectList.forEach(project -> {
-            System.out.println(project);
-            Factory.printLine(157, "-");
+            if (project.getManager() != null) {
+                System.out.println(project);
+                Factory.printLine(157, "-");
+            }
         });
     }
 

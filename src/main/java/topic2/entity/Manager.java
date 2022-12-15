@@ -1,8 +1,6 @@
 package topic2.entity;
 
-import static topic2.ui.Factory.GREGORIANCALENDAR;
 import static topic2.ui.Factory.MAX_MANAGER_ROOM;
-import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,11 +9,9 @@ import topic2.exception.AmountException;
 
 public class Manager extends Employee {
 
-    private Date takeOfficeDate;
     private List<Department> departmentList = new ArrayList<>();
 
     {
-        takeOfficeDate = GREGORIANCALENDAR.getTime();
         id = String.format("M-%05d", EMPLOYEE_AMOUNT);
     }
 
@@ -30,22 +26,8 @@ public class Manager extends Employee {
         super(name, gender, dob, email);
     }
 
-    public Manager(String name, String gender, Date dob, String email, Date takeOfficeDate) {
-        super(name, gender, dob, email);
-        this.takeOfficeDate = takeOfficeDate;
-    }
-
     public Manager(String name, String gender, Date dob, String id, String email) {
         super(name, gender, dob, id, email);
-    }
-
-    public Manager(String name, String gender, Date dob, String id, String email, Date takeOfficeDate) {
-        super(name, gender, dob, id, email);
-        this.takeOfficeDate = takeOfficeDate;
-    }
-
-    public Date getTakeOfficeDate() {
-        return takeOfficeDate;
     }
 
     public List<Department> getDepartmentList() {
@@ -77,7 +59,8 @@ public class Manager extends Employee {
         return Type.MANAGER.getCoefficient();
     }
 
+    @Override
     public String toString() {
-        return String.format("%s Ngày nhậm chức: %-14s |", super.toString(), SIMPLEDATEFORMAT.format(takeOfficeDate));
+        return String.format("%s %-30s |", super.toString(), "");
     }
 }

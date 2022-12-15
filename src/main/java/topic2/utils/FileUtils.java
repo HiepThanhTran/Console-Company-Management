@@ -5,7 +5,6 @@ import static topic2.ui.Factory.departmentFile;
 import static topic2.ui.Factory.departmentManager;
 import static topic2.ui.Factory.employeeFile;
 import static topic2.ui.Factory.employeeManager;
-import static topic2.ui.Factory.joinDepartmentManager;
 import static topic2.ui.Factory.joinProjectManger;
 import static topic2.ui.Factory.projectFile;
 import static topic2.ui.Factory.projectManager;
@@ -17,7 +16,6 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
-import topic2.behavior.JoinDepartment;
 import topic2.behavior.JoinProject;
 import topic2.behavior.ProvideInsurance;
 import topic2.entity.Department;
@@ -45,7 +43,7 @@ public final class FileUtils {
              * tokens[2] - Giới tính
              * tokens[3] - Ngày sinh
              * tokens[4] - Email
-             * tokens[5] - Lương OT (Programmer), Bonus (Designer), Số lỗi tìm được (Tester), hoặc ngày nhậm chức (Manager)
+             * tokens[5] - Lương OT (Programmer), Bonus (Designer), Số lỗi tìm được (Tester)
              */
             Scanner readEmployee = new Scanner(employeeFile);
             while (readEmployee.hasNextLine()) {
@@ -61,26 +59,36 @@ public final class FileUtils {
                     case "P" -> employee = new Programmer(name, gender, dob, id, email, Double.parseDouble(tokens[5]));
                     case "D" -> employee = new Designer(name, gender, dob, id, email, Double.parseDouble(tokens[5]));
                     case "T" -> employee = new Tester(name, gender, dob, id, email, Integer.parseInt(tokens[5]));
-                    case "M" -> employee = new Manager(name, gender, dob, id, email, SIMPLEDATEFORMAT.parse(tokens[5]));
+                    case "M" -> employee = new Manager(name, gender, dob, id, email);
                 }
                 employeeManager.add(employee);
             }
             /**
              * Đọc danh sách phòng ban từ file DepartmentList
              * tokens[0] - Tên phòng ban
+             * tokens[1] - Mã nhân viên quản lý
+             * tokens[2] - Ngày nhậm chức của nhân viên quản lý
              * tokens[...] - ID của các nhân viên trực thuộc phòng ban
              */
             Scanner readDepartment = new Scanner(departmentFile);
             while (readDepartment.hasNextLine()) {
                 String[] tokens = readDepartment.nextLine().split(", ");
+                int index = 1;
                 Department department = new Department(tokens[0]);
-                for (int i = 1; i < tokens.length; i++) {
+                if (tokens[2].matches("[0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4}")) {
+                    Employee manager = employeeManager.searchById(tokens[1]);
+                    Date dateTakeOffice = SIMPLEDATEFORMAT.parse(tokens[2]);
+                    department.addEmployee(manager);
+                    department.setManager(manager);
+                    department.setDateTakeOffice(dateTakeOffice);
+                    index = 3;
+                }
+                for (int i = index; i < tokens.length; i++) {
                     Employee employee = employeeManager.searchById(tokens[i]);
                     if (employee instanceof Manager manager) {
                         manager.addDepartment(department);
                     }
                     department.addEmployee(employee);
-                    joinDepartmentManager.add(new JoinDepartment(employee, department));
                 }
                 departmentManager.add(department);
             }
@@ -177,7 +185,6 @@ public final class FileUtils {
                     case "P" -> employeeInfo.append(", " + ((Programmer) employee).getSalaryOT());
                     case "D" -> employeeInfo.append(", " + ((Designer) employee).getBonus());
                     case "T" -> employeeInfo.append(", " + ((Tester) employee).getErrors());
-                    case "M" -> employeeInfo.append(", " + SIMPLEDATEFORMAT.format(((Manager) employee).getTakeOfficeDate()));
                 }
                 writeEmployee.println(employeeInfo);
             });

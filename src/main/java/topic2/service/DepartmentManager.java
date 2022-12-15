@@ -3,6 +3,7 @@ package topic2.service;
 import java.util.ArrayList;
 import java.util.List;
 import topic2.entity.Department;
+import topic2.entity.Employee;
 import topic2.ui.Factory;
 
 public class DepartmentManager {
@@ -43,6 +44,11 @@ public class DepartmentManager {
      */
     public Department search(String name) {
         return this.departmentList.stream().filter(department -> department.getDepartmentName().equals(name)).findFirst()
+            .orElseThrow(() -> new NullPointerException("\n\t+----- Không tìm thấy phòng ban -----+"));
+    }
+
+    public Department search(Employee employee) {
+        return this.departmentList.stream().filter(department -> department.hasEmployee(employee)).findFirst()
             .orElseThrow(() -> new NullPointerException("\n\t+----- Không tìm thấy phòng ban -----+"));
     }
 }

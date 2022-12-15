@@ -88,7 +88,7 @@ public abstract class Employee extends Person {
             return false;
         }
         Employee employee = (Employee) o;
-        return id.equals(employee.id);
+        return id.substring(2).equals(employee.id.substring(2));
     }
 
     @Override

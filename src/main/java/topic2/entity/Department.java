@@ -3,6 +3,7 @@ package topic2.entity;
 import static topic2.ui.Factory.SCANNER;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import topic2.ui.Factory;
@@ -11,7 +12,9 @@ public class Department {
 
     private static int DEPARTMENT_AMOUNT = 0;
     private String departmentName;
-    private List<Employee> employeeList = new ArrayList<>(); // Danh sách các nhân viên trực thuộc phòng ban này
+    private Employee manager;
+    private Date dateTakeOffice;
+    private List<Employee> employeeList = new ArrayList<>();
 
     {
         DEPARTMENT_AMOUNT++;
@@ -24,9 +27,10 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public Department(String departmentName, List<Employee> employeeList) {
+    public Department(String departmentName, Employee manager, Date dateTakeOffice) {
         this.departmentName = departmentName;
-        this.employeeList = employeeList;
+        this.manager = manager;
+        this.dateTakeOffice = dateTakeOffice;
     }
 
     public static int getDepartmentAmount() {
@@ -43,6 +47,22 @@ public class Department {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
+    public Date getDateTakeOffice() {
+        return dateTakeOffice;
+    }
+
+    public void setDateTakeOffice(Date dateTakeOffice) {
+        this.dateTakeOffice = dateTakeOffice;
     }
 
     public List<Employee> getEmployeeList() {
@@ -67,7 +87,7 @@ public class Department {
      * @return True nếu phòng ban đã có quản lý. False nếu chưa có
      */
     public boolean hasManager() {
-        return this.employeeList.stream().anyMatch(employee -> employee instanceof Manager);
+        return this.manager != null;
     }
 
     /**
