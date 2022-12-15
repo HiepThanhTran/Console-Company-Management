@@ -78,6 +78,7 @@ public final class FileUtils {
                 if (tokens[2].matches("[0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4}")) {
                     Employee manager = employeeManager.searchById(tokens[1]);
                     Date dateTakeOffice = SIMPLEDATEFORMAT.parse(tokens[2]);
+                    ((Manager) manager).addDepartment(department);
                     department.addEmployee(manager);
                     department.setManager(manager);
                     department.setDateTakeOffice(dateTakeOffice);
@@ -169,7 +170,15 @@ public final class FileUtils {
             departmentManager.getDepartmentList().forEach(department -> {
                 StringBuilder departmentInfo = new StringBuilder();
                 departmentInfo.append(department.getDepartmentName());
-                department.getEmployeeList().forEach(employee -> departmentInfo.append(", " + employee.getId()));
+                int index = 0;
+                if (department.getManager() != null) {
+                    departmentInfo.append(String.format(", %s, %s", department.getManager().getId(),
+                        SIMPLEDATEFORMAT.format(department.getDateTakeOffice())));
+                    index = 1;
+                }
+                for (int i = index; i < department.getEmployeeList().size(); i++) {
+                    departmentInfo.append(", " + department.getEmployeeList().get(i).getId());
+                }
                 writeDepartment.println(departmentInfo);
             });
             /**

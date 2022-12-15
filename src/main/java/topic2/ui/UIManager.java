@@ -501,17 +501,16 @@ public class UIManager {
                 try {
                     Department department = departmentManager.search(name);
                     Employee employee = employeeManager.searchById(id);
-                    if (employee instanceof Manager manager && department.hasManager()) {
-                        if (department.hasManager()) {
-                            System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
-                        } else {
+                    if (employee instanceof Manager && department.hasManager()) {
+                        System.err.println("\n\t+----- Phòng ban này đã có quản lý -----+");
+                    } else if (department.hasEmployee(employee)) {
+                        System.err.println("\n\t+----- Nhân viên đã tồn tại trong phòng ban này -----+");
+                    } else {
+                        if (employee instanceof Manager manager) {
                             manager.addDepartment(department);
                             department.setManager(manager);
                             department.setDateTakeOffice(GREGORIANCALENDAR.getTime());
                         }
-                    } else if (department.hasEmployee(employee)) {
-                        System.err.println("\n\t+----- Nhân viên đã tồn tại trong phòng ban này -----+");
-                    } else {
                         department.addEmployee(employee);
                         System.out.println("\n\t+----- Thêm nhân viên vào phòng ban thành công -----+");
                     }

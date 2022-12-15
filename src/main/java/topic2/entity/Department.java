@@ -1,6 +1,7 @@
 package topic2.entity;
 
 import static topic2.ui.Factory.SCANNER;
+import static topic2.ui.Factory.SIMPLEDATEFORMAT;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,7 +109,16 @@ public class Department {
     public void showInfo() {
         System.out.printf("** Thông tin phòng ban %s **\n", departmentName.toUpperCase());
         System.out.printf("- Tên phòng ban: %s\n", departmentName);
-        System.out.println("== DANH SÁCH NHÂN VIÊN ==");
+        if (manager != null) {
+            System.out.println("\n\t\t+----- Thông tin quản lý phòng ban -----+");
+            System.out.printf("- Mã nhân viên: %s\n", manager.getId());
+            System.out.printf("- Họ tên: %s\n", manager.getName());
+            System.out.printf("- Giới tính: %s\n", manager.getGender());
+            System.out.printf("- Ngày sinh: %s\n", SIMPLEDATEFORMAT.format(manager.getDob()));
+            System.out.printf("- Email: %s\n", manager.getEmail());
+            System.out.printf("- Ngày nhậm chức: %s\n", SIMPLEDATEFORMAT.format(dateTakeOffice));
+        }
+        System.out.println("\n\t\t+----- DANH SÁCH NHÂN VIÊN -----+");
         this.showEmployeeList();
     }
 
