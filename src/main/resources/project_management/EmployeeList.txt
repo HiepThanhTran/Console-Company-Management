@@ -1,0 +1,9 @@
+N-00001, Đặng Trung Thắng, Nam, 01/01/1998, 21510501234thang@ou.eud.vn
+P-00002, Trần Thanh Hiệp, Nam, 29/01/2003, hieptt.2003@gmail.com, 5000000.0
+D-00003, Nguyễn Song Hậu, Nam, 27/07/2003, 2151050123hau@ou.edu.vn, 300000.0
+T-00004, Nguyễn Huỳnh Ngọc Như, Nữ, 27/05/2003, 2151053045nhu@ou.edu.vn, 10
+M-00005, Nguyễn Trọng Phúc, Nam, 02/02/2000, 2151040000phuc@ou.edu.vn
+T-00006, Lưu Văn Phúc, Nam, 26/03/2003, 21510501234phuc@ou.edu.vn, 25
+D-00007, Tống Thị Thu Hiền, Nữ, 10/07/2003, 2151050126hien@ou.edu.vn, 50000.0
+D-00008, Trần Thanh Hậu, Nam, 18/12/1998, tranhau1993@gmail.com, 500000.0
+P-00009, Lê Trí Cường, Nam, 10/08/2003, letricuong203@gmail.com, 2000000.0
