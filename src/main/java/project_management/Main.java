@@ -14,7 +14,6 @@ import project_management.utils.StringUtils;
 public class Main {
 
     public static void main(String[] args) {
-        // Test git
         UIManager uiManager = UIManager.getINSTANCE();
         while (true) {
             System.out.println("\n" + StringUtils.center(50, "*** H&H COMPANY ***"));
